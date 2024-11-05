@@ -15,7 +15,7 @@ Al pulsar "tabulador" se autocompletará la estructura básica del componente co
 
 Ej:
 
--   Header.jsx
+- Header.jsx
 
 ```Javascript
 import React from 'react'
@@ -55,11 +55,11 @@ Por ello recomiendo también lo siguiente:
 import React from "react";
 
 function Header() {
-    return (
-        <>
-            <p></p>
-        </>
-    );
+  return (
+    <>
+      <p></p>
+    </>
+  );
 }
 
 export default Header;
