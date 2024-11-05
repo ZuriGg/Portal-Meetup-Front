@@ -5,17 +5,18 @@ function useFetch(url) {
   const [user] = useUser();
   const [content, setContent] = useState(null);
 
-  const headers = {};
-  if (user?.token)
-    headers.Authorization =
-      "Bearer " +
-      user?.token; /* en la petición, mandamos el token mediante header */
-
   useEffect(() => {
+    //define los headers solo si hay un token
+    const headers = user?.token
+      ? { Authorization: `Bearer ${user.token}` }
+      : {};
+
     fetch(url, { headers })
       .then((res) => res.json())
-      .then((data) => setContent(data));
-  }, [url, user?.token]); //se va a efectuar el fetch cada vez que cambie la url o cada vez q lo haga el usuario logado
+      .then((data) => setContent(data))
+      .catch(() => setContent(null)); // Puedes definir qué hacer en caso de error
+  }, [url, user?.token]);
+  //se va a efectuar el fetch cada vez que cambie la url o cada vez q lo haga el usuario logado
   return content;
 }
 
