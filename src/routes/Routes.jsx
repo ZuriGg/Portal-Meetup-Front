@@ -14,67 +14,69 @@ import RecoveryPass from "./Users/Password/Recovery/RecoveryPass.jsx";
 import CreateMeetup from "./Meetups/Create/CreateMeetup.jsx";
 import EditMeetup from "./Meetups/Edit/EditMeetup.jsx";
 
-const AppRoutes = () => (
-  <>
-    <Routes>
-      {/* Aqui iria el Home según sea usuario anónimo o registrado */}
-      <Route
-        path="/"
-        element={<Home />}
-      />
+const AppRoutes = () => {
+  return (
+    <>
+      <Routes>
+        {/* Aqui iria el Home según sea usuario anónimo o registrado */}
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-      {/* Rutas de usuario */}
-      <Route path="user">
-        {/* Aqui iria la página de registro de usuario */}
-        <Route
-          path="register"
-          element={<Register />}
-        />
-        {/* Aquí iria la página donde el usuario es informado de que está validado */}
-        <Route
-          path="Validate"
-          element={<ValidateUser />}
-        />
-        {/* Aquí iria la página para iniciar sesión */}
-        <Route
-          path="Login"
-          element={<Login />}
-        />
-        <Route path="password">
-          {/* Aquí iria la página para solicitar la recuperación de la contraseña */}
+        {/* Rutas de usuario */}
+        <Route path="user">
+          {/* Aqui iria la página de registro de usuario */}
           <Route
-            path="recover"
-            element={<RecoveryPass />}
+            path="register"
+            element={<Register />}
+          />
+          {/* Aquí iria la página donde el usuario es informado de que está validado */}
+          <Route
+            path="Validate"
+            element={<ValidateUser />}
+          />
+          {/* Aquí iria la página para iniciar sesión */}
+          <Route
+            path="Login"
+            element={<Login />}
+          />
+          <Route path="password">
+            {/* Aquí iria la página para solicitar la recuperación de la contraseña */}
+            <Route
+              path="recover"
+              element={<RecoveryPass />}
+            />
+          </Route>
+        </Route>
+
+        {/* Rutas de meetups */}
+        <Route path="meetup">
+          {/* Aquí iria la página para crear un meetup */}
+          <Route
+            path="create"
+            element={<CreateMeetup />}
+          />
+          {/* Aquí iria la página para editar un meetup */}
+          <Route
+            path="edit"
+            element={<EditMeetup />}
           />
         </Route>
-      </Route>
 
-      {/* Rutas de meetups */}
-      <Route path="meetup">
-        {/* Aquí iria la página para crear un meetup */}
+        {/* Ruta para redirigir cualquier ruta no válida */}
         <Route
-          path="create"
-          element={<CreateMeetup />}
+          path="*"
+          element={
+            <Navigate
+              to="/"
+              replace
+            />
+          }
         />
-        {/* Aquí iria la página para editar un meetup */}
-        <Route
-          path="edit"
-          element={<EditMeetup />}
-        />
-      </Route>
-
-      {/* Ruta para redirigir cualquier ruta no válida */}
-      <Route
-        path="*"
-        element={
-          <Navigate
-            to="/"
-            replace
-          />
-        }
-      />
-    </Routes>
-  </>
-);
+      </Routes>
+    </>
+  );
+};
 
 export default AppRoutes;
