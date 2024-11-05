@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import "./App.css";
 
 //Importación de todas las rutas
-import AppRoutes from "./routes/Routes.jsx";
+import AppRoutes from "./Pages/Routes.jsx";
 
 //Importación de header y Footer
 import Header from "./Components/Header/Header.jsx";

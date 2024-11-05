@@ -17,7 +17,6 @@ function CreateMeetup() {
         notes: "",
         zip: "",
         userId: "",
-        owner: "",
         hourMeetUp: "",
         dayOfTheWeek: "",
         aforoMax: "",
@@ -176,17 +175,6 @@ function CreateMeetup() {
                             type="text"
                             name="userId"
                             value={formData.userId}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        Owner:
-                        <input
-                            type="text"
-                            name="owner"
-                            value={formData.owner}
                             onChange={handleChange}
                             required
                         />
