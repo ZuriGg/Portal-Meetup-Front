@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 //Importación del archivo de css principal (No editar sin consultar)
 import "./App.css";
 
 //Importación de todas las rutas
-import Rutas from "./routes/Routes.jsx";
+import AppRoutes from "./routes/Routes.jsx";
 
 //Importación de header y Footer
 import Header from "./Components/Header/Header.jsx";
@@ -43,18 +43,12 @@ function App() {
 
     return (
         <>
-            <Header /> {/* Falta por crearse el header */}
+            <Header />
             <main>
-                <Router>
-                    {/* Router permite el uso de "Switch" */}
-                    <Switch>
-                        {/* Switch es una herramienta de react-router-dom que permite imprimir solo la ruta que coincida con la url del navegador */}
-                        <Rutas />
-                        {/* Este componente hace las veces de "index" para importar todas las rutas a la vez, y "Switch" se encarga de asignar solo la ruta solicitada en la url o mediante un Navigate o "<a><a/>" */}
-                    </Switch>
-                </Router>
+                {/* Este componente hace las veces de "index" para importar todas las rutas a la vez, y "Switch" se encarga de asignar solo la ruta solicitada en la url o mediante un Navigate o "<a><a/>" */}
+                <AppRoutes />
             </main>
-            <Footer /> {/* Falta por crearse el footer */}
+            <Footer />
         </>
     );
 }
