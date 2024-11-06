@@ -24,9 +24,9 @@ const AppRoutes = () => (
                 {/* Aqui iria la página de registro de usuario */}
                 <Route path="register" element={<Register />} />
                 {/* Aquí iria la página donde el usuario es informado de que está validado */}
-                <Route path="Validate" element={<ValidateUser />} />
+                <Route path="validate" element={<ValidateUser />} />
                 {/* Aquí iria la página para iniciar sesión */}
-                <Route path="Login" element={<Login />} />
+                <Route path="login" element={<Login />} />
                 <Route path="password">
                     {/* Aquí iria la página para solicitar la recuperación de la contraseña */}
                     <Route path="recover" element={<RecoveryPass />} />
