@@ -12,6 +12,7 @@ import RecoveryPass from "./Users/Password/Recovery/RecoveryPass.jsx";
 
 // Import de rutas de meetups
 import CreateMeetup from "./Meetups/Create/CreateMeetup.jsx";
+import ChangePass from "./Users/Password/changePass/ChangePass.jsx";
 
 const AppRoutes = () => (
   <>
@@ -30,6 +31,7 @@ const AppRoutes = () => (
         <Route path="password">
           {/* Aquí iria la página para solicitar la recuperación de la contraseña */}
           <Route path="recover" element={<RecoveryPass />} />
+          <Route path="changepass" element={<ChangePass />} />
         </Route>
       </Route>
 
