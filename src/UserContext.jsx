@@ -30,7 +30,9 @@ export const UserProvider = ({ children }) => {
   );
 };
 
-// para llamar usar el contexto, solo hay que llamarlo en cada componente: const [user, setUser] = useUser();
+// para llamar usar el contexto, solo hay que llamarlo en cada componente: const [user, setUser] = useUser(); y si quieres usar los datos concretos del usuario:  <h1>Bienvenido, {user.firstName} {user.lastName}</h1>
+// <p>Rol: {user.role}</p>
+// <p>Email: {user.email}</p>
 
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
