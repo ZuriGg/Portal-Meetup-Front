@@ -1,59 +1,52 @@
 // Página para la creación de un Meetup
-import "./CreateMeetup.css";
-
-import React, { useState } from "react";
+import './CreateMeetup.css';
+import useFetch from '../../../hooks/useFetch';
+import React, { useState } from 'react';
 
 function CreateMeetup() {
     // Estado para almacenar los datos ingresados por el usuario
     const [formData, setFormData] = useState({
-        title: "",
-        description: "",
-        startDate: "",
-        oneSession: "",
-        categoryId: "",
-        locationId: "",
-        city: "",
-        address: "",
-        notes: "",
-        zip: "",
-        userId: "",
-        hourMeetUp: "",
-        dayOfTheWeek: "",
-        aforoMax: "",
+        title: '',
+        description: '',
+        startDate: '',
+        oneSession: '',
+        categoryId: '',
+        locationId: '',
+        city: '',
+        address: '',
+        notes: '',
+        zip: '',
+        userId: '',
+        hourMeetUp: '',
+        dayOfTheWeek: '',
+        aforoMax: '',
     });
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
             ...formData,
-            [name]: type === "checkbox" ? checked : value,
+            [name]: type === 'checkbox' ? checked : value,
         });
     };
 
-    const enviarDatos = async (e) => {
+    const enviarDatos = (e) => {
         e.preventDefault();
-
-        try {
-            const response = await fetch(
-                "http://localhost:3000/meetupentries",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(
-                    "La solicitud no se ha podido efectuar, ha fallado la conexión"
-                );
-            }
-        } catch (error) {
-            console.error("Error al enviar los datos:", error);
-        }
+        const response = useFetch(
+            'http://localhost:3000/meetupentries',
+            {
+                method: 'POST',
+                body: JSON.stringify(formData),
+            },
+            shouldFetch
+        );
     };
+
+    if (response && response.ok === false) {
+        console.error(
+            'La solicitud no se ha podido efectuar, ha fallado la conexión'
+        );
+    }
 
     return (
         <>
@@ -110,17 +103,6 @@ function CreateMeetup() {
                             type="text"
                             name="categoryId"
                             value={formData.categoryId}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        Location ID:
-                        <input
-                            type="text"
-                            name="locationId"
-                            value={formData.locationId}
                             onChange={handleChange}
                             required
                         />
