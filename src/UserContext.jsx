@@ -5,12 +5,22 @@ export const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("session")) || null
+    JSON.parse(localStorage.getItem("session")) || {
+      email: "",
+      username: "",
+      firstName: "",
+      lastName: "",
+      meetupOwner: "",
+      avatar: "",
+      active: false,
+      role: "normal", // rol por defecto
+    }
   );
 
-  const enhancedSetUser = (better) => {
-    setUser(better);
-    localStorage.setItem("session", JSON.stringify(better));
+  // Función para actualizar el usuario en el estado y localStorage
+  const enhancedSetUser = (betterUser) => {
+    setUser(betterUser);
+    localStorage.setItem("session", JSON.stringify(betterUser));
   };
 
   return (
