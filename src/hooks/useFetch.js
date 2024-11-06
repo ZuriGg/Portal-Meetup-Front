@@ -1,23 +1,44 @@
-import { useEffect, useState } from "react";
-import { useUser } from "../UserContext.jsx";
+import { useEffect, useState } from 'react';
+import { useUser } from '../UserContext.jsx';
 
-function useFetch(url) {
-  const [user] = useUser();
-  const [content, setContent] = useState(null);
+function useFetch(url, options = {}) {
+    const [user] = useUser();
+    const [content, setContent] = useState(null);
 
-  useEffect(() => {
-    //define los headers solo si hay un token
-    const headers = user?.token
-      ? { Authorization: `Bearer ${user.token}` }
-      : {};
+    useEffect(() => {
+        const fetchData = async () => {
+            // Definir los headers de autorización si el usuario tiene un token
+            const headers = user?.token
+                ? { Authorization: `Bearer ${user.token}`, ...options.headers }
+                : options.headers || {};
 
-    fetch(url, { headers })
-      .then((res) => res.json())
-      .then((data) => setContent(data))
-      .catch(() => setContent(null)); // Puedes definir qué hacer en caso de error
-  }, [url, user?.token]);
-  //se va a efectuar el fetch cada vez que cambie la url o cada vez q lo haga el usuario logado
-  return content;
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...headers,
+                    },
+                });
+
+                // Verificar si la respuesta fue exitosa
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud');
+                }
+
+                // Procesar el contenido de la respuesta
+                const data = await response.json();
+                setContent(data);
+            } catch (error) {
+                console.error('Error al realizar el fetch:', error);
+                setContent(null); // O manejar el error de otra forma si es necesario
+            }
+        };
+
+        fetchData();
+    }, [url, user?.token, options]);
+
+    return content;
 }
 
 export default useFetch;
