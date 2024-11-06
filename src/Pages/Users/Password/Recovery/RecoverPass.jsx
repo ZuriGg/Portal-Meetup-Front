@@ -1,4 +1,5 @@
 import { useUser } from "../../../../UserContext.jsx";
+import "./RecoveryPass.css";
 
 export default function RecoverPass() {
   const [user, setUser] = useUser();
