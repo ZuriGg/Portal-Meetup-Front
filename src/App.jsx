@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { AuthProvider } from './context/AuthContext';
 
 //Importación del archivo de css principal (No editar sin consultar)
 import "./App.css";
@@ -43,14 +44,17 @@ function App() {
 
   return (
     <>
+      <AuthProvider>
       <Header />
       <main>
         {/* Este componente hace las veces de "index" para importar todas las rutas a la vez, y "Switch" se encarga de asignar solo la ruta solicitada en la url o mediante un Navigate o "<a><a/>" */}
         <AppRoutes />
       </main>
       <Footer />
+      </AuthProvider>
     </>
   );
 }
+
 
 export default App;
