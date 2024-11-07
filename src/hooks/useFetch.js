@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../UserContext.jsx';
 
+/* HACER ARCHIVO API CON LOS FETCH */
+
 function useFetch(url, options = {}) {
     const [user] = useUser();
     const [content, setContent] = useState(null);

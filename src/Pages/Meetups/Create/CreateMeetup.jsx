@@ -1,7 +1,7 @@
 // Página para la creación de un Meetup
 import './CreateMeetup.css';
-import useFetch from '../../../hooks/useFetch';
-import React, { useState } from 'react';
+import useFetch from '../../../hooks/useFetch.js';
+import { useState } from 'react';
 
 function CreateMeetup() {
     // Estado para almacenar los datos ingresados por el usuario
@@ -30,23 +30,14 @@ function CreateMeetup() {
         });
     };
 
+    /* HACER ARCHIVO API CON LOS FETCH */
     const enviarDatos = (e) => {
         e.preventDefault();
-        const response = useFetch(
-            'http://localhost:3000/meetupentries',
-            {
-                method: 'POST',
-                body: JSON.stringify(formData),
-            },
-            shouldFetch
-        );
+        const response = useFetch('http://localhost:3000/meetupentries', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+        });
     };
-
-    if (response && response.ok === false) {
-        console.error(
-            'La solicitud no se ha podido efectuar, ha fallado la conexión'
-        );
-    }
 
     return (
         <>
