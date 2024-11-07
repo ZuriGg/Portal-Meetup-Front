@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { AuthProvider } from './context/AuthContext';
+
 
 //Importación del archivo de css principal (No editar sin consultar)
 import "./App.css";
