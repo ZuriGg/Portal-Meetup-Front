@@ -39,7 +39,7 @@ export default function RecoveryPass() {
         <>
             <h1>Recover</h1>
             <p>
-                Inserte su correo electronico, para iniciar el proceso de
+                Inserte su correo electrónico, para iniciar el proceso de
                 recuperación de contraseña
             </p>
             <div id="recover" className="page">
@@ -53,7 +53,7 @@ export default function RecoveryPass() {
                             onChange={(e) => setEmail(e.target.value)}
                         />
                         <button>✔</button>
-                        {success && <p>correo de recuperacion enviado</p>}
+                        {success && <p>correo de recuperación enviado</p>}
                         {error && <p>{error}</p>}
                     </label>
                 </form>
