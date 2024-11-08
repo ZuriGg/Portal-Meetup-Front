@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'; // para leer la información de la URL
 import { useEffect } from 'react';
 
 //Importación del archivo de css principal (No editar sin consultar)
@@ -16,6 +16,7 @@ function App() {
     // useEffect para visualizar en la pestaña del navegador un texto según el endpoint
     useEffect(() => {
         if (location.pathname === '/') {
+            // location es un objeto que representa la URL actual
             document.title = 'PORTAL MEETUP'; // En caso de estar en home
         } else if (location.pathname === '/user/register') {
             // En caso de estar en /user/register
@@ -38,7 +39,7 @@ function App() {
         } else {
             document.title = 'PORTAL MEETUP'; // En caso de no coincidir con ninguna ruta anteriormente especificada
         }
-    }, [location]);
+    }, [location]); //se actualiza cada vez que el path cambia
 
     return (
         <>

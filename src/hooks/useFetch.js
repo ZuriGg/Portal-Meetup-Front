@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useUser } from '../UserContext.jsx';
-
-/* HACER ARCHIVO API CON LOS FETCH */
+import { useUser } from '../UserContext.jsx'; //importamos el contexto del usuario
 
 function useFetch(url, options = {}) {
     const [user] = useUser();
@@ -10,8 +8,8 @@ function useFetch(url, options = {}) {
     useEffect(() => {
         const fetchData = async () => {
             // Definir los headers de autorización si el usuario tiene un token
-            const headers = user?.token
-                ? { Authorization: `Bearer ${user.token}`, ...options.headers }
+            const headers = user?.token //comprueba que el objeto user tenga token
+                ? { Authorization: `Bearer ${user.token}`, ...options.headers } //si tiene token se comprueba
                 : options.headers || {};
 
             try {
@@ -38,7 +36,7 @@ function useFetch(url, options = {}) {
         };
 
         fetchData();
-    }, [url, user?.token, options]);
+    }, [url, user?.token, options]); //se va a efectuar el fetch cada vez que cambie la url, el token del usuario o los encabezados
 
     return content;
 }
