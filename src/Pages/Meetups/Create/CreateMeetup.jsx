@@ -3,6 +3,8 @@ import "./CreateMeetup.css";
 
 import React, { useState } from "react";
 
+import { meetupEntriesFetch } from "../../../hooks/api.js";
+
 function CreateMeetup() {
     // Estado para almacenar los datos ingresados por el usuario
     const [formData, setFormData] = useState({
@@ -33,25 +35,14 @@ function CreateMeetup() {
     const enviarDatos = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(
-                "http://localhost:3000/meetupentries",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                }
-            );
+        // Llamada a meetupEntriesFetch con formData
+        const response = await meetupEntriesFetch(formData);
 
-            if (!response.ok) {
-                throw new Error(
-                    "La solicitud no se ha podido efectuar, ha fallado la conexión"
-                );
-            }
-        } catch (error) {
-            console.error("Error al enviar los datos:", error);
+        // Verificar si hubo una respuesta o manejar los errores
+        if (response) {
+            console.log("Meetup creado exitosamente:", response);
+        } else {
+            console.error("Hubo un problema al crear el meetup");
         }
     };
 
