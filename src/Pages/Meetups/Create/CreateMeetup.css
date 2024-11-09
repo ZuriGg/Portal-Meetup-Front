@@ -3,9 +3,10 @@ div#formularioNuevoMeetup {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5vh;
+    gap: 2vh;
     height: 100%;
     width: 100%;
+    font-size: 1.5vh;
 }
 
 div#formularioNuevoMeetup > form {
@@ -13,10 +14,11 @@ div#formularioNuevoMeetup > form {
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    gap: 20px;
+    gap: 1vh;
     padding: 4vh;
     background-color: rgb(34, 55, 27);
     border-radius: 2vh;
+    height: 70vh;
 }
 
 div#formularioNuevoMeetup > form > button {

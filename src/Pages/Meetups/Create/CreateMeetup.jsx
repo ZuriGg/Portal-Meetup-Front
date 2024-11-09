@@ -1,7 +1,8 @@
 // Página para la creación de un Meetup
 import './CreateMeetup.css';
-import useFetch from '../../../hooks/useFetch.js';
 import { useState } from 'react';
+
+import { meetupEntriesFetch } from '../../../hooks/api.js';
 
 function CreateMeetup() {
     // Estado para almacenar los datos ingresados por el usuario
@@ -31,12 +32,18 @@ function CreateMeetup() {
     };
 
     /* HACER ARCHIVO API CON LOS FETCH */
-    const enviarDatos = (e) => {
+    const enviarDatos = async (e) => {
         e.preventDefault();
-        const response = useFetch('http://localhost:3000/meetupentries', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-        });
+
+        // Llamada a meetupEntriesFetch con formData
+        const response = await meetupEntriesFetch(formData);
+
+        // Verificar si hubo una respuesta o manejar los errores
+        if (response) {
+            console.log('Meetup creado exitosamente:', response);
+        } else {
+            console.error('Hubo un problema al crear el meetup');
+        }
     };
 
     return (

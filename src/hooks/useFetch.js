@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useUser } from '../UserContext.jsx'; //importamos el contexto del usuario
+import { useUser } from '../UserContext.jsx'; // Importamos el contexto del usuario
 
 function useFetch(url, options = {}) {
     const [user] = useUser();
@@ -8,17 +8,23 @@ function useFetch(url, options = {}) {
     useEffect(() => {
         const fetchData = async () => {
             // Definir los headers de autorización si el usuario tiene un token
-            const headers = user?.token //comprueba que el objeto user tenga token
-                ? { Authorization: `Bearer ${user.token}`, ...options.headers } //si tiene token se comprueba
+            const headers = user?.token
+                ? { Authorization: `Bearer ${user.token}`, ...options.headers }
                 : options.headers || {};
+
+            // Agregar Content-Type solo si no es una solicitud GET y no está ya definido
+            if (
+                options.method &&
+                options.method !== 'GET' &&
+                !headers['Content-Type']
+            ) {
+                headers['Content-Type'] = 'application/json';
+            }
 
             try {
                 const response = await fetch(url, {
                     ...options,
-                    headers: {
-                        'Content-Type': 'application/json',
-                        ...headers,
-                    },
+                    headers,
                 });
 
                 // Verificar si la respuesta fue exitosa
@@ -36,7 +42,7 @@ function useFetch(url, options = {}) {
         };
 
         fetchData();
-    }, [url, user?.token, options]); //se va a efectuar el fetch cada vez que cambie la url, el token del usuario o los encabezados
+    }, [url, user?.token, options]);
 
     return content;
 }
