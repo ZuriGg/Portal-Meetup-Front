@@ -7,3 +7,6 @@ function Login() {
 }
 
 export default Login;
+
+// DESDE EL BACK TE PIDE:
+// email, password
