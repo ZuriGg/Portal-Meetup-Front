@@ -7,3 +7,6 @@ function Register() {
 }
 
 export default Register;
+
+//datos que hay en el back para registrar un nuevo usuario:
+// username, email, password, firstName, lastname
