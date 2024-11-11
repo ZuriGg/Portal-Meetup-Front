@@ -14,7 +14,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('http://localhost:3000/users/login', {
+            const resToken = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -22,18 +22,31 @@ function Login() {
                 body: JSON.stringify({ email, password }),
             });
 
-            if (!res.ok) {
+            if (!resToken.ok) {
                 setError('El usuario o la contraseña no son válidos');
                 return;
             }
 
-            const data = await res.json();
+            const dataToken = await resToken.json();
 
-            console.log(' data recibida del server ', data);
+            const resUser = await fetch(
+                `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-type': 'application/json',
+                    },
+                }
+            );
 
-            setUser({ token: data.token });
+            const dataUser = await resUser.json();
 
-            console.log(data.token);
+            setUser({
+                dataUser: dataUser.data.user,
+                token: dataToken.token,
+            });
+
+            console.log(dataUser.data.user, dataToken.token);
 
             setSuccess(true);
             setError(null);
