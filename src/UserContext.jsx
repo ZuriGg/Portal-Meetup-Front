@@ -1,28 +1,33 @@
-import PropTypes from "prop-types";
-import { createContext, useContext, useState } from "react";
+import PropTypes from 'prop-types';
+import { createContext, useContext, useState } from 'react';
 
 export const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
-export const UserProvider = ({ children }) => {
-  
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("session")) || {
-      email: "",
-      username: "",
-      firstName: "",
-      lastName: "",
-      meetupOwner: "",
-      avatar: "",
-      active: false,
-      role: "normal", // rol por defecto
-    }
-  );
 
-  // Función para actualizar el usuario en el estado y localStorage
-  const enhancedSetUser = (betterUser) => {
-    setUser(betterUser);
-    localStorage.setItem("session", JSON.stringify(betterUser));
-  };
+export const UserProvider = ({ children }) => {
+    const storedUser = localStorage.getItem('session');
+    const initialUser = storedUser
+        ? JSON.parse(storedUser)
+        : {
+              email: '',
+              username: '',
+              firstName: '',
+              lastName: '',
+              meetupOwner: '',
+              avatar: '',
+              active: false,
+              role: 'normal', // rol por defecto
+              token: '',
+          };
+
+    // Función para actualizar el usuario en el estado y localStorage
+    const [user, setUser] = useState(initialUser);
+
+    const enhancedSetUser = (betterUser) => {
+        console.log('Actualizando usuario:', betterUser);
+        setUser(betterUser);
+        localStorage.setItem('session', JSON.stringify(betterUser));
+    };
 
     return (
         <UserContext.Provider value={[user, enhancedSetUser]}>
