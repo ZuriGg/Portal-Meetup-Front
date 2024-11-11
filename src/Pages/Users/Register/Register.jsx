@@ -18,10 +18,17 @@ const Register = () => {
         }
 
         try {
-        const response = await axios.post('/api/register', {
-            username,
-            email,
-            password
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'app/json' 
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+            
         });
         setSuccess('Usuario registrado con éxito');
         setError('');
