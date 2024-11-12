@@ -15,8 +15,7 @@ export const UserProvider = ({ children }) => {
               lastName: '',
               meetupOwner: '',
               avatar: '',
-              active: false,
-              role: 'normal', // rol por defecto
+              role: '',
               token: '',
           };
 
