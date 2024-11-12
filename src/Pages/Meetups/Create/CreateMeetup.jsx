@@ -1,48 +1,116 @@
 // Página para la creación de un Meetup
 import './CreateMeetup.css';
-import { useState } from 'react';
-
-import { meetupEntriesFetch } from '../../../hooks/api.js';
+import { useEffect, useState } from 'react';
+import { useUser } from '../../../UserContext.jsx';
 
 function CreateMeetup() {
-    // Estado para almacenar los datos ingresados por el usuario
+    const [categories, setCategories] = useState([]);
+    const [user] = useUser();
+    const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(null);
+
+    const sessionData = JSON.parse(localStorage.getItem('session'));
+
+    const id = sessionData.dataUser.id;
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         startDate: '',
-        oneSession: '',
+        oneSession: undefined,
         categoryId: '',
-        locationId: '',
         city: '',
         address: '',
         notes: '',
         zip: '',
-        userId: '',
+        userId: id,
         hourMeetUp: '',
         dayOfTheWeek: '',
         aforoMax: '',
     });
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3000/categories'
+                );
+                const data = await response.json();
+
+                if (Array.isArray(data.data)) {
+                    setCategories(data.data);
+                } else {
+                    console.error('La respuesta no es un arreglo:', data);
+                    setCategories([]);
+                }
+            } catch (error) {
+                console.error('Error al obtener las categorías:', error);
+                setCategories([]);
+            }
+        };
+
+        fetchCategories();
+    }, []);
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
             ...formData,
-            [name]: type === 'checkbox' ? checked : value,
+            [name]:
+                type === 'checkbox'
+                    ? checked
+                    : name === 'dayOfTheWeek'
+                    ? value.toLowerCase()
+                    : value,
         });
     };
 
-    /* HACER ARCHIVO API CON LOS FETCH */
+    const handleCategoryChange = (e) => {
+        setFormData({
+            ...formData,
+            categoryId: e.target.value,
+        });
+    };
+
     const enviarDatos = async (e) => {
         e.preventDefault();
 
-        // Llamada a meetupEntriesFetch con formData
-        const response = await meetupEntriesFetch(formData);
+        try {
+            if (formData.title.length < 5) {
+                throw new Error(
+                    'El Nombre del evento debe tener al menos 5 caracteres'
+                );
+            }
+            if (formData.description.length < 10) {
+                throw new Error(
+                    'La descripción del evento debe tener al menos 10 caracteres'
+                );
+            }
+            if (formData.zip.length != 5) {
+                throw new Error('El codigo postal debe tener 5 dígitos');
+            }
 
-        // Verificar si hubo una respuesta o manejar los errores
-        if (response) {
-            console.log('Meetup creado exitosamente:', response);
-        } else {
-            console.error('Hubo un problema al crear el meetup');
+            const response = await fetch('http://localhost:3000/meetups', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(user?.token && {
+                        Authorization: `Bearer ${user.token}`,
+                    }),
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+
+            await response.json();
+            setSuccess(true);
+            setError(false);
+        } catch (error) {
+            setSuccess(false);
+            setError(`${error}`);
         }
     };
 
@@ -53,10 +121,11 @@ function CreateMeetup() {
 
                 <form onSubmit={enviarDatos}>
                     <label>
-                        Title:
+                        Título:
                         <input
                             type="text"
                             name="title"
+                            placeholder="Nombre del evento"
                             value={formData.title}
                             onChange={handleChange}
                             required
@@ -64,9 +133,10 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Description:
+                        Descripción:
                         <textarea
                             name="description"
+                            placeholder="Explica de que trata tu evento"
                             id="areaDescripcion"
                             value={formData.description}
                             onChange={handleChange}
@@ -75,10 +145,11 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Start Date:
+                        Fecha de inicio:
                         <input
                             type="date"
                             name="startDate"
+                            placeholder="¿Cuando comienza el evento?"
                             value={formData.startDate}
                             onChange={handleChange}
                             required
@@ -86,7 +157,7 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        One Session:
+                        Solo una vez?
                         <input
                             type="checkbox"
                             name="oneSession"
@@ -96,21 +167,28 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Category ID:
-                        <input
-                            type="text"
+                        Categoría:
+                        <select
                             name="categoryId"
                             value={formData.categoryId}
-                            onChange={handleChange}
+                            onChange={handleCategoryChange}
                             required
-                        />
+                        >
+                            <option value="">Selecciona una categoría</option>
+                            {categories.map((category) => (
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
+                                </option>
+                            ))}
+                        </select>
                     </label>
 
                     <label>
-                        City:
+                        Ciudad:
                         <input
                             type="text"
                             name="city"
+                            placeholder="Ciudad donde se realizará el evento"
                             value={formData.city}
                             onChange={handleChange}
                             required
@@ -118,10 +196,11 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Address:
+                        Dirección:
                         <input
                             type="text"
                             name="address"
+                            placeholder="Calle donde se realizará el evento"
                             value={formData.address}
                             onChange={handleChange}
                             required
@@ -133,16 +212,18 @@ function CreateMeetup() {
                         <input
                             type="text"
                             name="notes"
+                            placeholder="No se que cojones es esto"
                             value={formData.notes}
                             onChange={handleChange}
                         />
                     </label>
 
                     <label>
-                        ZIP:
+                        Código postal:
                         <input
-                            type="text"
+                            type="number"
                             name="zip"
+                            placeholder="Código postal de 5 dígitos"
                             value={formData.zip}
                             onChange={handleChange}
                             required
@@ -150,18 +231,7 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        User ID:
-                        <input
-                            type="text"
-                            name="userId"
-                            value={formData.userId}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-
-                    <label>
-                        Hour of Meetup:
+                        Hora del meetup:
                         <input
                             type="time"
                             name="hourMeetUp"
@@ -172,21 +242,33 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Day of the Week:
-                        <input
-                            type="text"
+                        Dia de la semana:
+                        <select
                             name="dayOfTheWeek"
                             value={formData.dayOfTheWeek}
                             onChange={handleChange}
                             required
-                        />
+                        >
+                            <option value="">
+                                Selecciona un día de la semana
+                            </option>
+
+                            <option value="lunes">Lunes</option>
+                            <option value="martes">Martes</option>
+                            <option value="miercoles">Miercoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                            <option value="sabado">Sabado</option>
+                            <option value="domingo">Domingo</option>
+                        </select>
                     </label>
 
                     <label>
-                        Aforo Max:
+                        Aforo máximo:
                         <input
                             type="number"
                             name="aforoMax"
+                            placeholder="Cantidad de gente que puede asistir"
                             value={formData.aforoMax}
                             onChange={handleChange}
                             required
@@ -194,6 +276,9 @@ function CreateMeetup() {
                     </label>
 
                     <button type="submit">Enviar</button>
+
+                    {success && <p>Meetup creado correctamente</p>}
+                    {error && <p>{error}</p>}
                 </form>
             </div>
         </>
