@@ -1,10 +1,9 @@
 // Página para la creación de un Meetup
 import './CreateMeetup.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 
 function CreateMeetup() {
-    const [categories, setCategories] = useState([]);
     const [user] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
@@ -29,29 +28,6 @@ function CreateMeetup() {
         aforoMax: '',
     });
 
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const response = await fetch(
-                    'http://localhost:3000/categories'
-                );
-                const data = await response.json();
-
-                if (Array.isArray(data.data)) {
-                    setCategories(data.data);
-                } else {
-                    console.error('La respuesta no es un arreglo:', data);
-                    setCategories([]);
-                }
-            } catch (error) {
-                console.error('Error al obtener las categorías:', error);
-                setCategories([]);
-            }
-        };
-
-        fetchCategories();
-    }, []);
-
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -62,13 +38,6 @@ function CreateMeetup() {
                     : name === 'dayOfTheWeek'
                     ? value.toLowerCase()
                     : value,
-        });
-    };
-
-    const handleCategoryChange = (e) => {
-        setFormData({
-            ...formData,
-            categoryId: e.target.value,
         });
     };
 
@@ -171,15 +140,19 @@ function CreateMeetup() {
                         <select
                             name="categoryId"
                             value={formData.categoryId}
-                            onChange={handleCategoryChange}
+                            onChange={handleChange}
                             required
                         >
                             <option value="">Selecciona una categoría</option>
-                            {categories.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
+
+                            <option value="1">Viajes y aire libre</option>
+                            <option value="2">Actividades sociales</option>
+                            <option value="3">Aficiones y pasiones</option>
+                            <option value="4">Deportes y fitness</option>
+                            <option value="5">Salud y bienestar</option>
+                            <option value="6">Tecnología</option>
+                            <option value="7">Arte y cultura</option>
+                            <option value="8">Juegos</option>
                         </select>
                     </label>
 
