@@ -7,7 +7,7 @@ import { UserProvider } from './UserContext.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
-root.render(
+/* root.render(
     <StrictMode>
         <BrowserRouter>
             <UserProvider>
@@ -15,4 +15,12 @@ root.render(
             </UserProvider>
         </BrowserRouter>
     </StrictMode>
+); */
+
+root.render(
+    <BrowserRouter>
+        <UserProvider>
+            <App />
+        </UserProvider>
+    </BrowserRouter>
 );
