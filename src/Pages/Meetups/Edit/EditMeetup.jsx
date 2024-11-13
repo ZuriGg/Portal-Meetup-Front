@@ -17,10 +17,11 @@ function EditMeetup() {
         city: '',
         address: '',
         zip: '',
-        hourMeetUp: '',
+        hourMeetup: '',
         dayOfTheWeek: '',
         aforoMax: '',
     });
+    console.log(`jajajaj 1 ${formData.hourMeetup}`);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -31,13 +32,14 @@ function EditMeetup() {
                     ? checked
                     : name === 'dayOfTheWeek'
                     ? value.toLowerCase()
+                    : name === 'hourMeetup'
+                    ? value.slice(0, 5)
                     : value,
         });
     };
 
     useEffect(() => {
         const fetchMeetupData = async () => {
-            let isMounted = true; // Agregar bandera de montaje
             try {
                 const response = await fetch(
                     `http://localhost:3000/meetups/1`,
@@ -57,18 +59,16 @@ function EditMeetup() {
 
                 const data = await response.json();
 
-                if (isMounted) {
-                    setFormData({
-                        title: data.data.title || '',
-                        description: data.data.description || '',
-                        startDate: data.data.startDate || '',
-                        oneSession: !!data.data.oneSession,
-                        categoryId: data.data.categoryId || '',
-                        hourMeetUp: data.data.hourMeetUp || '',
-                        dayOfTheWeek: data.data.dayOfTheWeek || '',
-                        aforoMax: data.data.aforoMax || '',
-                    });
-                }
+                setFormData({
+                    title: data.data.title || '',
+                    description: data.data.description || '',
+                    startDate: data.data.startDate || '',
+                    oneSession: !!data.data.oneSession,
+                    categoryId: data.data.categoryId || '',
+                    hourMeetup: data.data.hourMeetup || '',
+                    dayOfTheWeek: data.data.dayOfTheWeek || '',
+                    aforoMax: data.data.aforoMax || '',
+                });
             } catch (error) {
                 setError(`Error: ${error.message}`);
             }
@@ -95,16 +95,24 @@ function EditMeetup() {
                 throw new Error('El codigo postal debe tener 5 dígitos');
             }
 
-            const response = await fetch('http://localhost:3000/meetups', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(user?.token && {
-                        Authorization: `Bearer ${user.token}`,
-                    }),
-                },
-                body: JSON.stringify(formData),
-            });
+            const formattedFormData = {
+                ...formData,
+                startDate: formData.startDate.split('T')[0], // Extraer solo la parte de la fecha (YYYY-MM-DD)
+            };
+
+            const response = await fetch(
+                'http://localhost:3000/meetups/edit/1',
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...(user?.token && {
+                            Authorization: `Bearer ${user.token}`,
+                        }),
+                    },
+                    body: JSON.stringify(formattedFormData),
+                }
+            );
 
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
@@ -136,7 +144,6 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Descripción:
                         <textarea
@@ -148,7 +155,6 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Fecha de inicio:
                         <input
@@ -166,7 +172,6 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Solo una vez?
                         <input
@@ -197,7 +202,6 @@ function EditMeetup() {
                             <option value="8">Juegos</option>
                         </select>
                     </label>
-
                     <label>
                         Ciudad:
                         <input
@@ -209,7 +213,6 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Dirección:
                         <input
@@ -221,7 +224,6 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Código postal:
                         <input
@@ -233,13 +235,12 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <label>
                         Hora del meetup:
                         <input
                             type="time"
-                            name="hourMeetUp"
-                            value={formData.hourMeetUp}
+                            name="hourMeetup"
+                            value={formData.hourMeetup}
                             onChange={handleChange}
                             required
                         />
@@ -266,7 +267,6 @@ function EditMeetup() {
                             <option value="domingo">Domingo</option>
                         </select>
                     </label>
-
                     <label>
                         Aforo máximo:
                         <input
@@ -278,9 +278,7 @@ function EditMeetup() {
                             required
                         />
                     </label>
-
                     <button type="submit">Enviar</button>
-
                     {success && <p>Meetup creado correctamente</p>}
                     {error && <p>{error}</p>}
                 </form>
