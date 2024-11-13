@@ -22,7 +22,6 @@ function CreateMeetup() {
         categoryId: '',
         city: '',
         address: '',
-        notes: '',
         zip: '',
         userId: id, // usuario que crea el evento
         hourMeetUp: '',
