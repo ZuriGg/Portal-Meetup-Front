@@ -8,15 +8,17 @@ function CreateMeetup() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
+    //cogemos los datos de la sesión almacenada en el localStorage
     const sessionData = JSON.parse(localStorage.getItem('session'));
 
     const id = sessionData.dataUser.id;
 
+    //datos del formulario
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         startDate: '',
-        oneSession: undefined,
+        oneSession: undefined, //booleano --> evento de una sola sesión
         categoryId: '',
         city: '',
         address: '',
@@ -27,6 +29,7 @@ function CreateMeetup() {
         aforoMax: '',
     });
 
+    //handleChange para actualizar los valores del formulario
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -40,10 +43,12 @@ function CreateMeetup() {
         });
     };
 
+    //enviarDatos --> envia datos a un servidor mediante una solicitud POST
     const enviarDatos = async (e) => {
         e.preventDefault();
 
         try {
+            //validamos los datos
             if (formData.title.length < 5) {
                 throw new Error(
                     'El Nombre del evento debe tener al menos 5 caracteres'
@@ -58,15 +63,16 @@ function CreateMeetup() {
                 throw new Error('El codigo postal debe tener 5 dígitos');
             }
 
+            //si supera las comprobaciones previas --> solicitud POST al servidor
             const response = await fetch('http://localhost:3000/meetups', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     ...(user?.token && {
-                        Authorization: `Bearer ${user.token}`,
+                        Authorization: `Bearer ${user.token}`, //se le manda el token del usuario
                     }),
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formData), //convertimos los datos del formulario a JSON
             });
 
             if (!response.ok) {
@@ -74,11 +80,11 @@ function CreateMeetup() {
             }
 
             await response.json();
-            setSuccess(true);
-            setError(false);
+            setSuccess(true); //operación exitosa
+            setError(false); //limpiamos mensajes de error
         } catch (error) {
-            setSuccess(false);
-            setError(`${error}`);
+            setSuccess(false); //operación fallida
+            setError(`${error}`); //muestra el error
         }
     };
 
@@ -125,7 +131,7 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Solo una vez?
+                        ¿Evento único?
                         <input
                             type="checkbox"
                             name="oneSession"
@@ -142,7 +148,7 @@ function CreateMeetup() {
                             onChange={handleChange}
                             required
                         >
-                            <option value="">Selecciona una categoría</option>
+                            <option value="">Selecciona una categoría:</option>
 
                             <option value="1">Viajes y aire libre</option>
                             <option value="2">Actividades sociales</option>
@@ -160,7 +166,7 @@ function CreateMeetup() {
                         <input
                             type="text"
                             name="city"
-                            placeholder="Ciudad donde se realizará el evento"
+                            placeholder="Ciudad en la que se desarrollará el evento"
                             value={formData.city}
                             onChange={handleChange}
                             required
@@ -172,7 +178,7 @@ function CreateMeetup() {
                         <input
                             type="text"
                             name="address"
-                            placeholder="Calle donde se realizará el evento"
+                            placeholder="Calle donde se desarrollará el evento"
                             value={formData.address}
                             onChange={handleChange}
                             required
@@ -203,7 +209,7 @@ function CreateMeetup() {
                     </label>
 
                     <label>
-                        Dia de la semana:
+                        Día de la semana:
                         <select
                             name="dayOfTheWeek"
                             value={formData.dayOfTheWeek}
@@ -238,7 +244,7 @@ function CreateMeetup() {
 
                     <button type="submit">Enviar</button>
 
-                    {success && <p>Meetup creado correctamente</p>}
+                    {success && <p>Meetup creado con éxito</p>}
                     {error && <p>{error}</p>}
                 </form>
             </div>

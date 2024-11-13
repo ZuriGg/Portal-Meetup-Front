@@ -33,7 +33,7 @@ export default function ChangePass() {
         const json = await res.json();
         if (res.ok) {
             setSuccess(true);
-            setTimeout(() => navigate('/user/login'), 2000);
+            setTimeout(() => navigate('/user/login'), 2000); //en 2 segundos se redirige a la página de LOGIN
         } else {
             setError(
                 json.error ||

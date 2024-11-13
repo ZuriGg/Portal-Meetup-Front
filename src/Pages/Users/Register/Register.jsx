@@ -1,5 +1,4 @@
 // Página para el registro de usuario
-
 import { useState } from 'react';
 import './Register.css';
 
@@ -17,17 +16,17 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            console.log(username, firstName, lastname, email, password);
             if (password !== confirmPassword) {
                 setError('las contraseñas no son exactamente iguales');
                 return;
             }
             const res = await fetch('http://localhost:3000/users/register', {
-                method: 'POST',
+                method: 'POST', //se envían los datos al servidor mediante POST
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    //convertimos los datos a JSON
                     username,
                     firstName,
                     lastname,
@@ -40,7 +39,7 @@ const Register = () => {
                 return;
             }
 
-            setSuccess(true);
+            setSuccess(true); //operación exitosa
             setError(null);
             // setTimeout(() => navigate('/user/validate'), 1000);
         } catch (error) {
@@ -53,7 +52,7 @@ const Register = () => {
         <div className="register-container">
             <h2>Registro de Usuario</h2>
             <form onSubmit={handleRegister}>
-                <label>Nombre de Usuario: </label>
+                <label>Nombre de usuario:</label>
                 <input
                     type="text"
                     value={username}
@@ -61,7 +60,7 @@ const Register = () => {
                     placeholder="username"
                     required
                 />
-                <label>firstname: </label>
+                <label>Firstname:</label>
                 <input
                     type="text"
                     value={firstName}
@@ -69,7 +68,7 @@ const Register = () => {
                     placeholder="firstname"
                     required
                 />
-                <label>lastaname: </label>
+                <label>Lastaname:</label>
                 <input
                     type="text"
                     value={lastname}
@@ -77,7 +76,7 @@ const Register = () => {
                     placeholder="lastaname"
                     required
                 />
-                <label>email: </label>
+                <label>Email:</label>
                 <input
                     type="email"
                     value={email}
@@ -85,7 +84,7 @@ const Register = () => {
                     placeholder="email"
                     required
                 />
-                <label>Contraseña: </label>
+                <label>Contraseña:</label>
                 <input
                     type="password"
                     value={password}
@@ -93,7 +92,7 @@ const Register = () => {
                     placeholder="password"
                     required
                 />
-                <label>Confirmar Contraseña: </label>
+                <label>Confirmar contraseña:</label>
                 <input
                     type="password"
                     value={confirmPassword}
@@ -102,7 +101,9 @@ const Register = () => {
                     required
                 />
                 <button type="submit">Registrarse</button>
-                {success && <p>register hecho correctamente, mira tu correo</p>}
+                {success && (
+                    <p>Se ha registrado correctamente, mira tu correo</p>
+                )}
                 {error && <p>{error}</p>}
             </form>
         </div>

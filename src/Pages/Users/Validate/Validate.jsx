@@ -7,8 +7,7 @@ function Validate() {
 
     const handleclick = () => {
         try {
-            // Aquí podrías hacer alguna validación adicional o llamada a un API si es necesario.
-            navigate('/user/login');
+            navigate('/user/login'); //si al dar click funciona, que te redirija a la página LOGIN
         } catch {
             setError('Ocurrió un error. Inténtelo de nuevo.');
         }

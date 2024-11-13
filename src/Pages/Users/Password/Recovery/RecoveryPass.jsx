@@ -20,13 +20,13 @@ export default function RecoveryPass() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email }), //enviamos mediante POST nuestro email
             }
         );
         const json = await res.json();
         if (res.ok) {
             setSuccess(true);
-            setTimeout(() => navigate('/user/password/changepass'), 2000);
+            setTimeout(() => navigate('/user/password/changepass'), 2000); //en 2 segundos te redirige a CHANGEPASS
         } else {
             setError(
                 json.error ||
@@ -40,12 +40,12 @@ export default function RecoveryPass() {
             <h1>Recover</h1>
             <p>
                 Inserte su correo electrónico, para iniciar el proceso de
-                recuperación de contraseña
+                recuperación de contraseña:
             </p>
             <div id="recover" className="page">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <span>Email: </span>
+                        <span>Email:</span>
                         <input
                             type="text"
                             name="email"

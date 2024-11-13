@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { fetchUserData } from '../../../hooks/api.js';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -14,12 +15,13 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
+            //enviamos info de usuario registrado previamente en la API para que nos devuelva nuestro token "resToken"
             const resToken = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password }), //mandas el email y la pass
             });
 
             if (!resToken.ok) {
@@ -27,30 +29,36 @@ function Login() {
                 return;
             }
 
-            const dataToken = await resToken.json();
+            const dataToken = await resToken.json(); //almacenamos el token
 
-            const resUser = await fetch(
-                `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                }
-            );
+            //obtenemos los datos del usuario
+            const userData = fetchUserData(dataToken.tokenInfo.id);
 
-            const dataUser = await resUser.json();
+            if (!userData) {
+                throw new Error(
+                    'No se pudo obtener la información del usuario'
+                );
+            }
 
+            //const resUser = await fetch(
+            //     `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
+            //     {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-type': 'application/json',
+            //         },
+            //     }
+
+            //actualizamos el estado del usuario
             setUser({
-                dataUser: dataUser.data.user,
+                //actualizamos el estado del usuario con usuario y token
+                dataUser: userData.data.user,
                 token: dataToken.token,
             });
 
-            console.log(dataUser.data.user, dataToken.token);
-
-            setSuccess(true);
-            setError(null);
-            setTimeout(() => navigate('/'), 1000);
+            setSuccess(true); //operación exitosa
+            setError(null); //limpiamos errores
+            setTimeout(() => navigate('/'), 1000); //en 1 segundo redirige --> HOME
         } catch (error) {
             setError('Ocurrió un error al iniciar sesión');
             console.error('Error en el login:', error);
