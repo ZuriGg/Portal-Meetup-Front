@@ -279,7 +279,7 @@ function EditMeetup() {
                         />
                     </label>
                     <button type="submit">Enviar</button>
-                    {success && <p>Meetup creado correctamente</p>}
+                    {success && <p>Meetup editado correctamente</p>}
                     {error && <p>{error}</p>}
                 </form>
             </div>

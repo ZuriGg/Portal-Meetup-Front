@@ -201,7 +201,7 @@ function CreateMeetup() {
                         Hora del meetup:
                         <input
                             type="time"
-                            name="hourMeetUp"
+                            name="hourMeetup"
                             value={formData.hourMeetup}
                             onChange={handleChange}
                             required
