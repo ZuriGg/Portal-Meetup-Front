@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { fetchUserData } from '../../../hooks/api.js';
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -30,22 +31,28 @@ function Login() {
 
             const dataToken = await resToken.json(); //almacenamos el token
 
-            //HAY QUE METER ESTO EN HOOKS/api.js
-            const resUser = await fetch(
-                `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                }
-            );
+            //obtenemos los datos del usuario
+            const userData = fetchUserData(dataToken.tokenInfo.id);
 
-            const dataUser = await resUser.json();
+            if (!userData) {
+                throw new Error(
+                    'No se pudo obtener la información del usuario'
+                );
+            }
 
+            //const resUser = await fetch(
+            //     `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
+            //     {
+            //         method: 'GET',
+            //         headers: {
+            //             'Content-type': 'application/json',
+            //         },
+            //     }
+
+            //actualizamos el estado del usuario
             setUser({
                 //actualizamos el estado del usuario con usuario y token
-                dataUser: dataUser.data.user,
+                dataUser: userData.data.user,
                 token: dataToken.token,
             });
 
