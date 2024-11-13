@@ -20,7 +20,6 @@ function CreateMeetup() {
         categoryId: '',
         city: '',
         address: '',
-        notes: '',
         zip: '',
         userId: id,
         hourMeetUp: '',
@@ -177,17 +176,6 @@ function CreateMeetup() {
                             value={formData.address}
                             onChange={handleChange}
                             required
-                        />
-                    </label>
-
-                    <label>
-                        Notes:
-                        <input
-                            type="text"
-                            name="notes"
-                            placeholder="No se que cojones es esto"
-                            value={formData.notes}
-                            onChange={handleChange}
                         />
                     </label>
 
