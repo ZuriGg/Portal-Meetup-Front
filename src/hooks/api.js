@@ -10,7 +10,5 @@ export const meetupEntriesFetch = (formData) => {
 
 //hook para conseguir los datos del usuario
 export const fetchUserData = (userId) => {
-    return useFetch(`http://localhost:3000/users/${userId}`, {
-        method: 'GET',
-    });
+    return useFetch(`http://localhost:3000/users/${userId}`);
 };
