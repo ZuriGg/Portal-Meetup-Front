@@ -22,7 +22,7 @@ function CreateMeetup() {
         address: '',
         zip: '',
         userId: id,
-        hourMeetUp: '',
+        hourMeetup: '',
         dayOfTheWeek: '',
         aforoMax: '',
     });
@@ -196,7 +196,7 @@ function CreateMeetup() {
                         <input
                             type="time"
                             name="hourMeetUp"
-                            value={formData.hourMeetUp}
+                            value={formData.hourMeetup}
                             onChange={handleChange}
                             required
                         />
