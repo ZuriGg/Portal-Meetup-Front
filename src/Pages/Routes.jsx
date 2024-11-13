@@ -13,7 +13,7 @@ import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
 // Import de rutas de meetups
 import CreateMeetup from './Meetups/Create/CreateMeetup.jsx';
 import ChangePass from './Users/Password/changePass/ChangePass.jsx';
-import { EditMeetup } from './Meetups/Edit/EditMeetup.jsx';
+import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 
 const AppRoutes = () => (
     <>
@@ -40,8 +40,8 @@ const AppRoutes = () => (
             {/* Rutas de meetups */}
             <Route path="meetup">
                 {/* Aquí iria la página para crear un meetup */}
-                {/* Hacer condicional para edit o insert */}
                 <Route path="create" element={<CreateMeetup />} />
+                {/* Aquí iria la página para editar un meetup */}
                 <Route path="edit" element={<EditMeetup />} />
             </Route>
 
