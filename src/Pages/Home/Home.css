@@ -1,0 +1,41 @@
+.home {
+    display: grid;
+    grid-template-areas: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Cada entrada de meetup */
+.meetups-entries {
+    display: flex;
+    background-color: #baaeae;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prueba-foto-meetup {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.meetups-entries h4 {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.meetups-entries p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.color-square {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
