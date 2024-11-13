@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom';
 // Footer en común para todo el sitio web
 import './Footer.css';
+import { useUser } from '../../UserContext.jsx';
 
 function Footer() {
+    const [user] = useUser();
+
     return (
         <footer>
             <nav id="container-footer">
+                <h3>Tu cuenta</h3>
+                {user.token ? (
+                    // Si el usuario está logado, muestra el link al perfil
+                    <Link to="/users">Tu perfil</Link>
+                ) : (
+                    // Si el usuario no está logado, muestra el link al login
+                    <Link to="/users/login">Iniciar sesión</Link>
+                )}
+
                 <h3>
-                    <Link to="/users">Tu cuenta</Link>{' '}
-                    {/* Link para rutas internas dentro de nuestra aplicación */}
-                </h3>
-                <h3>
-                    <Link to="/meetups">Meet ups por categoría</Link>{' '}
+                    <Link to="/meetups">Meet ups</Link>{' '}
                 </h3>
                 <div>
                     <Link
@@ -65,7 +73,6 @@ function Footer() {
                         Juegos
                     </Link>
                 </div>
-
                 <h3>Conócenos</h3>
                 <p>
                     <a /* a para rutas externas a direcciones fuera de nuestra API */
@@ -110,3 +117,9 @@ function Footer() {
 }
 
 export default Footer;
+
+/* footer responsive con 3 apartados:
+        - tu cuenta (link directo a perfil del usuario si está logado)
+        - meetups por categorias (links directos por categorías)
+        - conocenos (miembros del equipo de desarollo)
+*/
