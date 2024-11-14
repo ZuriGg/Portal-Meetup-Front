@@ -42,7 +42,7 @@ function Login() {
             const dataUser = await resUser.json();
 
             setUser({
-                dataUser: dataUser.data.user,
+                ...dataUser.data.user,
                 token: dataToken.token,
             });
 
