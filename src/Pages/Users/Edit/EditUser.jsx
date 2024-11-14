@@ -50,7 +50,7 @@ export const EditUser = () => {
                     firstName: data.firstName || '',
                     lastname: data.lastname || '',
                     email: data.email || '',
-                    username: !!data.username,
+                    username: data.username || '',
                     password: data.password || '',
                     aforoMax: data.aforoMax || '',
                 });
@@ -74,8 +74,14 @@ export const EditUser = () => {
                 throw new Error('El correo electrónico no es válido');
             }
 
+            if (formData.username.length < 3) {
+                throw new Error(
+                    'El nombre de usuario debe tener al menos 3 caracteres'
+                );
+            }
+
             const response = await fetch(
-                'http://localhost:3000/users/edit/${user.id}',
+                `http://localhost:3000/users/edit/${user.id}`,
                 {
                     method: 'PUT',
                     headers: {
@@ -146,7 +152,7 @@ export const EditUser = () => {
                             type="text"
                             name="username"
                             placeholder="Nombre de usuario"
-                            checked={formData.username}
+                            value={formData.username}
                             onChange={handleChange}
                         />
                     </label>
