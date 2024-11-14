@@ -122,7 +122,7 @@ export const EditUser = () => {
                         Apellido:
                         <input
                             type="text"
-                            name="apellido"
+                            name="lastname"
                             placeholder="Apellido del usuario"
                             value={formData.lastname}
                             onChange={handleChange}
@@ -154,6 +154,7 @@ export const EditUser = () => {
                     <label>
                         Password:
                         <input
+                            type="password"
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
