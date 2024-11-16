@@ -6,15 +6,11 @@ export const EditUser = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
-    /*     const sessionData = JSON.parse(localStorage.getItem('session')); */
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastname: '',
-        email: '',
         username: '',
-        password: '',
-        aforoMax: '',
+        email: '',
     });
 
     const handleChange = (e) => {
@@ -26,16 +22,22 @@ export const EditUser = () => {
     };
 
     useEffect(() => {
+        if (!user.token || !user.token.token) {
+            setError('No se encontró un token de autenticación.');
+            return;
+        } //comprobar autenticación del usuario
+
         const fetchUserData = async () => {
             try {
+                //sustituir el id por ${user.id}
                 const response = await fetch(
-                    `http://localhost:3000/users/${user.id}`,
+                    `http://localhost:3000/users/${user.dataUser.id}`,
                     {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            ...(user?.token && {
-                                Authorization: `Bearer ${user.token}`,
+                            ...(user?.token.token && {
+                                Authorization: `Bearer ${user.token.token}`,
                             }),
                         },
                     }
@@ -49,10 +51,8 @@ export const EditUser = () => {
                 setFormData({
                     firstName: data.firstName || '',
                     lastname: data.lastname || '',
-                    email: data.email || '',
                     username: data.username || '',
-                    password: data.password || '',
-                    aforoMax: data.aforoMax || '',
+                    email: data.email || '',
                 });
             } catch (error) {
                 setError(`Error: ${error.message}`);
@@ -60,10 +60,12 @@ export const EditUser = () => {
         };
 
         fetchUserData();
-    }, [user?.token]);
+    }, [user?.token.token, user?.dataUser.id]);
 
-    const enviarDatos = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null); //limpiamos error antiguo
+        setSuccess(false); //limpiamos éxito antiguo
 
         try {
             if (formData.firstName.length < 2) {
@@ -80,30 +82,27 @@ export const EditUser = () => {
                 );
             }
 
+            //sustituir el id por ${user.id}
             const response = await fetch(
-                `http://localhost:3000/users/edit/${user.id}`,
+                `http://localhost:3000/users/edit/${user.dataUser.id}`,
                 {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        ...(user?.token && {
-                            Authorization: `Bearer ${user.token}`,
-                        }),
+                        Authorization: `Bearer ${user.token.token}`,
                     },
                     body: JSON.stringify(formData),
                 }
             );
 
             if (!response.ok) {
-                throw new Error('Error en la solicitud');
+                throw new Error('Error en la solicitud de edición del usuario');
             }
 
-            await response.json();
-            setSuccess(true);
-            setError(false);
+            // await response.json();
+            setSuccess(true); //operación exitosa
         } catch (error) {
-            setSuccess(false);
-            setError(`${error}`);
+            setError(error.message);
         }
     };
 
@@ -112,7 +111,7 @@ export const EditUser = () => {
             <div id="formularioNuevoUsuario">
                 <h1>Edita tu usuario</h1>
 
-                <form onSubmit={enviarDatos}>
+                <form onSubmit={handleSubmit}>
                     <label>
                         Nombre:
                         <input
@@ -151,23 +150,11 @@ export const EditUser = () => {
                         <input
                             type="text"
                             name="username"
-                            placeholder="Nombre de usuario"
+                            placeholder="Nickname"
                             value={formData.username}
                             onChange={handleChange}
                         />
                     </label>
-
-                    <label>
-                        Password:
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-
                     <button type="submit">Editar</button>
                     {success && <p>Usuario editado correctamente</p>}
                     {error && <p>{error}</p>}
