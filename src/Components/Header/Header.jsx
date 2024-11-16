@@ -22,6 +22,10 @@ function Header() {
                     {' '}
                     <button>/user/login</button>{' '}
                 </Link>
+                <Link to="/user/edit">
+                    {' '}
+                    <button>/user/edit</button>{' '}
+                </Link>
                 <Link to="/meetup/create">
                     {' '}
                     <button>/meetup/create</button>{' '}

@@ -13,10 +13,10 @@ export const UserProvider = ({ children }) => {
               username: '',
               firstName: '',
               lastName: '',
-              meetupOwner: '',
               avatar: '',
               role: '',
               token: '',
+              id: '',
           };
 
     // Función para actualizar el usuario en el estado y localStorage
