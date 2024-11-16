@@ -44,8 +44,7 @@ function Login() {
             const dataUser = await resUser.json();
 
             setUser({
-                //actualizamos el estado del usuario con usuario y token
-                dataUser: dataUser.data.user,
+                ...dataUser.data.user,
                 token: dataToken.token,
             });
 

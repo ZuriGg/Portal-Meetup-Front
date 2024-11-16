@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useUser } from '../../UserContext.jsx';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [user, handleLogout] = useUser();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:3000/meetups')
@@ -30,13 +34,33 @@ function Home() {
     // Mostrar cargando o error
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
+    console.log('User token:', user?.token);
 
     return (
         <div className="home">
             <h1>Home</h1>
             <img src="" alt="logo" className="logo" />
-            <h2>Iniciar sesión</h2>
-            <h2>Registrarse</h2>
+            {user.token ? (
+                <button className="buttonLogout" onClick={handleLogout}>
+                    Cerrar sesión
+                </button>
+            ) : (
+                <>
+                    <button
+                        className="buttonSingup"
+                        onClick={() => navigate('/user/login')}
+                    >
+                        Iniciar sesión
+                    </button>
+                    <button
+                        className="buttonRegister"
+                        onClick={() => navigate('/user/register')}
+                    >
+                        Registrarse
+                    </button>
+                </>
+            )}
+
             <p>PORTAL MEETUP</p>
             <p>Proyecto rechuloooooo...</p>
             <h2>Eventos cerca de tu ciudad</h2>
