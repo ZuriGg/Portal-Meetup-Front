@@ -1,14 +1,39 @@
 .home {
-    display: grid;
-    grid-template-areas: repeat(4, 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     padding: 20px;
     width: 100%;
 }
 
+.home > ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5vh;
+}
+
+.home > ul > li {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
 /* Cada entrada de meetup */
 .meetups-entries {
     display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+    width: 50vh;
     background-color: #baaeae;
     padding: 20px;
     border-radius: 8px;
@@ -38,4 +63,29 @@
     height: 20px;
     margin-bottom: 10px;
     border-radius: 4px;
+}
+
+.buttonLogout {
+    margin: auto;
+    width: 30vh;
+    border-radius: 10px;
+
+    background-color: red;
+}
+
+.buttonSingup {
+    margin: auto;
+
+    width: 30vh;
+    border-radius: 10px;
+
+    background-color: green;
+}
+
+.buttonRegister {
+    margin: auto;
+
+    width: 30vh;
+    border-radius: 10px;
+    background-color: rgb(30, 0, 255);
 }
