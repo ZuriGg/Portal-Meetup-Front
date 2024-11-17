@@ -11,7 +11,7 @@ function CreateMeetup() {
     //cogemos los datos de la sesión almacenada en el localStorage
     const sessionData = JSON.parse(localStorage.getItem('session'));
 
-    const id = sessionData.dataUser.id;
+    const id = sessionData.id;
 
     //datos del formulario
     const [formData, setFormData] = useState({
@@ -78,6 +78,8 @@ function CreateMeetup() {
             if (!response.ok) {
                 throw new Error('Error en la solicitud');
             }
+
+            console.log('User token:', user?.token);
 
             await response.json();
             setSuccess(true); //operación exitosa
