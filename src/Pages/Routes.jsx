@@ -35,8 +35,8 @@ const AppRoutes = () => (
                     <Route path="recover" element={<RecoveryPass />} />
                     <Route path="changepass" element={<ChangePass />} />{' '}
                     {/* NO ES PRIORITARIO PARA ESTE SPRINT */}
-                    <Route path="edit" element={<EditUser />} />
                 </Route>
+                <Route path="edit" element={<EditUser />} />
             </Route>
 
             {/* Rutas de meetups */}

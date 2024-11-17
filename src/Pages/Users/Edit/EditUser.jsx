@@ -5,49 +5,12 @@ export const EditUser = () => {
     const [user] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastname: '',
         username: '',
         email: '',
     });
-
-    // Cargar los datos del usuario al montar el componente
-    useEffect(() => {
-        if (!user.token || !user.token.token) {
-            setError('No se encontró un token de autenticación.');
-            return;
-        }
-
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch(
-                    `http://localhost:3000/users/${user.dataUser.id}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            ...(user?.token.token && {
-                                Authorization: `Bearer ${user.token.token}`,
-                            }),
-                        },
-                    }
-                );
-                const data = await response.json();
-                setFormData({
-                    firstName: data.firstName || '',
-                    lastname: data.lastname || '',
-                    username: data.username || '',
-                    email: data.email || '',
-                });
-            } catch (error) {
-                setError(`Error: ${error.message}`);
-            }
-        };
-
-        fetchUserData();
-    }, [user?.token.token, user?.dataUser.id]);
 
     // Manejar el cambio de los campos del formulario
     const handleChange = (e) => {
@@ -57,6 +20,47 @@ export const EditUser = () => {
             [name]: value,
         }));
     };
+
+    // Cargar los datos del usuario al montar el componente
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const responseUser = await fetch(
+                    `http://localhost:3000/users/${user.id}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(user?.token && {
+                                Authorization: `Bearer ${user.token}`,
+                            }),
+                        },
+                    }
+                );
+
+                if (!responseUser.ok) {
+                    throw new Error('Error al obtener los datos del usuario');
+                }
+                const dataUser = await responseUser.json();
+                console.log(dataUser);
+
+                setFormData({
+                    firstName: dataUser.firstName || '',
+                    lastname: dataUser.lastname || '',
+                    username: dataUser.username || '',
+                    email: dataUser.email || '',
+                });
+            } catch (error) {
+                setError(`Error: ${error.message}`);
+            }
+        };
+
+        if (user?.token) {
+            fetchUserData();
+        } else {
+            setError('Token no disponible');
+        }
+    }, [user?.token, user?.id]); //
 
     // Enviar los datos del formulario
     const handleSubmit = async (e) => {
@@ -72,24 +76,36 @@ export const EditUser = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:3000/users/edit/${user.dataUser.id}`,
+                `http://localhost:3000/users/edit/${user.id}`,
                 {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${user.token.token}`,
+                        ...(user?.token && {
+                            Authorization: `Bearer ${user.token}`,
+                        }),
                     },
                     body: JSON.stringify(formData),
                 }
             );
 
             if (!response.ok) {
-                throw new Error('Error en la solicitud de edición del usuario');
+                // Intenta obtener la respuesta como JSON solo si es posible
+                const errorData = await response.text(); // Cambié a text() para no asumir que siempre es JSON
+                let errorMessage = 'Error al editar el usuario';
+                try {
+                    const parsedError = JSON.parse(errorData);
+                    errorMessage = parsedError.message || errorMessage;
+                } catch {
+                    // Si no se puede parsear como JSON, mantenemos el mensaje original
+                }
+                throw new Error(errorMessage);
             }
 
+            await response.json(); // Si la respuesta es ok, procesamos los datos
             setSuccess(true); // Operación exitosa
         } catch (error) {
-            setError(error.message);
+            setError(`${error}`);
         }
     };
 
