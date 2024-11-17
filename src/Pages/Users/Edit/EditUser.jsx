@@ -32,11 +32,13 @@ export const EditUser = () => {
                         headers: {
                             'Content-Type': 'application/json',
                             ...(user?.token && {
-                                Authorization: `Bearer ${user.token}`,
+                                Authorization: `Bearer ${user.token.token}`,
                             }),
                         },
                     }
                 );
+                console.log(user.token.token); // 'cnsjcnsjdcndc'
+                console.log(user.token); //token: 'casdcdcdsvc'
 
                 if (!responseUser.ok) {
                     throw new Error('Error al obtener los datos del usuario');
@@ -73,7 +75,15 @@ export const EditUser = () => {
             setError('El nombre debe tener al menos 2 caracteres.');
             return;
         }
-
+        if (formData.lastname.length < 2) {
+            setError('El apellido debe tener al menos 2 caracteres.');
+            return;
+        }
+        if (!formData.email.includes('@')) {
+            setError('El correo electrónico no es válido.');
+            return;
+        }
+        console.log(user);
         try {
             const response = await fetch(
                 `http://localhost:3000/users/edit/${user.id}`,
@@ -82,24 +92,19 @@ export const EditUser = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         ...(user?.token && {
-                            Authorization: `Bearer ${user.token}`,
+                            Authorization: `Bearer ${user.token.token}`,
                         }),
                     },
                     body: JSON.stringify(formData),
                 }
             );
 
+            const responseData = await response.json();
+            console.log(responseData); // Ver respuesta completa del servidor
+
             if (!response.ok) {
-                // Intenta obtener la respuesta como JSON solo si es posible
-                const errorData = await response.text(); // Cambié a text() para no asumir que siempre es JSON
-                let errorMessage = 'Error al editar el usuario';
-                try {
-                    const parsedError = JSON.parse(errorData);
-                    errorMessage = parsedError.message || errorMessage;
-                } catch {
-                    // Si no se puede parsear como JSON, mantenemos el mensaje original
-                }
-                throw new Error(errorMessage);
+                setError('No se ha logrado la modificación');
+                return;
             }
 
             await response.json(); // Si la respuesta es ok, procesamos los datos
