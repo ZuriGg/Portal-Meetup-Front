@@ -14,7 +14,6 @@ import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
 import CreateMeetup from './Meetups/Create/CreateMeetup.jsx';
 import ChangePass from './Users/Password/changePass/ChangePass.jsx';
 import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
-import { EditUser } from './Users/Edit/EditUser.jsx';
 
 const AppRoutes = () => (
     <>
@@ -36,7 +35,6 @@ const AppRoutes = () => (
                     <Route path="changepass" element={<ChangePass />} />{' '}
                     {/* NO ES PRIORITARIO PARA ESTE SPRINT */}
                 </Route>
-                <Route path="edit" element={<EditUser />} />
             </Route>
 
             {/* Rutas de meetups */}

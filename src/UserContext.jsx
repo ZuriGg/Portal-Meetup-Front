@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const UserContext = createContext();
 export const useUser = () => useContext(UserContext);
 
 export const UserProvider = ({ children }) => {
+    const navigate = useNavigate();
     const storedUser = localStorage.getItem('session');
     const initialUser = storedUser
         ? JSON.parse(storedUser)
@@ -13,10 +15,10 @@ export const UserProvider = ({ children }) => {
               username: '',
               firstName: '',
               lastName: '',
+              meetupOwner: '',
               avatar: '',
               role: '',
               token: '',
-              id: '',
           };
 
     // Función para actualizar el usuario en el estado y localStorage
@@ -28,8 +30,23 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem('session', JSON.stringify(betterUser));
     };
 
+    const handleLogout = () => {
+        setUser({
+            email: '',
+            username: '',
+            firstName: '',
+            lastName: '',
+            meetupOwner: '',
+            avatar: '',
+            role: '',
+            token: '', // Limpiamos el token
+        });
+        localStorage.removeItem('session'); // Eliminamos el usuario del localStorage
+        navigate('/'); // Redirigimos al Home o Login
+    };
+
     return (
-        <UserContext.Provider value={[user, enhancedSetUser]}>
+        <UserContext.Provider value={[user, enhancedSetUser, handleLogout]}>
             {children}
         </UserContext.Provider>
     );

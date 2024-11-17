@@ -20,7 +20,9 @@ function EditMeetup() {
         hourMeetup: '',
         dayOfTheWeek: '',
         aforoMax: '',
+        locationId: '',
     });
+
     console.log(`jajajaj 1 ${formData.hourMeetup}`);
 
     const handleChange = (e) => {
@@ -41,7 +43,7 @@ function EditMeetup() {
     useEffect(() => {
         const fetchMeetupData = async () => {
             try {
-                const response = await fetch(
+                const responseMeetup = await fetch(
                     `http://localhost:3000/meetups/1`,
                     {
                         method: 'GET',
@@ -53,21 +55,42 @@ function EditMeetup() {
                         },
                     }
                 );
+                const dataMeetup = await responseMeetup.json();
 
-                if (!response.ok)
+                if (!responseMeetup.ok)
                     throw new Error('Error al obtener datos del meetup');
 
-                const data = await response.json();
+                const responseLocation = await fetch(
+                    `http://localhost:3000/location/${dataMeetup.data.locationId}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...(user?.token && {
+                                Authorization: `Bearer ${user.token}`,
+                            }),
+                        },
+                    }
+                );
+
+                if (!responseLocation.ok)
+                    throw new Error('Error al obtener datos de la location');
+
+                const dataLocation = await responseLocation.json();
 
                 setFormData({
-                    title: data.data.title || '',
-                    description: data.data.description || '',
-                    startDate: data.data.startDate || '',
-                    oneSession: !!data.data.oneSession,
-                    categoryId: data.data.categoryId || '',
-                    hourMeetup: data.data.hourMeetup || '',
-                    dayOfTheWeek: data.data.dayOfTheWeek || '',
-                    aforoMax: data.data.aforoMax || '',
+                    title: dataMeetup.data.title || '',
+                    description: dataMeetup.data.description || '',
+                    startDate: dataMeetup.data.startDate || '',
+                    oneSession: !!dataMeetup.data.oneSession,
+                    categoryId: dataMeetup.data.categoryId || '',
+                    hourMeetup: dataMeetup.data.hourMeetup || '',
+                    dayOfTheWeek: dataMeetup.data.dayOfTheWeek || '',
+                    aforoMax: dataMeetup.data.aforoMax || '',
+                    locationId: dataMeetup.data.locationId || '',
+                    city: dataLocation.data.city || '',
+                    address: dataLocation.data.address || '',
+                    zip: dataLocation.data.zip || '',
                 });
             } catch (error) {
                 setError(`Error: ${error.message}`);
@@ -97,6 +120,7 @@ function EditMeetup() {
 
             const formattedFormData = {
                 ...formData,
+                hourMeetup: formData.hourMeetup.slice(0, 5),
                 startDate: formData.startDate.split('T')[0], // Extraer solo la parte de la fecha (YYYY-MM-DD)
             };
 
