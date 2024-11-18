@@ -41,6 +41,10 @@ function Login() {
                 }
             );
 
+            if (!resUser) {
+                throw new Error('El fetch no se ha realizado correctamente');
+            }
+
             const dataUser = await resUser.json();
 
             setUser({
