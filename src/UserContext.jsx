@@ -35,10 +35,12 @@ export const UserProvider = ({ children }) => {
             email: '',
             username: '',
             firstName: '',
-            lastName: '',
+            lastname: '',
             meetupOwner: '',
             avatar: '',
+            id: '',
             role: '',
+            active: '',
             token: '', // Limpiamos el token
         });
         localStorage.removeItem('session'); // Eliminamos el usuario del localStorage
