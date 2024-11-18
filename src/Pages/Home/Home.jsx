@@ -7,7 +7,7 @@ function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [user, handleLogout] = useUser();
+    const [user, , handleLogout] = useUser();
     const navigate = useNavigate();
 
     useEffect(() => {
