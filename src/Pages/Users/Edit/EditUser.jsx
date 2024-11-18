@@ -6,6 +6,7 @@ export const EditUser = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
+        //CAMBIAR NOMBRE FORMDATA X CONFUSIÓN SUBIDA DE IMÁGENES
         firstName: '',
         lastname: '',
         username: '',
@@ -32,7 +33,7 @@ export const EditUser = () => {
                         headers: {
                             'Content-Type': 'application/json',
                             ...(user?.token && {
-                                Authorization: `Bearer ${user.token.token}`,
+                                Authorization: `${user.token.token}`,
                             }),
                         },
                     }
@@ -92,7 +93,7 @@ export const EditUser = () => {
                     headers: {
                         'Content-Type': 'application/json',
                         ...(user?.token && {
-                            Authorization: `Bearer ${user.token.token}`,
+                            Authorization: `${user.token.token}`,
                         }),
                     },
                     body: JSON.stringify(formData),
@@ -107,7 +108,6 @@ export const EditUser = () => {
                 return;
             }
 
-            await response.json(); // Si la respuesta es ok, procesamos los datos
             setSuccess(true); // Operación exitosa
         } catch (error) {
             setError(`${error}`);
