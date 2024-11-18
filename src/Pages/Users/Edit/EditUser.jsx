@@ -5,8 +5,7 @@ export const EditUser = () => {
     const [user] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
-    const [formData, setFormData] = useState({
-        //CAMBIAR NOMBRE FORMDATA X CONFUSIÓN SUBIDA DE IMÁGENES
+    const [inputDate, setInputDate] = useState({
         firstName: '',
         lastname: '',
         username: '',
@@ -16,8 +15,8 @@ export const EditUser = () => {
     // Manejar el cambio de los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
+        setInputDate((prevInputDate) => ({
+            ...prevInputDate,
             [name]: value,
         }));
     };
@@ -38,8 +37,6 @@ export const EditUser = () => {
                         },
                     }
                 );
-                console.log(user.token.token); // 'cnsjcnsjdcndc'
-                console.log(user.token); //token: 'casdcdcdsvc'
 
                 if (!responseUser.ok) {
                     throw new Error('Error al obtener los datos del usuario');
@@ -47,7 +44,7 @@ export const EditUser = () => {
                 const dataUser = await responseUser.json();
                 console.log(dataUser);
 
-                setFormData({
+                setInputDate({
                     firstName: dataUser.firstName || '',
                     lastname: dataUser.lastname || '',
                     username: dataUser.username || '',
@@ -72,19 +69,19 @@ export const EditUser = () => {
         setSuccess(false); // Limpiar éxito antiguo
 
         // Validaciones simples de los campos
-        if (formData.firstName.length < 2) {
+        if (inputDate.firstName.length < 2) {
             setError('El nombre debe tener al menos 2 caracteres.');
             return;
         }
-        if (formData.lastname.length < 2) {
+        if (inputDate.lastname.length < 2) {
             setError('El apellido debe tener al menos 2 caracteres.');
             return;
         }
-        if (!formData.email.includes('@')) {
+        if (!inputDate.email.includes('@')) {
             setError('El correo electrónico no es válido.');
             return;
         }
-        console.log(user);
+
         try {
             const response = await fetch(
                 `http://localhost:3000/users/edit/${user.id}`,
@@ -96,7 +93,7 @@ export const EditUser = () => {
                             Authorization: `${user.token.token}`,
                         }),
                     },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify(inputDate),
                 }
             );
 
@@ -125,7 +122,7 @@ export const EditUser = () => {
                         type="text"
                         name="firstName"
                         placeholder="Nombre"
-                        value={formData.firstName}
+                        value={inputDate.firstName}
                         onChange={handleChange}
                     />
                 </label>
@@ -135,7 +132,7 @@ export const EditUser = () => {
                         type="text"
                         name="lastname"
                         placeholder="Apellido"
-                        value={formData.lastname}
+                        value={inputDate.lastname}
                         onChange={handleChange}
                     />
                 </label>
@@ -145,7 +142,7 @@ export const EditUser = () => {
                         type="text"
                         name="username"
                         placeholder="Nickname"
-                        value={formData.username}
+                        value={inputDate.username}
                         onChange={handleChange}
                     />
                 </label>
@@ -155,7 +152,7 @@ export const EditUser = () => {
                         type="email"
                         name="email"
                         placeholder="Correo electrónico"
-                        value={formData.email}
+                        value={inputDate.email}
                         onChange={handleChange}
                     />
                 </label>
