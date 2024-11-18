@@ -11,7 +11,11 @@ function CreateMeetup() {
     //cogemos los datos de la sesión almacenada en el localStorage
     const sessionData = JSON.parse(localStorage.getItem('session'));
 
-    const id = sessionData.id;
+    let id = '';
+
+    if (sessionData) {
+        id = sessionData.id;
+    }
 
     //datos del formulario
     const [formData, setFormData] = useState({
