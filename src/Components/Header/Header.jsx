@@ -11,9 +11,6 @@ function Header() {
                     <img src="/logotipo.webp" alt="logotipo de la web" />
                 </Link>
                 <div>
-                    <Link to="/user/edit">
-                        <button>/user/edit</button>
-                    </Link>
                     <Link to="/meetup/create">
                         <button>/meetup/create</button>
                     </Link>
