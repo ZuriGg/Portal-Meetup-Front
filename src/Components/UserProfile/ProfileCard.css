@@ -1,0 +1,55 @@
+#profileCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vh;
+    aspect-ratio: 3/4;
+    border: solid black 2px;
+    border-radius: 2vh;
+    font-size: 2.5vh;
+    padding: 3vh;
+    background-color: bisque;
+    color: black;
+}
+
+#datosUsuarioContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    aspect-ratio: 3/4;
+    padding: 3vh;
+    border: solid black 2px;
+    border-radius: 2vh;
+    background-color: rgb(11, 15, 31);
+    color: white;
+}
+#datosUsuarioContainer > button {
+    align-self: flex-end;
+    justify-self: flex-end;
+    padding: 1vh;
+    font-size: 1.7vh;
+}
+#datosUsuarioContainer > #datosUsuario {
+    align-self: baseline;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#numerosMeetupsusUario {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 2vh;
+    width: 100%;
+}
+#datosMeetupsUsuario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vh;
+    margin-block: 1vh;
+    width: 100%;
+}
