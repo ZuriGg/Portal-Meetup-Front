@@ -2,7 +2,7 @@ import './ProfileCard.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ProfileCard() {
+function ProfileCard({ avatar, firstName, lastname, username, email }) {
     return (
         <div id="profileCard">
             <div id="datosUsuarioContainer">
@@ -12,9 +12,10 @@ function ProfileCard() {
                     </button>
                 </Link>
                 <div id="datosUsuario">
-                    <p>Nombre</p>
-                    <p>Correo electrónico</p>
-                    <p>Ciudad, provincia</p>
+                    <p>{username}</p>
+                    <p>{`${firstName} ${lastname}`}</p>
+                    <p>{email}</p>
+                    <p>Ubicación</p>
                 </div>
             </div>
 
