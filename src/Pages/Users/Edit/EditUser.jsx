@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
+import './EditUser.css';
 
 export const EditUser = () => {
     const [user] = useUser();
@@ -112,7 +113,7 @@ export const EditUser = () => {
     };
 
     return (
-        <div id="formularioNuevoUsuario">
+        <div className="areaFormulario">
             <h1>Edita tu usuario</h1>
 
             <form onSubmit={handleSubmit}>

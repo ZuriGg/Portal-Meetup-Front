@@ -49,57 +49,69 @@ const Register = () => {
     };
 
     return (
-        <div className="register-container">
+        <div className="areaFormulario">
             <h2>Registro de Usuario</h2>
             <form onSubmit={handleRegister}>
-                <label>Nombre de usuario:</label>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="username"
-                    required
-                />
-                <label>Firstname:</label>
-                <input
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="firstname"
-                    required
-                />
-                <label>Lastaname:</label>
-                <input
-                    type="text"
-                    value={lastname}
-                    onChange={(e) => setLastname(e.target.value)}
-                    placeholder="lastaname"
-                    required
-                />
-                <label>Email:</label>
-                <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="email"
-                    required
-                />
-                <label>Contraseña:</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="password"
-                    required
-                />
-                <label>Confirmar contraseña:</label>
-                <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    placeholder="confirm password"
-                    required
-                />
+                <label>
+                    Nombre de usuario:
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="username"
+                        required
+                    />
+                </label>
+                <label>
+                    Firstname:
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        placeholder="firstname"
+                        required
+                    />
+                </label>
+                <label>
+                    Lastaname:
+                    <input
+                        type="text"
+                        value={lastname}
+                        onChange={(e) => setLastname(e.target.value)}
+                        placeholder="lastaname"
+                        required
+                    />
+                </label>
+                <label>
+                    Email:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="email"
+                        required
+                    />
+                </label>
+                <label>
+                    Contraseña:
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="password"
+                        required
+                    />
+                </label>
+                <label>
+                    Confirmar contraseña:
+                    <input
+                        type="password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        placeholder="confirm password"
+                        required
+                    />
+                </label>
                 <button type="submit">Registrarse</button>
                 {success && (
                     <p>Se ha registrado correctamente, mira tu correo</p>

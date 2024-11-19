@@ -49,19 +49,10 @@ export default function ChangePass() {
                 Inserte {/* su correo electrónico,*/} su código de contraseña y
                 su nueva contraseña
             </p>
-            <div id="recover" className="page">
+            <div id="recover" className="areaFormulario">
                 <form onSubmit={handleSubmit}>
-                    {/* <label>
-                        <span>Email: </span>
-                        <input
-                            type="text"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </label>  SE SUPONE QUE CUANDO CAMBIAS TU CONTRASEÑA YA ESTÁS LOGUEADO, ASÍ QUE NO HARÍA FALTA RELLENAR ESTE CAMPO*/}
                     <label>
-                        <span>Código de cambio de contraseña:</span>
+                        Código de cambio de contraseña:
                         <input
                             type="text"
                             name="recoverPass"
@@ -70,17 +61,17 @@ export default function ChangePass() {
                         />
                     </label>
                     <label>
-                        <span>Nueva contraseña:</span>
+                        Nueva contraseña:
                         <input
                             type="password"
                             name="newPass"
                             value={newPass}
                             onChange={(e) => setNewPass(e.target.value)}
                         />
-                        <button>✔</button>
-                        {success && <p>Cambio de contraseña realizada</p>}
-                        {error && <p>{error}</p>}
                     </label>
+                    <button>✔</button>
+                    {success && <p>Cambio de contraseña realizada</p>}
+                    {error && <p>{error}</p>}
                 </form>
             </div>
         </>

@@ -42,20 +42,20 @@ export default function RecoveryPass() {
                 Inserte su correo electrónico, para iniciar el proceso de
                 recuperación de contraseña:
             </p>
-            <div id="recover" className="page">
+            <div id="recover" className="areaFormulario">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <span>Email:</span>
+                        Email:
                         <input
                             type="text"
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        <button>✔</button>
-                        {success && <p>correo de recuperación enviado</p>}
-                        {error && <p>{error}</p>}
                     </label>
+                    <button>✔</button>
+                    {success && <p>correo de recuperación enviado</p>}
+                    {error && <p>{error}</p>}
                 </form>
             </div>
         </>

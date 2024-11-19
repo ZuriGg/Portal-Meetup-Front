@@ -66,23 +66,31 @@ function Login() {
     return (
         <>
             <h1>Login</h1>
-            <form onSubmit={handleLogin}>
-                <input
-                    type="email"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type="submit">Login</button>
-                {success && <p>Login hecho correctamente</p>}
-                {error && <p>{error}</p>}
-            </form>
+            <div className="areaFormulario">
+                <form onSubmit={handleLogin}>
+                    <label>
+                        Email
+                        <input
+                            type="email"
+                            placeholder="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </label>
+                    <label>
+                        Contraseña
+                        <input
+                            type="password"
+                            placeholder="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </label>
+                    <button type="submit">Login</button>
+                    {success && <p>Login hecho correctamente</p>}
+                    {error && <p>{error}</p>}
+                </form>
+            </div>
         </>
     );
 }
