@@ -1,11 +1,16 @@
 import './ProfileCard.css';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function ProfileCard() {
     return (
         <div id="profileCard">
             <div id="datosUsuarioContainer">
-                <button id="botonCambioAvatar">Cambiar foto de perfil</button>
+                <Link to="/user/edit">
+                    <button id="botonCambioAvatar">
+                        Cambiar foto de perfil
+                    </button>
+                </Link>
                 <div id="datosUsuario">
                     <p>Nombre</p>
                     <p>Correo electrónico</p>

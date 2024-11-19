@@ -25,8 +25,10 @@
     background-color: rgb(11, 15, 31);
     color: white;
 }
-#datosUsuarioContainer > button {
+#datosUsuarioContainer > a {
     align-self: flex-end;
+}
+#datosUsuarioContainer > a > #botonCambioAvatar {
     justify-self: flex-end;
     padding: 1vh;
     font-size: 1.7vh;
