@@ -12,7 +12,7 @@ Una aplicación web para organizar y descubrir eventos. Los usuarios pueden expl
 
 ## Instalación
 
-Para instalar y ejecutar esta aplicación localmente, sigue los siguientes pasos:
+Para instalar y ejecutar esta aplicación localmente, sigue los siguientes pasos :
 
 1. Clona el repositorio:
    ```bash
