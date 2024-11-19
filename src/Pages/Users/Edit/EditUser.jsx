@@ -41,14 +41,14 @@ export const EditUser = () => {
                 if (!responseUser.ok) {
                     throw new Error('Error al obtener los datos del usuario');
                 }
-                const dataUser = await responseUser.json();
-                console.log(dataUser);
+
+                await responseUser.json();
 
                 setInputDate({
-                    firstName: dataUser.firstName || '',
-                    lastname: dataUser.lastname || '',
-                    username: dataUser.username || '',
-                    email: dataUser.email || '',
+                    firstName: user.firstName || '',
+                    lastname: user.lastname || '',
+                    username: user.username || '',
+                    email: user.email || '',
                 });
             } catch (error) {
                 setError(`Error: ${error.message}`);
@@ -97,8 +97,7 @@ export const EditUser = () => {
                 }
             );
 
-            const responseData = await response.json();
-            console.log(responseData); // Ver respuesta completa del servidor
+            await response.json();
 
             if (!response.ok) {
                 setError('No se ha logrado la modificación');
@@ -113,7 +112,7 @@ export const EditUser = () => {
 
     return (
         <div id="formularioNuevoUsuario">
-            <h1>Edita tu usuario</h1>
+            <h1>Edite su usuario:</h1>
 
             <form onSubmit={handleSubmit}>
                 <label>
