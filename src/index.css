@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+/* 
+
+    #C4EAFF
+    #BFAD95
+    #FEE4C3
+    #7698AA
+    #806644
+    #1F4255
+*/
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -11,7 +21,10 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: #242424;
+    background-color: black;
+    background-image: url(../public/videoFondo.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
