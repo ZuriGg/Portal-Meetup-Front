@@ -14,19 +14,15 @@ function MeetupCard({
 }) {
     return (
         <div className="meetupsCard">
-            <img src={image} alt="imagen de un meetup" />
+            <img
+                src={image || '/meetupPhotoDefault.jpg'}
+                alt="imagen de un meetup"
+            />
             <h3>{title}</h3>
             <p>{description}</p>
-            <p>
-                <strong>Fecha de inicio:</strong>{' '}
-                {new Date(startDate).toLocaleDateString()}
-            </p>
-            <p>
-                <strong>Hora:</strong> {hourMeetup}
-            </p>
-            <p>
-                <strong>Afóro máximo:</strong> {aforoMax}
-            </p>
+            <p>Fecha de inicio: {new Date(startDate).toLocaleDateString()}</p>
+            <p>Hora: {hourMeetup}</p>
+            <p>Afóro máximo: {aforoMax}</p>
             {inscribirseBoolean && <button>Inscríbete</button>}
         </div>
     );
