@@ -1,0 +1,17 @@
+#profileContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#profileCard {
+    margin: 5vh;
+}
+
+#meetupListCard {
+    margin-block: 5vh;
+}
+
+#listaMeetupsUsuario {
+}
