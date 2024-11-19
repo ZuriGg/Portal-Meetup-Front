@@ -31,16 +31,17 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    top: 12vh;
-    left: 90%;
+    top: 11.5vh;
+    left: 89.7%;
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 2vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 2vh;
     z-index: 10;
+    height: 18vh;
 }
 
 #componenteLogouser > .modal-link {
