@@ -1,0 +1,89 @@
+/* ----------------------- Formularios ----------------------- */
+
+div.areaFormulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    height: 100%;
+    width: 100%;
+    font-size: 1.5vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+    gap: 1vh;
+    padding: 4vh;
+    background-color: #72a276;
+    border-radius: 2vh;
+    height: 70vh;
+}
+
+form > button {
+    align-self: center;
+}
+
+form > label {
+    width: 60vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 2vh;
+    border-radius: 2vh;
+}
+
+form > label > input {
+    padding: 0.5vh;
+}
+
+form > label > textarea {
+    padding: 0.5vh;
+    height: 10vh;
+}
+
+form > label > select {
+    padding: 0.5vh;
+}
+
+form > label > :last-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----------------------- Botones ----------------------- */
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    min-width: 7vh;
+}
+button:hover {
+    border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* ----------------------- Links ( <a />, <Link /> ) ----------------------- */
+
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+
+a:hover {
+    color: #535bf2;
+}

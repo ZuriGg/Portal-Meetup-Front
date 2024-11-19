@@ -15,35 +15,37 @@ import CreateMeetup from './Meetups/Create/CreateMeetup.jsx';
 import ChangePass from './Users/Password/changePass/ChangePass.jsx';
 import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
+import Profile from './Users/Profile/Profile.jsx';
 
 const AppRoutes = () => (
     <>
         <Routes>
-            {/* Aqui iria el Home según sea usuario anónimo o registrado */}
+            {/* Home según sea usuario anónimo o registrado */}
             <Route path="/" element={<Home />} />
 
             {/* Rutas de usuario */}
             <Route path="user">
-                {/* Aqui iria la página de registro de usuario */}
+                {/* Página de registro de usuario */}
                 <Route path="register" element={<Register />} />
-                {/* Aquí iria la página donde el usuario es informado de que está validado */}
+                {/* Página donde el usuario es informado de que está validado */}
                 <Route path="validate" element={<Validate />} />
-                {/* Aquí iria la página para iniciar sesión */}
+                {/* Página para iniciar sesión */}
                 <Route path="login" element={<Login />} />
+                <Route path="profile" element={<Profile />} />
                 <Route path="password">
-                    {/* Aquí iria la página para solicitar la recuperación de la contraseña */}
+                    {/* Página para solicitar la recuperación de la contraseña */}
                     <Route path="recover" element={<RecoveryPass />} />
-                    <Route path="changepass" element={<ChangePass />} />{' '}
-                    {/* NO ES PRIORITARIO PARA ESTE SPRINT */}
+                    {/* Página para el cambio de contraseña */}
+                    <Route path="changepass" element={<ChangePass />} />
                 </Route>
                 <Route path="edit" element={<EditUser />} />
             </Route>
 
             {/* Rutas de meetups */}
             <Route path="meetup">
-                {/* Aquí iria la página para crear un meetup */}
+                {/* Página para crear un meetup */}
                 <Route path="create" element={<CreateMeetup />} />
-                {/* Aquí iria la página para editar un meetup */}
+                {/* Página para editar un meetup */}
                 <Route path="edit" element={<EditMeetup />} />
             </Route>
 

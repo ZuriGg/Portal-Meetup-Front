@@ -1,0 +1,14 @@
+#meetupListCard {
+    background-color: #fee4c3;
+    border-radius: 2vh;
+    color: black;
+    padding: 3vh;
+    width: 50vw;
+    height: 60vh;
+}
+
+#meetupListCard > h3 {
+    font-size: 5vh;
+    justify-self: flex-start;
+    padding-left: 2vh;
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
+import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 
 function Home() {
     const [results, setResults] = useState([]);
@@ -68,28 +69,13 @@ function Home() {
                 {results.length > 0 ? ( //comprobamos si la data que nos manda la api no esta vacia y mapeamos si la hay
                     results?.map((meetup) => (
                         <li key={meetup.id}>
-                            <div className="meetups-entries">
-                                <div
-                                    className="prueba-foto-meetup"
-                                    style={{ backgroundColor: 'blue' }}
-                                ></div>
-                                <h3>{meetup.title}</h3>
-                                <p>{meetup.description}</p>
-                                <p>
-                                    <strong>Fecha de inicio:</strong>{' '}
-                                    {new Date(
-                                        meetup.startDate
-                                    ).toLocaleDateString()}
-                                </p>
-                                <p>
-                                    <strong>Hora:</strong> {meetup.hourMeetup}
-                                </p>
-                                <p>
-                                    <strong>Afóro máximo:</strong>{' '}
-                                    {meetup.aforoMax}
-                                </p>
-                                <button>inscribete</button>
-                            </div>
+                            <MeetupCard
+                                title={meetup.title}
+                                description={meetup.description}
+                                startDate={meetup.startDate}
+                                hourMeetup={meetup.hourMeetup}
+                                aforoMax={meetup.aforoMax}
+                            />
                         </li>
                     ))
                 ) : (

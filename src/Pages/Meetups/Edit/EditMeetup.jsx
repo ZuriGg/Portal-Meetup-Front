@@ -153,7 +153,7 @@ function EditMeetup() {
 
     return (
         <>
-            <div id="formularioNuevoMeetup">
+            <div className="areaFormulario">
                 <h1>Edición de un meetup</h1>
 
                 <form onSubmit={enviarDatos}>

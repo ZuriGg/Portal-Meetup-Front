@@ -1,0 +1,26 @@
+.meetupsCard {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1vh;
+    width: 50vh;
+    background-color: #fee4c3;
+    padding: 20px;
+    border-radius: 2vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.meetupsCard > h3 {
+    font-weight: bold;
+    font-size: 3vh;
+    color: black;
+}
+
+.meetupsCard > p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.meetupsCard > img {
+    border-radius: 2vh;
+}

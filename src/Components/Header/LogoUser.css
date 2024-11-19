@@ -1,0 +1,59 @@
+#componenteLogouser {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: fit-content;
+    color: rgb(255, 0, 0);
+}
+
+#componenteLogouser > div {
+    display: flex;
+    justify-content: center;
+    gap: 0.2vh;
+    align-items: center;
+}
+
+#componenteLogouser > div > img#avatarUsuario {
+    width: 8vh;
+    aspect-ratio: 1/1;
+}
+
+#componenteLogouser > div > img#flechaUser {
+    width: 2.5vh;
+    align-self: flex-end;
+}
+
+#componenteLogouser > #modalOpcionesUsuario {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    top: 11.5vh;
+    left: 89.7%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 2vh;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2vh;
+    z-index: 10;
+    height: 18vh;
+}
+
+#componenteLogouser > .modal-link {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border: solid black 2px;
+    border-radius: 3px;
+}
+
+#componenteLogouser > .modal-link:hover {
+    background-color: #f0f0f0;
+}

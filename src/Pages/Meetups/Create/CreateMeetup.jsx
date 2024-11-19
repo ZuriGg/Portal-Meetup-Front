@@ -96,7 +96,7 @@ function CreateMeetup() {
 
     return (
         <>
-            <div id="formularioNuevoMeetup">
+            <div className="areaFormulario">
                 <h1>Creación de un nuevo meetup</h1>
 
                 <form onSubmit={enviarDatos}>

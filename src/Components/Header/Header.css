@@ -1,5 +1,14 @@
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     gap: 2vh;
+    margin-top: 2vh;
+    margin-inline: 4vh;
+}
+
+header > div {
+    display: flex;
+    justify-content: center;
+    gap: 1vh;
 }

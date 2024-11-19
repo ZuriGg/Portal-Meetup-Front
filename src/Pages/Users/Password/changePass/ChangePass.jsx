@@ -52,7 +52,7 @@ export default function ChangePass() {
                 Inserte el código de recuperación que le ha llegado a su email,
                 junto a su nueva contraseña
             </p>
-            <div id="recover" className="page">
+            <div id="recover" className="areaFormulario">
                 <form onSubmit={handleSubmit}>
                     <label>
                         <span>Código de recuperación:</span>
@@ -66,7 +66,7 @@ export default function ChangePass() {
                         />
                     </label>
                     <label>
-                        <span>Nueva contraseña:</span>
+                        Nueva contraseña:
                         <input
                             type="password"
                             name="newPass"
