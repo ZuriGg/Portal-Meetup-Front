@@ -38,10 +38,6 @@ function Header() {
                     {' '}
                     <button>/user/password/recover</button>{' '}
                 </Link>
-                <Link to="/user/password/changepass">
-                    {' '}
-                    <button>/user/password/changepass</button>{' '}
-                </Link>
             </header>
         </>
     );

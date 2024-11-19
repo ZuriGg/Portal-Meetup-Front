@@ -48,7 +48,10 @@ export default function ChangePass() {
     return (
         <>
             <h1>Página de cambio de contraseña</h1>
-            <p>Inserte su contraseña actual y su nueva contraseña</p>
+            <p>
+                Inserte el código de recuperación que le ha llegado a su email,
+                junto a su nueva contraseña
+            </p>
             <div id="recover" className="page">
                 <form onSubmit={handleSubmit}>
                     <label>
