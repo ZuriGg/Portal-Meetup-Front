@@ -52,12 +52,12 @@ export default function ChangePass() {
             <div id="recover" className="page">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <span>Contraseña actual:</span>
+                        <span>Código de recuperación:</span>
                         <input
                             type="password"
                             name="oldPass"
                             value={recoverPassCode}
-                            placeholder="Contraseña actual"
+                            placeholder="Pegue aquí su código de recuperación"
                             onChange={(e) => setRecoverPassCode(e.target.value)}
                             required
                         />
