@@ -21,8 +21,10 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.301);
     background-image: url(../public/videoFondo.gif);
+    background-blend-mode: overlay;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 
