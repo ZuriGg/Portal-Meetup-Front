@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import './ChangePass.css';
 
+//NO SE ACTUALIZA LA NUEVA CONTRASEÑA
 export default function ChangePass() {
     const [recoverPassCode, setRecoverPassCode] = useState('');
     const [newPass, setNewPass] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
+    const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -27,7 +29,7 @@ export default function ChangePass() {
         const json = await res.json();
         if (res.ok) {
             setSuccess(true);
-            setTimeout(() => navigate('/user/login'), 2000); //en 2 segundos se redirige a la página de LOGIN
+            setTimeout(() => navigate('/user/login'), 2000); //en 2 segundos te redirige a la página de LOGIN
         } else {
             setError(
                 json.error ||
@@ -39,16 +41,18 @@ export default function ChangePass() {
     return (
         <>
             <h1>Página de cambio de contraseña</h1>
-            <p>Inserte su código de contraseña y su nueva contraseña</p>
+            <p>Inserte su contraseña actual y su nueva contraseña</p>
             <div id="recover" className="page">
                 <form onSubmit={handleSubmit}>
                     <label>
-                        <span>Código de cambio de contraseña:</span>
+                        <span>Contraseña actual:</span>
                         <input
-                            type="text"
-                            name="recoverPass"
+                            type="password"
+                            name="oldPass"
                             value={recoverPassCode}
+                            placeholder="Contraseña actual"
                             onChange={(e) => setRecoverPassCode(e.target.value)}
+                            required
                         />
                     </label>
                     <label>
@@ -57,13 +61,26 @@ export default function ChangePass() {
                             type="password"
                             name="newPass"
                             value={newPass}
+                            placeholder="Nueva contraseña"
                             onChange={(e) => setNewPass(e.target.value)}
+                            required
                         />
-                        {/* MODIFICAR PARA QUE APAREZCAN DOS CAMPOS DE NUEVA CONTRASEÑA Y QUE SE COMPARE DESDE EL MISMO FRONT. LLEVARSE DE REGISTER.JSX */}
-                        <button>✔</button>
-                        {success && <p>Cambio de contraseña realizada</p>}
-                        {error && <p>{error}</p>}
                     </label>
+                    <label>
+                        <span>Confirmar contraseña:</span>
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            placeholder="Confirme su nueva contraseña"
+                            required
+                        />
+                    </label>
+                    <button>✔</button>
+                    {success && (
+                        <p>Su contraseña ha sido modificada correctamente</p>
+                    )}
+                    {error && <p>{error}</p>}
                 </form>
             </div>
         </>
