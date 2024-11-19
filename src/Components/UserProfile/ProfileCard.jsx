@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom';
 function ProfileCard({ avatar, firstName, lastname, username, email }) {
     return (
         <div id="profileCard">
-            <div id="datosUsuarioContainer">
+            <div
+                id="datosUsuarioContainer"
+                style={{
+                    backgroundImage: avatar ? `url(${avatar})` : null,
+                }}
+            >
                 <Link to="/user/edit">
                     <button id="botonCambioAvatar">
                         Cambiar foto de perfil
