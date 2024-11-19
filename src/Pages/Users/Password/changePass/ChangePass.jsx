@@ -16,6 +16,13 @@ export default function ChangePass() {
         e.preventDefault();
         setError(null);
         setSuccess(false);
+
+        //que las contraseñas coincidan:
+        if (newPass !== confirmPassword) {
+            setError('Las contraseñas no coinciden');
+            return;
+        }
+
         const res = await fetch('http://localhost:3000/users/password', {
             method: 'PUT',
             headers: {
