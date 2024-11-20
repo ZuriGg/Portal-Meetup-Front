@@ -20,6 +20,11 @@ function Header() {
                     <Link to="/user/password/recover">
                         <button>/user/password/recover</button>
                     </Link>
+                    <Link to={`/meetup/${attendanceId}/votes`}>
+                        <button>/meetup/votes</button>{' '}
+                        {/* DE DONDE MI3RDAS SALE
+                        ATTENDANCE ID???¿¿¿ */}
+                    </Link>
                 </div>
                 <LogoUser />
             </header>
