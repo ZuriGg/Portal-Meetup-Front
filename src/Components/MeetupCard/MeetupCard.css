@@ -1,11 +1,10 @@
 .meetupsCard {
     display: flex;
     flex-direction: column;
-
-    gap: 1vh;
+    flex-wrap: wrap;
     width: 50vh;
     background-color: #fee4c3;
-    padding: 20px;
+    padding: 2vh;
     border-radius: 2vh;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -17,10 +16,11 @@
 }
 
 .meetupsCard > p {
-    margin: 5px 0;
+    padding-block: 0.8vh;
     color: #555;
 }
 
 .meetupsCard > img {
     border-radius: 2vh;
+    width: 100%;
 }

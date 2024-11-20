@@ -5,13 +5,10 @@
     justify-content: space-evenly;
 }
 
-#profileCard {
+#profileContainer #profileCard {
     margin: 5vh;
 }
 
-#meetupListCard {
+#profileContainer #meetupListCard {
     margin-block: 5vh;
-}
-
-#listaMeetupsUsuario {
 }
