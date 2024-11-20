@@ -20,6 +20,7 @@
 #componenteLogouser > div > img#avatarUsuario {
     width: 8vh;
     aspect-ratio: 1/1;
+    border-radius: 100%;
 }
 
 #componenteLogouser > div > img#flechaUser {

@@ -8,7 +8,9 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
             <div
                 id="datosUsuarioContainer"
                 style={{
-                    backgroundImage: avatar ? `url(${avatar})` : null,
+                    backgroundImage: avatar
+                        ? `url(http://localhost:3000/uploads/${avatar})`
+                        : null,
                 }}
             >
                 <Link to="/user/edit">

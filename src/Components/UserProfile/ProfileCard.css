@@ -21,6 +21,9 @@
     padding: 3vh;
     border-radius: 2vh;
     background-color: #a31621;
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
     color: white;
 }
 #datosUsuarioContainer > a {

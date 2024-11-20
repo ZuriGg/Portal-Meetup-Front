@@ -4,7 +4,7 @@ import './LogoUser.css';
 import { useUser } from '../../UserContext.jsx';
 
 function LogoUser() {
-    const [user, , handleLogout] = useUser(); // Obtenemos usuario y handleLogout del contexto
+    const [user, , handleLogout] = useUser();
     const [isModalOpen, setModalOpen] = useState(false);
     const modalRef = useRef(null);
 
@@ -30,13 +30,21 @@ function LogoUser() {
         };
     }, [isModalOpen]);
 
+    const closeAndNavigate = (callback) => (e) => {
+        setModalOpen(false);
+        if (callback) callback();
+    };
+
     if (user?.token) {
         return (
             <div id="componenteLogouser" onClick={(e) => e.stopPropagation()}>
                 <div onClick={toggleModal} style={{ cursor: 'pointer' }}>
                     <img
                         id="avatarUsuario"
-                        src={user.avatar || '/avatarDefault.webp'}
+                        src={
+                            `http://localhost:3000/uploads/${user.avatar}` ||
+                            '/avatarDefault.webp'
+                        }
                         alt="Avatar de usuario"
                     />
                     <img
@@ -54,17 +62,17 @@ function LogoUser() {
                         onClick={(e) => e.stopPropagation()}
                     >
                         <p>{user.username}</p>
-                        <Link to="/user/profile" className="modal-link">
+                        <Link
+                            to="/user/profile"
+                            className="modal-link"
+                            onClick={closeAndNavigate()}
+                        >
                             Panel de Usuario
                         </Link>
-                        {/* Este enlace ahora usa handleLogout */}
                         <Link
                             to="/"
                             className="modal-link"
-                            onClick={(e) => {
-                                e.preventDefault(); // Prevenimos la navegación del enlace
-                                handleLogout(); // Llamamos al método del contexto
-                            }}
+                            onClick={closeAndNavigate(handleLogout)}
                         >
                             Cerrar Sesión
                         </Link>
