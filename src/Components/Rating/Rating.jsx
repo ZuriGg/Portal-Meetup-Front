@@ -19,12 +19,12 @@ export const Rating = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:3000/meetups/${attendanceId}/votes/`,
+                `http://localhost:3000/meetups/${attendanceId}/votes`,
                 {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `Bearer ${user.token}`, // Autenticación
+                        Authorization: `${user.token.token}`, // Autenticación
                     },
                     body: JSON.stringify({
                         value: vote,
@@ -32,6 +32,7 @@ export const Rating = () => {
                     }),
                 }
             );
+            console.log('el token de rating es: ', user.token.token);
 
             if (!response.ok) {
                 throw new Error('No se pudo enviar el voto.');

@@ -1,17 +1,10 @@
 // Header condicional según si el usuario está registrado o no, accederá al token y mostrara un header u otro en cuestión del tipo de usuario que sea (Anónimo o Normal)
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import LogoUser from './LogoUser.jsx';
 
 function Header() {
-    const { attendanceId } = useParams(); // Obtener el attendanceId de los params de la URL
-
-    /*   if (!attendanceId) {
-        // Si no hay un attendanceId en los params, puedes retornar null o un mensaje
-        return (
-            <p>¡Antes de votar debes seleccionar una sesión de un meetup!</p>
-        );
-    } */
+    const attendanceId = 1;
     return (
         <>
             <header>
@@ -29,7 +22,7 @@ function Header() {
                         <button>/user/password/recover</button>
                     </Link>
                     <Link to={`/meetup/${attendanceId}/votes`}>
-                        <button>/meetup/votes</button>{' '}
+                        <button>/meetup/{attendanceId}/votes</button>{' '}
                         {/* DE DONDE MI3RDAS SALE
                         ATTENDANCE ID???¿¿¿ */}
                     </Link>
