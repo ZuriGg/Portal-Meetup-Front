@@ -1,6 +1,6 @@
+import './Profile.css';
 import React /* { useState, useEffect } */ from 'react';
 import { Navigate } from 'react-router-dom';
-import './Profile.css';
 import ProfileCard from '../../../Components/UserProfile/ProfileCard.jsx';
 import MeetupsListCard from '../../../Components/UserProfile/MeetupsListCard.jsx';
 import { useUser } from '../../../UserContext.jsx';
@@ -43,8 +43,14 @@ function Profile() {
                 username={user.username}
             />
             <div id="listaMeetupsUsuario">
-                <MeetupsListCard h3="Meetups a los que asistes" />
-                <MeetupsListCard h3="Meetups creados por ti" />
+                <MeetupsListCard
+                    titulo="Meetups a los que asistes"
+                    url="meetups"
+                />
+                <MeetupsListCard
+                    titulo="Meetups creados por ti"
+                    url="meetups"
+                />
             </div>
         </div>
     );
