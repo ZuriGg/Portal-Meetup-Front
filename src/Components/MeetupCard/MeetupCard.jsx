@@ -1,8 +1,6 @@
 // Componente que muestra una previsualización de un meetup (Para mostrar los meetups como resultado en una búsqueda en home, etc)
 import './MeetupCard.css';
 
-import React from 'react';
-
 function MeetupCard({
     image,
     title,

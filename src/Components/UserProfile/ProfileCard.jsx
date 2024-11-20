@@ -1,6 +1,6 @@
 import './ProfileCard.css';
-import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function ProfileCard({
     avatar,
@@ -48,3 +48,13 @@ function ProfileCard({
 }
 
 export default ProfileCard;
+
+//ESPECIFICAR MEJOR ESTOS PROPTYPES
+ProfileCard.propTypes = {
+    avatar: PropTypes.node,
+    firstName: PropTypes.node,
+    lastname: PropTypes.node,
+    username: PropTypes.node,
+    email: PropTypes.node,
+    location: PropTypes.node,
+};

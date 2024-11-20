@@ -1,6 +1,7 @@
 import './MeetupsListCard.css';
 import MeetupCard from '../MeetupCard/MeetupCard';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 function MeetupsAsists({ titulo, url }) {
     const [results, setResults] = useState([]);
@@ -50,3 +51,9 @@ function MeetupsAsists({ titulo, url }) {
 }
 
 export default MeetupsAsists;
+
+//ESPECIFICAR MEJOR ESTOS PROPTYPES
+MeetupsAsists.propTypes = {
+    titulo: PropTypes.node,
+    url: PropTypes.node,
+};
