@@ -16,6 +16,7 @@ import ChangePass from './Users/Password/changePass/ChangePass.jsx';
 import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
+import { Rating } from '../Components/Rating/Rating.jsx';
 
 const AppRoutes = () => (
     <>
@@ -47,6 +48,7 @@ const AppRoutes = () => (
                 <Route path="create" element={<CreateMeetup />} />
                 {/* Página para editar un meetup */}
                 <Route path="edit" element={<EditMeetup />} />
+                <Route path=":attendanceId/votes" element={<Rating />} />
             </Route>
 
             {/* Ruta para redirigir cualquier ruta no válida */}
