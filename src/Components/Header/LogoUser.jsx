@@ -1,27 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './LogoUser.css';
+import { useUser } from '../../UserContext.jsx';
 
 function LogoUser() {
-    const sessionData = JSON.parse(localStorage.getItem('session'));
-
+    const [user, , handleLogout] = useUser(); // Obtenemos usuario y handleLogout del contexto
     const [isModalOpen, setModalOpen] = useState(false);
-    const modalRef = useRef(null); // Referencia al modal
-    let flecha = isModalOpen ? 'arriba' : 'abajo';
+    const modalRef = useRef(null);
 
     const toggleModal = (event) => {
-        event.stopPropagation(); // Detenemos la propagación para que el clic no cierre el modal
+        event.stopPropagation();
         setModalOpen((prevState) => !prevState);
     };
 
-    // Función para cerrar el modal si el clic ocurre fuera del modal
     const handleClickOutside = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
             setModalOpen(false);
         }
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (isModalOpen) {
             document.addEventListener('click', handleClickOutside);
         } else {
@@ -32,57 +30,40 @@ function LogoUser() {
         };
     }, [isModalOpen]);
 
-    let username;
-
-    if (sessionData) {
-        username = sessionData.username;
+    if (user?.token) {
         return (
             <div id="componenteLogouser" onClick={(e) => e.stopPropagation()}>
                 <div onClick={toggleModal} style={{ cursor: 'pointer' }}>
                     <img
                         id="avatarUsuario"
-                        src="/avatarDefault.webp"
+                        src={user.avatar || '/avatarDefault.webp'}
                         alt="Avatar de usuario"
                     />
-
-                    {(() => {
-                        switch (flecha) {
-                            case 'arriba':
-                                return (
-                                    <img
-                                        id="flechaUser"
-                                        src="/interface/flechaArribaBlanco.webp"
-                                        alt="Flecha hacia arriba"
-                                    />
-                                );
-                            case 'abajo':
-                                return (
-                                    <img
-                                        id="flechaUser"
-                                        src="/interface/flechaAbajoBlanco.webp"
-                                        alt="Flecha hacia abajo"
-                                    />
-                                );
-                        }
-                    })()}
+                    <img
+                        id="flechaUser"
+                        src={`/interface/flecha${
+                            isModalOpen ? 'Arriba' : 'Abajo'
+                        }Blanco.webp`}
+                        alt="Flecha"
+                    />
                 </div>
-
                 {isModalOpen && (
                     <div
                         id="modalOpcionesUsuario"
                         ref={modalRef}
-                        onClick={(e) => e.stopPropagation()} // Detenemos la propagación dentro del modal
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <p>{username}</p>
+                        <p>{user.username}</p>
                         <Link to="/user/profile" className="modal-link">
                             Panel de Usuario
                         </Link>
+                        {/* Este enlace ahora usa handleLogout */}
                         <Link
                             to="/"
                             className="modal-link"
-                            onClick={() => {
-                                localStorage.removeItem('session');
-                                window.location.reload();
+                            onClick={(e) => {
+                                e.preventDefault(); // Prevenimos la navegación del enlace
+                                handleLogout(); // Llamamos al método del contexto
                             }}
                         >
                             Cerrar Sesión
@@ -92,6 +73,7 @@ function LogoUser() {
             </div>
         );
     }
+
     return (
         <div id="componenteLogouser">
             <Link to="/user/login">Login</Link>

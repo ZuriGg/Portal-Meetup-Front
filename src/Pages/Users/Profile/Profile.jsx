@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React /* { useState, useEffect } */ from 'react';
+import { Navigate } from 'react-router-dom';
 import './Profile.css';
-import ProfileCard from '../../../Components/UserProfile/ProfileCard';
-import MeetupsListCard from '../../../Components/UserProfile/MeetupsListCard';
+import ProfileCard from '../../../Components/UserProfile/ProfileCard.jsx';
+import MeetupsListCard from '../../../Components/UserProfile/MeetupsListCard.jsx';
+import { useUser } from '../../../UserContext.jsx';
 
 function Profile() {
-    const [userAvatar, setUserAvatar] = useState('');
+    /* const [userAvatar, setUserAvatar] = useState('');
     const [userFirstName, setUserFirstName] = useState('');
     const [userLastname, setUserLastname] = useState('');
     const [userUsername, setUserUsername] = useState('');
@@ -22,14 +24,23 @@ function Profile() {
         }
     }, []);
 
+    if (!isLoggedIn) {
+        return <Navigate to="/" />; // Redirección condicional
+    } */
+    const [user] = useUser();
+
+    if (!user?.token) {
+        return <Navigate to="/" />;
+    }
+
     return (
         <div id="profileContainer">
             <ProfileCard
-                email={userEmail}
-                avatar={userAvatar}
-                firstName={userFirstName}
-                lastname={userLastname}
-                username={userUsername}
+                email={user.email}
+                avatar={user.avatar}
+                firstName={user.firstName}
+                lastname={user.lastname}
+                username={user.username}
             />
             <div id="listaMeetupsUsuario">
                 <MeetupsListCard h3="Meetups a los que asistes" />
