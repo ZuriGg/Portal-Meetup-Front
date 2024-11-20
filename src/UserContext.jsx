@@ -19,9 +19,9 @@ export const UserProvider = ({ children }) => {
               role: '',
               token: '',
               id: '',
+              location: { city: '', region: '', country: '' }, // Añadimos ubicación
           };
 
-    // Función para actualizar el usuario en el estado y localStorage
     const [user, setUser] = useState(initialUser);
 
     const enhancedSetUser = (betterUser) => {
@@ -40,10 +40,11 @@ export const UserProvider = ({ children }) => {
             id: '',
             role: '',
             active: '',
-            token: '', // Limpiamos el token
+            token: '',
+            location: { city: '', region: '', country: '' }, // Reseteamos ubicación
         });
-        localStorage.removeItem('session'); // Eliminamos el usuario del localStorage
-        navigate('/'); // Redirigimos al Home o Login
+        localStorage.removeItem('session');
+        navigate('/');
     };
 
     return (

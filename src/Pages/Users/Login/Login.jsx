@@ -14,13 +14,12 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            //enviamos info de usuario registrado previamente en la API para que nos devuelva nuestro token "resToken"
             const resToken = await fetch('http://localhost:3000/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }), //mandas el email y la pass
+                body: JSON.stringify({ email, password }),
             });
 
             if (!resToken.ok) {
@@ -28,9 +27,8 @@ function Login() {
                 return;
             }
 
-            const dataToken = await resToken.json(); //almacenamos el token
+            const dataToken = await resToken.json();
 
-            //obtenemos los datos del usuario
             const resUser = await fetch(
                 `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
                 {
@@ -41,22 +39,36 @@ function Login() {
                 }
             );
 
-            if (!resUser) {
+            if (!resUser.ok) {
                 throw new Error('El fetch no se ha realizado correctamente');
             }
 
             const dataUser = await resUser.json();
 
+            // Obtenemos la ubicación
+            let userLocation = { city: 'Desconocida', region: '', country: '' };
+            try {
+                const locationRes = await fetch('https://ipapi.co/json/');
+                const locationData = await locationRes.json();
+                userLocation = {
+                    city: locationData.city,
+                    region: locationData.region,
+                    country: locationData.country_name,
+                };
+            } catch (error) {
+                console.error('Error al obtener la ubicación:', error);
+            }
+
+            // Guardamos todo el usuario en el contexto
             setUser({
                 ...dataUser.data.user,
                 token: dataToken.token,
+                location: userLocation, // Añadimos la ubicación
             });
 
-            console.log(dataUser.data.user, dataToken.token);
-
-            setSuccess(true); //operación exitosa
-            setError(null); //limpiamos errores
-            setTimeout(() => navigate('/'), 1000); //en 1 segundo redirige --> HOME
+            setSuccess(true);
+            setError(null);
+            setTimeout(() => navigate('/'), 1000);
         } catch (error) {
             setError('Ocurrió un error al iniciar sesión');
             console.error('Error en el login:', error);

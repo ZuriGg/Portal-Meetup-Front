@@ -2,7 +2,14 @@ import './ProfileCard.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function ProfileCard({ avatar, firstName, lastname, username, email }) {
+function ProfileCard({
+    avatar,
+    firstName,
+    lastname,
+    username,
+    email,
+    location,
+}) {
     return (
         <div id="profileCard">
             <div
@@ -22,20 +29,19 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
                     <p>{username}</p>
                     <p>{`${firstName} ${lastname}`}</p>
                     <p>{email}</p>
-                    <p>Ubicación</p>
+                    <p>{`${location.city}, ${location.region}, ${location.country}`}</p>
                 </div>
             </div>
+            <div id="contenedorDatosMeetupsUsuario">
+                <div id="asistenciasMeetup">
+                    <p>12</p>
+                    <p>Asistirás</p>
+                </div>
 
-            <div id="numerosMeetupsusUario">
-                <p>0</p>
-                <p>12</p>
-                <p>2</p>
-            </div>
-
-            <div id="datosMeetupsUsuario">
-                <p>Incripciones</p>
-                <p>Asistirás</p>
-                <p>En posesión</p>
+                <div id="meetupsEnPosesion">
+                    <p>2</p>
+                    <p>Meetups propios</p>
+                </div>
             </div>
         </div>
     );

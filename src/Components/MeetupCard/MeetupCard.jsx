@@ -18,7 +18,7 @@ function MeetupCard({
                 src={image || '/meetupPhotoDefault.jpg'}
                 alt="imagen de un meetup"
             />
-            <h3>{title}</h3>
+            <h4>{title}</h4>
             <p>{description}</p>
             <p>Fecha de inicio: {new Date(startDate).toLocaleDateString()}</p>
             <p>Hora: {hourMeetup}</p>

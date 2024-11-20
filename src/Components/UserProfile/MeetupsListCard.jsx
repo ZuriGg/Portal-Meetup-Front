@@ -1,5 +1,5 @@
-import MeetupCard from '../MeetupCard/MeetupCard';
 import './MeetupsListCard.css';
+import MeetupCard from '../MeetupCard/MeetupCard';
 import React, { useEffect, useState } from 'react';
 
 function MeetupsAsists({ titulo, url }) {
