@@ -1,3 +1,4 @@
+import './Rating.css';
 import { useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 import { useParams } from 'react-router-dom';
@@ -52,7 +53,7 @@ export const Rating = () => {
 
     return (
         <>
-            <div>
+            <div className="areaFormulario">
                 <h2>Vote la sesión del Meetup:</h2>
                 <form onSubmit={handleVoteSubmit}>
                     <label>
