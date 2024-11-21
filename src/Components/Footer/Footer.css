@@ -1,35 +1,11 @@
 footer {
-    display: grid;
-    grid-template-areas: 
-    "yourAccount categories aboutUs";
-    grid-gap: 20px;
-    padding: 20px;
-    background-color: #f8f8f8;
+    
+
     border-top: 1px solid #e7e7e7;
 }
 
 
 
-h3 { 
-    margin-bottom: 10px; 
-} 
- ul { 
-    list-style-type: none; 
-    padding: 0; 
-} 
 
-li { 
-    margin-bottom: 1px; 
-} 
-
-
-
-#copyright { 
-    flex-basis: 100%; /* Hace que este div ocupe toda la línea */ 
-  
-    margin-top: 20px; 
-    color: #cb2020; 
-    font-size: 14px
-}
 
 
