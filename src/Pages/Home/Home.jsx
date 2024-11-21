@@ -3,16 +3,18 @@ import { useUser } from '../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
+import { useMeetup } from '../../MeetupContext.jsx';
 
 function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, , handleLogout] = useUser();
+    const { qry } = useMeetup();
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3000/meetups')
+        fetch(`http://localhost:3000/meetups?${qry}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching data');

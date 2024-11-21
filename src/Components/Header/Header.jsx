@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 import LogoUser from './LogoUser.jsx';
+import Filters from './Filters.jsx';
 
 function Header() {
     return (
@@ -21,6 +22,7 @@ function Header() {
                         <button>/user/password/recover</button>
                     </Link>
                 </div>
+                <Filters />
                 <LogoUser />
             </header>
         </>

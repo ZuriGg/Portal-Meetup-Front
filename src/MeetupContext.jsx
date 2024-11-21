@@ -4,13 +4,13 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 //se crea el contexto
 export const MeetupContext = createContext();
-export const useMeetup = () => useContext(MeetupContext);
+export const useMeetup = () => {
+    return useContext(MeetupContext);
+};
 
 //se proveen a los hijo del contexto meetup
 export const MeetupProvider = ({ children }) => {
-    //estado donde se guardaran los meetups
-    const [meetups, setMeetups] = useState([]);
-
+    const [qry, setQry] = useState('');
     //se predefinen los filtros
     const [filters, setFilters] = useState({
         location: '',
@@ -25,15 +25,14 @@ export const MeetupProvider = ({ children }) => {
     //se inicializa en false la carga del fetch a los meetups
     const [loading, setLoading] = useState(false);
 
-    const fetchMeetups = async () => {
+    const fetchMeetups = async (filters, order) => {
         setLoading(true);
         try {
             // se crea una url para pasarle al back los filtros y el orden
             const qry = new URLSearchParams({ ...filters, order }).toString();
-            const res = await fetch(`/meetups?${qry}`);
-            const data = res.json();
-            if (res.data === 'ok') {
-                setMeetups(data.data);
+            console.log(`URL generada: http://localhost:3000/meetups?${qry}`);
+            if (qry) {
+                setQry(qry);
             }
         } catch (error) {
             console.error('error en el fecth de filtros', error);
@@ -44,13 +43,13 @@ export const MeetupProvider = ({ children }) => {
 
     //cada vez que se carga la pagina se renderiza tanto el fetch como los filtros
     useEffect(() => {
-        fetchMeetups();
+        fetchMeetups(filters, order);
     }, [filters, order]);
 
     //se devuleve el contexto a toda la app
     return (
         <MeetupContext.Provider
-            value={(meetups, filters, setFilters, order, setOrder, loading)}
+            value={{ qry, setQry, filters, setFilters, setOrder, loading }}
         >
             {children}
         </MeetupContext.Provider>
