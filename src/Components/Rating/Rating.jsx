@@ -6,11 +6,13 @@ import { useParams } from 'react-router-dom';
 export const Rating = () => {
     const [user] = useUser();
     const { attendanceId } = useParams(); //obtenemos el attendanceId de los params de la URL
-    const [vote, setVote] = useState(0); //user
-    const [coment, setComent] = useState(''); //user
+    const [vote, setVote] = useState(0);
+    const [coment, setComent] = useState('');
+    const [hover, setHover] = useState(0); // para manejar el hover
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null); // Mensaje de éxito
     const [loading, setLoading] = useState(false); // Estado de carga
+    const emojis = ['🤢', '😔', '😐', '😌', '😍']; //emojis para cada puntuación
 
     const handleVoteSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +27,7 @@ export const Rating = () => {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        Authorization: `${user.token.token}`, // Autenticación
+                        Authorization: `${user.token.token}`, // Autenticación SIN BEARER!
                     },
                     body: JSON.stringify({
                         value: vote,
@@ -36,7 +38,7 @@ export const Rating = () => {
             console.log('el token de rating es: ', user.token.token);
 
             if (!response.ok) {
-                throw new Error('No se pudo enviar el voto.');
+                throw new Error('No se pudo enviar el voto!');
             }
 
             await response.json();
@@ -56,17 +58,25 @@ export const Rating = () => {
             <div className="areaFormulario">
                 <h2>Vote la sesión del Meetup:</h2>
                 <form onSubmit={handleVoteSubmit}>
-                    <label>
-                        Puntuación (de 1 a 5):
-                        <input
-                            type="number"
-                            min="1"
-                            max="5"
-                            value={vote}
-                            onChange={(e) => setVote(Number(e.target.value))}
-                            required
-                        />
-                    </label>
+                    <label>Puntuación (de 1 a 5):</label>
+                    <div className="stars">
+                        {[1, 2, 3, 4, 5].map((star, index) => (
+                            <button
+                                type="button"
+                                key={star}
+                                className={`star ${
+                                    star <= (hover || vote) ? 'selected' : ''
+                                }`}
+                                onClick={() => setVote(star)} // Al hacer clic se selecciona la estrella
+                                onMouseEnter={() => setHover(star)} // Cambia el hover al pasar el mouse
+                                onMouseLeave={() => setHover(0)} // Restablece el hover al salir
+                            >
+                                {emojis[index]}
+                            </button>
+                        ))}
+                    </div>
+                    <p>Puntuación seleccionada: {vote}</p>
+
                     <label>
                         Comentario:
                         <textarea
@@ -79,7 +89,9 @@ export const Rating = () => {
                         type="submit"
                         disabled={loading || vote < 1 || vote > 5}
                     >
-                        {loading ? 'Enviando voto...' : 'Enviar Voto'}
+                        {loading
+                            ? 'Enviando valoración...'
+                            : 'Enviar valoración'}
                     </button>
                     {success && <p>Valoración enviada!!</p>}
                     {error && <p>{error}</p>}
