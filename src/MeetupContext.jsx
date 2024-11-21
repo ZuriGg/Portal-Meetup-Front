@@ -14,9 +14,11 @@ export const MeetupProvider = ({ children }) => {
     //se predefinen los filtros
     const [filters, setFilters] = useState({
         location: '',
-        minVotes: '',
-        category: '',
+        // minVotes: '',
+        // category: '',
         search: '',
+
+        filtersChange: false,
     });
 
     //se predefine el orden
@@ -43,7 +45,13 @@ export const MeetupProvider = ({ children }) => {
 
     //cada vez que se carga la pagina se renderiza tanto el fetch como los filtros
     useEffect(() => {
-        fetchMeetups(filters, order);
+        if (filters.filtersChange) {
+            fetchMeetups(filters, order);
+            setFilters((prevFilters) => ({
+                ...prevFilters,
+                filtersChange: false,
+            })); // Reinicia el estado
+        }
     }, [filters, order]);
 
     //se devuleve el contexto a toda la app

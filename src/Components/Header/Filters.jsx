@@ -16,12 +16,11 @@ const Filters = () => {
             setQry(
                 new URLSearchParams({
                     ...filters,
-                    order: filters.order,
                 }).toString()
             );
             console.log('Filtros:', filters);
         }
-    }, [filters, setQry, filters.order, loading]);
+    }, [filters, setQry, loading]);
     return (
         <div className="filters">
             <input
@@ -31,13 +30,13 @@ const Filters = () => {
                 value={filters.search || ''}
                 onChange={handleFilterChange}
             />
-            <input
+            {/* <input
                 type="number"
                 name="minVotes"
                 placeholder="por numero de votos"
                 value={filters.minVotes || ''}
                 onChange={handleFilterChange}
-            />
+            /> */}
             <input
                 type="text"
                 name="location"
@@ -45,7 +44,7 @@ const Filters = () => {
                 value={filters.location || ''}
                 onChange={handleFilterChange}
             />
-            <select
+            {/* <select
                 name="category"
                 value={filters.category || ''}
                 onChange={handleFilterChange}
@@ -58,7 +57,16 @@ const Filters = () => {
                 <option value="5">Deportes y fitness</option>
                 <option value="6">Arte y cultura</option>
                 <option value="7">Aficiones y pasiones</option>
-            </select>
+            </select> */}
+            <div
+                type="text"
+                onChange={() =>
+                    setFilters((prevFilters) => ({
+                        ...prevFilters,
+                        filtersChange: true,
+                    }))
+                }
+            />
         </div>
     );
 };
