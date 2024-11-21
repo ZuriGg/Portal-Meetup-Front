@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../../../../UserContext.jsx';
 
 import './ChangePass.css';
 
-//NO SE ACTUALIZA LA NUEVA CONTRASEÑA
 export default function ChangePass() {
     const [recoverPassCode, setRecoverPassCode] = useState('');
     const [newPass, setNewPass] = useState('');
@@ -11,6 +11,7 @@ export default function ChangePass() {
     const [success, setSuccess] = useState(false);
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
+    const [, , handleLogout] = useUser(); //importo el logOut desde el contexto
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ export default function ChangePass() {
 
         //que las contraseñas coincidan:
         if (newPass !== confirmPassword) {
-            setError('Las contraseñas no coinciden');
+            setError('Las contraseñas proporcionadas no coinciden');
             return;
         }
 
@@ -33,10 +34,16 @@ export default function ChangePass() {
                 newPass,
             }),
         });
+
         const json = await res.json();
+
         if (res.ok) {
             setSuccess(true);
-            setTimeout(() => navigate('/user/login'), 2000); //en 2 segundos te redirige a la página de LOGIN
+
+            setTimeout(() => {
+                handleLogout();
+                navigate('/user/login');
+            }, 2000); //en 2 segundos te redirige a la página de LOGIN
         } else {
             setError(
                 json.error ||
