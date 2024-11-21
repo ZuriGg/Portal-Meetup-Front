@@ -1,7 +1,5 @@
 // Componente que muestra una categoría de meetup (Para filtrar desde el home)
 import './Category.css';
-// Componente que muestra una categoría de meetup (Para filtrar desde el home)
-import './Category.css';
 
 import { useEffect } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';

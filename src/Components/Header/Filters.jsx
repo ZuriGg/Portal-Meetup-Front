@@ -1,73 +1,52 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
+import './Filters.css';
 
 const Filters = () => {
-    const { filters, setFilters, loading, setQry } = useMeetup();
-    const handleFilterChange = (e) => {
+    const { setFilters, setQry } = useMeetup();
+    const [localFilters, setLocalFilters] = useState({
+        search: '',
+        location: '',
+    });
+
+    // Maneja los cambios en los inputs
+    const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFilters((prevFilters) => ({
-            ...prevFilters, // Conservamos los filtros anteriores
-            [name]: value, // Actualizamos el filtro específico con el nuevo valor
+        setLocalFilters((prev) => ({
+            ...prev,
+            [name]: value,
         }));
     };
 
-    useEffect(() => {
-        if (!loading) {
-            setQry(
-                new URLSearchParams({
-                    ...filters,
-                }).toString()
-            );
-            console.log('Filtros:', filters);
-        }
-    }, [filters, setQry, loading]);
+    // Maneja el envío del formulario
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Actualiza los filtros globales y la query string
+        setFilters(localFilters);
+        setQry(new URLSearchParams(localFilters).toString());
+        console.log('Filtros enviados:', localFilters);
+    };
+
     return (
-        <div className="filters">
-            <input
-                type="text"
-                name="search"
-                placeholder="Buscar meetups!"
-                value={filters.search || ''}
-                onChange={handleFilterChange}
-            />
-            {/* <input
-                type="number"
-                name="minVotes"
-                placeholder="por numero de votos"
-                value={filters.minVotes || ''}
-                onChange={handleFilterChange}
-            /> */}
-            <input
-                type="text"
-                name="location"
-                placeholder="Buscar meetups! por ubicacion"
-                value={filters.location || ''}
-                onChange={handleFilterChange}
-            />
-            {/* <select
-                name="category"
-                value={filters.category || ''}
-                onChange={handleFilterChange}
-            >
-                <option value="">categoria</option>
-                <option value="1">Viajes y aire libre</option>
-                <option value="2">Tecnología</option>
-                <option value="3">Salud y bienestar</option>
-                <option value="4">Juegos</option>
-                <option value="5">Deportes y fitness</option>
-                <option value="6">Arte y cultura</option>
-                <option value="7">Aficiones y pasiones</option>
-            </select> */}
-            <div
-                type="text"
-                onChange={() =>
-                    setFilters((prevFilters) => ({
-                        ...prevFilters,
-                        filtersChange: true,
-                    }))
-                }
-            />
-        </div>
+        <form className="search-form" onSubmit={handleSubmit}>
+            <div className="filters">
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Buscar meetups!"
+                    value={localFilters.search}
+                    onChange={handleInputChange}
+                />
+                <input
+                    type="text"
+                    name="location"
+                    placeholder="Buscar meetups! por ubicación"
+                    value={localFilters.location}
+                    onChange={handleInputChange}
+                />
+                <button type="submit">Buscar</button>
+            </div>
+        </form>
     );
 };
 
