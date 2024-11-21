@@ -87,6 +87,9 @@ function Home() {
                     <p>No se encontraron meetups.</p>
                 )}
             </ul>
+            <div className="categories">
+                <Category />
+            </div>
         </div>
     );
 }

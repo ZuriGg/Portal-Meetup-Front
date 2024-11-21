@@ -1,0 +1,10 @@
+.buttoms-categories > button {
+    text-decoration: underline;
+}
+
+.buttoms-categories {
+    display: flex;
+
+    align-items: center;
+    gap: 20px;
+}
