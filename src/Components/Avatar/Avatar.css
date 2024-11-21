@@ -1,6 +1,6 @@
 #upload .add-image {
-    width: 80px;
-    height: 80px;
+    width: 10rem;
+    height: 10rem;
     border: 2px dashed #888;
     display: flex;
     align-items: center;
