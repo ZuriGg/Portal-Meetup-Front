@@ -1,0 +1,29 @@
+#upload .add-image {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+#upload .add-image::after {
+    content: '+';
+    font-size: 300%;
+    color: #8f8;
+}
+
+#upload input {
+    display: none;
+}
+
+#upload img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 2px dashed #888;
+    display: block;
+    margin-bottom: 5px;
+}
