@@ -11,7 +11,7 @@
 
 #upload .add-image::after {
     content: '+';
-    font-size: 300%;
+    font-size: 400%;
     color: #8f8;
 }
 
@@ -20,10 +20,24 @@
 }
 
 #upload img {
-    width: 80px;
-    height: 80px;
+    width: 10rem;
+    height: 10rem;
     object-fit: cover;
     border: 2px dashed #888;
     display: block;
     margin-bottom: 5px;
+}
+
+#upload form {
+    height: 100%;
+}
+
+.add-image {
+    text-align: center;
+}
+
+#subida {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

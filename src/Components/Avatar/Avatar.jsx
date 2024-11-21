@@ -44,9 +44,9 @@ function Avatar() {
 
     return (
         <div id="upload" className="page">
-            <h1>Foto de perfil:</h1>
+            <h3>Foto de perfil:</h3>
             <form onSubmit={handleSubmit}>
-                <label>
+                <label id="subida">
                     {preview ? (
                         <img className="image-preview" src={preview} />
                     ) : (

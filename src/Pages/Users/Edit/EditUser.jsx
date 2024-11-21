@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditUser.css';
+import Avatar from '../../../Components/Avatar/Avatar.jsx';
 
 export const EditUser = () => {
     const [user] = useUser();
@@ -113,7 +114,7 @@ export const EditUser = () => {
 
     return (
         <div className="areaFormulario">
-            <h1>Edita tu usuario</h1>
+            <h1>Edite su usuario</h1>
 
             <form onSubmit={handleSubmit}>
                 <label>
@@ -159,6 +160,7 @@ export const EditUser = () => {
                 <button type="submit">Editar</button>
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
+                <Avatar />
             </form>
         </div>
     );
