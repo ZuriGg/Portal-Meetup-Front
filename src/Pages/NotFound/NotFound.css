@@ -1,10 +1,3 @@
-.notFoundBottle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
 
 .notFoundLiquid {
     text-align: center;
@@ -12,7 +5,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(4, 0, 0, 0.1);
 }
 
 .notFoundLiquid h1 {
@@ -30,7 +23,7 @@
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #c318b5;
+    background-color: #3b5fd4;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -38,5 +31,5 @@
 }
 
 .comeBack:hover {
-    background-color: #0056b3;
+    background-color: #4dbc70;
 }
