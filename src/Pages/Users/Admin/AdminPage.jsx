@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useUser } from '../../../UserContext';
 import './AdminPage.css';
 import React from 'react';
+import AdminValidateCard from '../../../Components/AdminValidate/AdminValidateCard';
 
 function AdminPage() {
     const [user] = useUser();
@@ -16,7 +17,7 @@ function AdminPage() {
 
     return (
         <div>
-            <p>admin</p>
+            <AdminValidateCard titulo="Meetups para validar" url="meetups" />
         </div>
     );
 }

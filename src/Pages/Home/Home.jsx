@@ -1,7 +1,7 @@
+import './Home.css';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 
 function Home() {
