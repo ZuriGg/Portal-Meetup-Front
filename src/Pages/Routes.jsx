@@ -6,6 +6,8 @@ import Home from './Home/Home.jsx';
 import Validate from './Users/Validate/Validate.jsx';
 import Register from './Users/Register/Register.jsx';
 import Login from './Users/Login/Login.jsx';
+import NotFound from './NotFound/NotFound.jsx'
+
 
 // Import de rutas de gestión de contraseñas
 import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
@@ -23,7 +25,10 @@ const AppRoutes = () => (
         <Routes>
             {/* Home según sea usuario anónimo o registrado */}
             <Route path="/" element={<Home />} />
-
+            <Route path="notFound" element={<NotFound />} />
+            
+            
+            
             {/* Rutas de usuario */}
             <Route path="user">
                 {/* Página de registro de usuario */}
@@ -52,7 +57,7 @@ const AppRoutes = () => (
             </Route>
 
             {/* Ruta para redirigir cualquier ruta no válida */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<Navigate to="notFound" replace />} />
         </Routes>
     </>
 );
