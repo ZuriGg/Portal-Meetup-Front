@@ -9,7 +9,7 @@ function Footer() {
     return (
         <footer>
             <nav id="container-footer">
-                <h3>Tu cuenta</h3>
+                <h3 id="yourAccount"> Tu cuenta</h3>
                 {user.token ? (
                     // Si el usuario está logado, muestra el link al perfil
                     <Link to="/users">Tu perfil</Link>
@@ -21,7 +21,7 @@ function Footer() {
                 <h3>
                     <Link to="/meetups">Meet ups</Link>{' '}
                 </h3>
-                <div>
+                <div id="categories">
                     <Link
                         to={`/categories/${encodeURIComponent(
                             'Viajes y aire libre'
@@ -74,7 +74,7 @@ function Footer() {
                     </Link>
                 </div>
                 <h3>Conócenos</h3>
-                <p>
+                <p id="aboutUs">
                     <a /* a para rutas externas a direcciones fuera de nuestra API */
                         href={
                             'https://www.linkedin.com/in/sergio-manzano-esclapez/'
@@ -111,7 +111,7 @@ function Footer() {
                     </a>
                 </p>
             </nav>
-            <p>©2024 Meetups</p>
+            <p id="copyright">©2024 Meetups</p>
         </footer>
     );
 }

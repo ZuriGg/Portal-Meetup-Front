@@ -88,7 +88,7 @@ function Home() {
                                     <strong>Afóro máximo:</strong>{' '}
                                     {meetup.aforoMax}
                                 </p>
-                                <button>inscribete</button>
+                                <button>inscríbete</button>
                             </div>
                         </li>
                     ))
