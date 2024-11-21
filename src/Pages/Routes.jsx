@@ -16,12 +16,15 @@ import ChangePass from './Users/Password/changePass/ChangePass.jsx';
 import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
+import AdminPage from './Users/Admin/AdminPage.jsx';
 
 const AppRoutes = () => (
     <>
         <Routes>
             {/* Home según sea usuario anónimo o registrado */}
             <Route path="/" element={<Home />} />
+
+            <Route path="admin" element={<AdminPage />} />
 
             {/* Rutas de usuario */}
             <Route path="user">

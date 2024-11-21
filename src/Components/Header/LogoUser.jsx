@@ -69,6 +69,16 @@ function LogoUser() {
                         >
                             Panel de Usuario
                         </Link>
+                        {user.role === 'admin' && (
+                            <Link
+                                to="/admin"
+                                className="modal-link"
+                                onClick={closeAndNavigate()}
+                            >
+                                Panel de Admin
+                            </Link>
+                        )}
+                        <p>Ajustes</p>
                         <Link
                             to="/"
                             className="modal-link"
