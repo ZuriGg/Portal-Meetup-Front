@@ -3,34 +3,39 @@ import { useUser } from '../../UserContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
+import { useMeetup } from '../../MeetupContext.jsx';
+import Category from '../../Components/Home/Category.jsx';
 
 function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, , handleLogout] = useUser();
+    const { qry } = useMeetup();
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:3000/meetups')
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Error fetching data');
-                }
-                return res.json(); // Convierte la respuesta en JSON
-            })
-            .then((data) => {
-                console.log(data); // Verifica si los datos están correctamente en la propiedad 'data'
-                setResults(data.data); // Ahora accedemos a 'data' directamente(era lo que nos fallaba sergio, la res de la api es data)
-                setLoading(false); // Termina la carga
-            })
-            .catch((err) => {
-                setError(err.message); // Maneja errores
-                setLoading(false);
-            });
-    }, []); // Solo se ejecuta una vez cuando el componente se monta
+        if (qry) {
+            fetch(`http://localhost:3000/meetups?${qry}`)
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error('Error fetching data');
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log('Datos recibidos:', data);
+                    setResults(data.data || []);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setLoading(false);
+                });
+        }
+    }, [qry]);
 
-    console.log(results); // Verifica el valor de `results` en la consola
+    console.log(results);
 
     // Mostrar cargando o error
     if (loading) return <div>Loading...</div>;

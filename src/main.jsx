@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 import { UserProvider } from './UserContext.jsx';
+import { MeetupProvider } from './MeetupContext.jsx';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -20,7 +21,9 @@ const root = createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
         <UserProvider>
-            <App />
+            <MeetupProvider>
+                <App />
+            </MeetupProvider>
         </UserProvider>
     </BrowserRouter>
 );

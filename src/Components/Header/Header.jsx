@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
 import LogoUser from './LogoUser.jsx';
+import Filters from './Filters.jsx';
 
 function Header() {
     const attendanceId = 1;
@@ -27,6 +28,7 @@ function Header() {
                         ATTENDANCE ID???¿¿¿ */}
                     </Link>
                 </div>
+                <Filters />
                 <LogoUser />
             </header>
         </>
