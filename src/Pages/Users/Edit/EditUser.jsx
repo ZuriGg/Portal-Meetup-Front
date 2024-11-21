@@ -157,7 +157,7 @@ export const EditUser = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <button type="submit">Editar</button>
+                <button type="submit">Editar usuario</button>
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
                 <Avatar />

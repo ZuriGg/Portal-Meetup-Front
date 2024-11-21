@@ -54,7 +54,7 @@ function Avatar() {
                     )}
                     <input type="file" onChange={handleFile} />
                 </label>
-                <button>Subir</button>
+                <button>Actualizar imagen</button>
             </form>
             {success && (
                 <div>
