@@ -15,7 +15,7 @@ export const MeetupProvider = ({ children }) => {
     const [filters, setFilters] = useState({
         location: '',
         // minVotes: '',
-        // category: '',
+        category: '',
         search: '',
 
         filtersChange: false,
