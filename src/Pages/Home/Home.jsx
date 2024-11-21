@@ -32,6 +32,23 @@ function Home() {
                     setError(err.message);
                     setLoading(false);
                 });
+        } else {
+            fetch(`http://localhost:3000/meetups`)
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error('Error fetching data');
+                    }
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log('Datos recibidos:', data);
+                    setResults(data.data || []);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setError(err.message);
+                    setLoading(false);
+                });
         }
     }, [qry]);
 

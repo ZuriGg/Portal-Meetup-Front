@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './LogoUser.css';
 import { useUser } from '../../UserContext.jsx';
@@ -19,7 +19,7 @@ function LogoUser() {
         }
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (isModalOpen) {
             document.addEventListener('click', handleClickOutside);
         } else {
