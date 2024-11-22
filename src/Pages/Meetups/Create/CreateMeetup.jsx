@@ -73,7 +73,7 @@ function CreateMeetup() {
                 headers: {
                     'Content-Type': 'application/json',
                     ...(user?.token && {
-                        Authorization: `Bearer ${user.token}`, //se le manda el token del usuario
+                        Authorization: user.token.token, //se le manda el token del usuario
                     }),
                 },
                 body: JSON.stringify(formData), //convertimos los datos del formulario a JSON
