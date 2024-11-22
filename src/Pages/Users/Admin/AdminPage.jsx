@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { useUser } from '../../../UserContext';
+import { useUser } from '../../../UserContext.jsx';
 import './AdminPage.css';
 import React from 'react';
-import AdminValidateCard from '../../../Components/AdminValidate/AdminValidateCard';
+import AdminValidateCard from '../../../Components/AdminValidate/AdminValidateCard.jsx';
 
 function AdminPage() {
     const [user] = useUser();

@@ -1,9 +1,11 @@
 import './AdminValidateCard.css';
-import MeetupCard from '../MeetupCard/MeetupCard';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useUser } from '../../UserContext.jsx';
 
 function AdminValidateCard({ titulo, url }) {
     const [results, setResults] = useState([]);
+    const [user] = useUser();
 
     useEffect(() => {
         fetch(`http://localhost:3000/${url}`)
@@ -14,31 +16,65 @@ function AdminValidateCard({ titulo, url }) {
                 return res.json();
             })
             .then((data) => {
-                console.log(data);
                 setResults(data.data);
-                setLoading(false);
             })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
-            });
-    }, []);
+            .catch((error) => console.error('Error fetching meetups:', error));
+    }, [url]);
+
+    const handleClick = async (meetupId, currentValidated) => {
+        try {
+            const newValidated = !currentValidated; // Invertir el valor actual
+
+            const response = await fetch(
+                `http://localhost:3000/meetups/${meetupId}/validate`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `${user.token.token}`,
+                    },
+                    body: JSON.stringify({ validated: newValidated }),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+
+            setResults((prevResults) =>
+                prevResults.map((meetup) =>
+                    meetup.id === meetupId
+                        ? { ...meetup, validated: newValidated }
+                        : meetup
+                )
+            );
+        } catch (error) {
+            console.error('Error al validar la meetup:', error);
+        }
+    };
 
     return (
         <div className="adminValidateCard">
             <h3>{titulo}</h3>
-            <div id="listaMeetups"></div>
             <ul>
                 {results.length > 0 ? (
-                    results?.map((meetup) => (
+                    results.map((meetup) => (
                         <li key={meetup.id}>
-                            <MeetupCard
-                                title={meetup.title}
-                                description={meetup.description}
-                                startDate={meetup.startDate}
-                                hourMeetup={meetup.hourMeetup}
-                                aforoMax={meetup.aforoMax}
-                            />
+                            <div>
+                                <Link to={`meetup/${meetup.id}`}>
+                                    <h4>{meetup.title}</h4>
+                                    <p>{meetup.description}</p>
+                                </Link>
+                                <button
+                                    onClick={() =>
+                                        handleClick(meetup.id, meetup.validated)
+                                    }
+                                >
+                                    {meetup.validated
+                                        ? 'Desvalidar'
+                                        : 'Validar'}
+                                </button>
+                            </div>
                         </li>
                     ))
                 ) : (

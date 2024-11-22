@@ -16,11 +16,6 @@ function MeetupsAsists({ titulo, url }) {
             .then((data) => {
                 console.log(data);
                 setResults(data.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setLoading(false);
             });
     }, []);
 
