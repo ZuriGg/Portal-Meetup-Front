@@ -16,6 +16,7 @@ function Home() {
 
     useEffect(() => {
         if (qry) {
+            //el minVotes esta siendo undefiend
             fetch(`http://localhost:3000/meetups?${qry}`)
                 .then((res) => {
                     if (!res.ok) {

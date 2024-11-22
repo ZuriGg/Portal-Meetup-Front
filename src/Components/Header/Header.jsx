@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import LogoUser from './LogoUser.jsx';
 import Filters from './Filters.jsx';
+import SortFilter from './SortFilter.jsx';
 
 function Header() {
     const attendanceId = 1;
@@ -29,6 +30,7 @@ function Header() {
                     </Link>
                 </div>
                 <Filters />
+                <SortFilter />
                 <LogoUser />
             </header>
         </>
