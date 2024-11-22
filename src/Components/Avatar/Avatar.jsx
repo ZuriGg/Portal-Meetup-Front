@@ -4,10 +4,11 @@ import { useUser } from '../../UserContext.jsx';
 import './Avatar.css';
 
 function Avatar() {
-    const [user] = useUser();
+    const [user, enhancedSetUser] = useUser();
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [error, setError] = useState(null);
     const navigate = useNavigate();
 
     const handleFile = (e) => {
@@ -17,28 +18,48 @@ function Avatar() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null); // Limpiar error previo
+        setSuccess(false); // Limpiar éxito previo
         console.log('Subiendo imagen:', file);
 
-        const fd = new FormData();
-        fd.append('avatar', file);
+        if (!file) {
+            setError('Por favor selecciona un archivo antes de continuar.');
+            return;
+        }
 
-        const res = await fetch('http://localhost:3000/users/avatar', {
-            method: 'PUT',
-            headers: {
-                ...(user?.token && {
-                    Authorization: `${user.token.token}`,
-                }),
-            },
-            body: fd,
-        });
-        const data = await res.json();
-        if (res.ok) {
-            setSuccess(data);
-            if (data.url) {
-                navigate(data.url);
+        try {
+            const fd = new FormData();
+            fd.append('avatar', file);
+
+            const res = await fetch('http://localhost:3000/users/avatar', {
+                method: 'PUT',
+                headers: {
+                    ...(user?.token && {
+                        Authorization: `${user.token.token}`,
+                    }),
+                },
+                body: fd,
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+                setSuccess(true);
+                console.log('Nuevo avatar:', data.url);
+                // Actualizar el estado global del usuario con la nueva URL del avatar
+                enhancedSetUser((prevUser) => ({
+                    ...prevUser,
+                    avatar: data.url, // Asumiendo que el estado del usuario tiene un campo `avatar`
+                }));
+
+                //Redirigir
+                if (data.url) {
+                    navigate(data.url);
+                }
+            } else {
+                setError(`${error}`);
             }
-        } else {
-            console.error('Error al subir el avatar:', data);
+        } catch (err) {
+            setError(`Ocurrió un error: ${err.message}`);
         }
     };
 
