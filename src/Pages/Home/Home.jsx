@@ -10,6 +10,7 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user] = useUser();
+    const { qry } = useMeetup();
 
     useEffect(() => {
         if (qry) {
