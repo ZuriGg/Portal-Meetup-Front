@@ -19,6 +19,7 @@ import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
 import { Rating } from '../Components/Rating/Rating.jsx';
 import AdminPage from './Users/Admin/AdminPage.jsx';
+import Avatar from '../Components/Avatar/Avatar.jsx';
 
 const AppRoutes = () => (
     <>
@@ -46,6 +47,7 @@ const AppRoutes = () => (
                     <Route path="changepass" element={<ChangePass />} />
                 </Route>
                 <Route path="edit" element={<EditUser />} />
+                <Route path="avatar" element={<Avatar />} />
             </Route>
 
             {/* Rutas de meetups */}

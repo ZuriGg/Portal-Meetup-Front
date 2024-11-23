@@ -84,7 +84,7 @@ function Avatar() {
     };
 
     return (
-        <div id="upload" className="page">
+        <div id="upload" className="areaFormulario">
             <h3>Foto de perfil:</h3>
             <form onSubmit={handleSubmit}>
                 <label id="subida">

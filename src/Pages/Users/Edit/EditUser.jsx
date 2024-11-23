@@ -180,7 +180,6 @@ export const EditUser = () => {
             </form>
             <div>
                 <h3>Actualizar Avatar</h3>
-                <Avatar /> {/* Incluyes el componente Avatar aquí */}
             </div>
         </div>
     );
