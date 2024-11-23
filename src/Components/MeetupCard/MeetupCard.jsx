@@ -22,7 +22,7 @@ function MeetupCard({
             <p>{description}</p>
             <p>Fecha de inicio: {new Date(startDate).toLocaleDateString()}</p>
             <p>Hora: {hourMeetup}</p>
-            <p>Afóro máximo: {aforoMax}</p>
+            <p>Aforo máximo: {aforoMax}</p>
             {inscribirseBoolean && <button>Inscríbete</button>}
         </div>
     );

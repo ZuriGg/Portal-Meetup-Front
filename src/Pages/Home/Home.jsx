@@ -66,18 +66,20 @@ function Home() {
             <p>Proyecto rechuloooooo...</p>
             <h2>Eventos cerca de tu ciudad</h2>
             <ul>
-                {results.length > 0 ? ( //comprobamos si la data que nos manda la api no esta vacia y mapeamos si la hay
-                    results?.map((meetup) => (
-                        <li key={meetup.id}>
-                            <MeetupCard
-                                title={meetup.title}
-                                description={meetup.description}
-                                startDate={meetup.startDate}
-                                hourMeetup={meetup.hourMeetup}
-                                aforoMax={meetup.aforoMax}
-                            />
-                        </li>
-                    ))
+                {results.length > 0 ? (
+                    results
+                        .filter((meetup) => meetup.validated)
+                        .map((meetup) => (
+                            <li key={meetup.id}>
+                                <MeetupCard
+                                    title={meetup.title}
+                                    description={meetup.description}
+                                    startDate={meetup.startDate}
+                                    hourMeetup={meetup.hourMeetup}
+                                    aforoMax={meetup.aforoMax}
+                                />
+                            </li>
+                        ))
                 ) : (
                     <p>No se encontraron meetups.</p>
                 )}
