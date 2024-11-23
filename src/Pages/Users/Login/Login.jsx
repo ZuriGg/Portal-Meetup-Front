@@ -9,7 +9,7 @@ function Login() {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
-    const [, setUser] = useUser();
+    const [, enhancedSetUser] = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -60,7 +60,7 @@ function Login() {
             }
 
             // Guardamos todo el usuario en el contexto
-            setUser({
+            enhancedSetUser({
                 ...dataUser.data.user,
                 token: dataToken.token,
                 location: userLocation, // Añadimos la ubicación
