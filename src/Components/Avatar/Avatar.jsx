@@ -3,7 +3,7 @@ import { useUser } from '../../UserContext.jsx';
 import './Avatar.css';
 
 function Avatar() {
-    const [user, setUser, enhancedSetUser] = useUser();
+    const [user, enhancedSetUser] = useUser();
     const [file, setFile] = useState(null);
     const [preview, setPreview] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -71,8 +71,13 @@ function Avatar() {
             enhancedSetUser({
                 ...dataUser.data.user,
                 token: user.token, // No sobrescribir el token
+                location: user.location,
             });
-            setUser({ ...dataUser.data.user, token: user.token });
+            /* setUser({
+                ...dataUser.data.user,
+                token: user.token,
+                location: user.location,
+            }); */
         } catch (error) {
             setError(`Ocurrió un error: ${error.message}`);
         }
