@@ -93,7 +93,7 @@ const Category = () => {
                 style={{
                     backgroundColor:
                         filters.category === '5' ? 'lightblue' : 'white',
-                    color: filters.category === '4' ? 'white' : 'black',
+                    color: filters.category === '5' ? 'white' : 'black',
                 }}
             >
                 Deportes y fitness
