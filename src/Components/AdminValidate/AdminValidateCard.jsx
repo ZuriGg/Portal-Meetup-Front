@@ -70,9 +70,7 @@ function AdminValidateCard({ titulo, url }) {
                                         handleClick(meetup.id, meetup.validated)
                                     }
                                 >
-                                    {meetup.validated
-                                        ? 'Desvalidar'
-                                        : 'Validar'}
+                                    {meetup.validated ? 'Invalidar' : 'Validar'}
                                 </button>
                             </div>
                         </li>
