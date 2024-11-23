@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditUser.css';
-import Avatar from '../../../Components/Avatar/Avatar.jsx';
+//import Avatar from '../../../Components/Avatar/Avatar.jsx';
 
 export const EditUser = () => {
-    const [user] = useUser();
+    const [user, enhancedSetUser] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
     const [inputDate, setInputDate] = useState({
         firstName: '',
         lastname: '',
-        username: '',
         email: '',
+        username: '',
     });
 
-    // Manejar el cambio de los campos del formulario
+    // capturar el cambio de los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInputDate((prevInputDate) => ({
@@ -27,24 +27,28 @@ export const EditUser = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const responseUser = await fetch(
+                if (!user?.id || !user?.token) {
+                    throw new Error(
+                        'No se encontraron datos del usuario o token no válido.'
+                    );
+                }
+
+                const response = await fetch(
                     `http://localhost:3000/users/${user.id}`,
                     {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            ...(user?.token && {
-                                Authorization: `${user.token.token}`,
-                            }),
+                            Authorization: `${user.token.token}`,
                         },
                     }
                 );
 
-                if (!responseUser.ok) {
+                if (!response.ok) {
                     throw new Error('Error al obtener los datos del usuario');
                 }
 
-                await responseUser.json();
+                await response.json();
 
                 setInputDate({
                     firstName: user.firstName || '',
@@ -52,17 +56,13 @@ export const EditUser = () => {
                     username: user.username || '',
                     email: user.email || '',
                 });
-            } catch (error) {
-                setError(`Error: ${error.message}`);
+            } catch (err) {
+                setError(err.message);
             }
         };
 
-        if (user?.token) {
-            fetchUserData();
-        } else {
-            setError('Token no disponible');
-        }
-    }, [user?.token, user?.id]); //
+        fetchUserData();
+    }, [user?.id, user?.token]);
 
     // Enviar los datos del formulario
     const handleSubmit = async (e) => {
@@ -99,12 +99,29 @@ export const EditUser = () => {
                 }
             );
 
-            await response.json();
-
+            //1ro comprobamos si la respuesta es correcta
             if (!response.ok) {
                 setError('No se ha logrado la modificación');
                 return;
             }
+
+            //2do actualizamos el contexto con los nuevos datos
+            //const updatedUser = (await response.json()).data.user;
+            const { data } = await response.json();
+
+            // Actualizar el estado local (inputDate) con los nuevos datos
+            setInputDate({
+                firstName: data.firstName,
+                lastname: data.lastname,
+                username: data.username,
+                email: data.email,
+            });
+
+            // Actualizar el contexto y localStorage explícitamente
+            enhancedSetUser({
+                ...user, // Mantener los datos previos del usuario
+                ...data, // Sobrescribir con los nuevos datos
+            });
 
             setSuccess(true); // Operación exitosa
         } catch (error) {
@@ -157,7 +174,7 @@ export const EditUser = () => {
                         onChange={handleChange}
                     />
                 </label>
-                <button type="submit">Editar usuario</button>
+                <button type="submit">Guardar cambios</button>
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
                 {/* <Avatar /> NO SE PUEDE METER UN FORMULARIO DENTRO DE OTRO */}
