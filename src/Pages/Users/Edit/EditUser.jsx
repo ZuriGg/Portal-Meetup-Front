@@ -160,7 +160,7 @@ export const EditUser = () => {
                 <button type="submit">Editar usuario</button>
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
-                <Avatar />
+                {/* <Avatar /> NO SE PUEDE METER UN FORMULARIO DENTRO DE OTRO */}
             </form>
         </div>
     );
