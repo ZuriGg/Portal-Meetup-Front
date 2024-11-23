@@ -6,8 +6,7 @@ import Home from './Home/Home.jsx';
 import Validate from './Users/Validate/Validate.jsx';
 import Register from './Users/Register/Register.jsx';
 import Login from './Users/Login/Login.jsx';
-import NotFound from './NotFound/NotFound.jsx'
-
+import NotFound from './NotFound/NotFound.jsx';
 
 // Import de rutas de gestión de contraseñas
 import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
@@ -19,16 +18,18 @@ import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
 import { Rating } from '../Components/Rating/Rating.jsx';
+import AdminPage from './Users/Admin/AdminPage.jsx';
 
 const AppRoutes = () => (
     <>
         <Routes>
             {/* Home según sea usuario anónimo o registrado */}
             <Route path="/" element={<Home />} />
+
             <Route path="notFound" element={<NotFound />} />
-            
-            
-            
+
+            <Route path="admin" element={<AdminPage />} />
+
             {/* Rutas de usuario */}
             <Route path="user">
                 {/* Página de registro de usuario */}

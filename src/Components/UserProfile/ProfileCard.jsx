@@ -21,9 +21,7 @@ function ProfileCard({
                 }}
             >
                 <Link to="/user/edit">
-                    <button id="botonCambioAvatar">
-                        Cambiar foto de perfil
-                    </button>
+                    <button id="botonCambioAvatar">Editar perfil</button>
                 </Link>
                 <div id="datosUsuario">
                     <p>{username}</p>

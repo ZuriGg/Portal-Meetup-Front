@@ -1,7 +1,6 @@
+import './Home.css';
 import { useEffect, useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category.jsx';
@@ -10,9 +9,7 @@ function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [user, , handleLogout] = useUser();
-    const { qry } = useMeetup();
-    const navigate = useNavigate();
+    const [user] = useUser();
 
     useEffect(() => {
         if (qry) {
@@ -61,45 +58,50 @@ function Home() {
 
     return (
         <div className="home">
-            <h1>Home</h1>
-            <img src="" alt="logo" className="logo" />
-            {user.token ? (
-                <button className="buttonLogout" onClick={handleLogout}>
-                    Cerrar sesión
-                </button>
-            ) : (
-                <>
-                    <button
-                        className="buttonSingup"
-                        onClick={() => navigate('/user/login')}
-                    >
-                        Iniciar sesión
-                    </button>
-                    <button
-                        className="buttonRegister"
-                        onClick={() => navigate('/user/register')}
-                    >
-                        Registrarse
-                    </button>
-                </>
-            )}
-
-            <p>PORTAL MEETUP</p>
-            <p>Proyecto rechuloooooo...</p>
-            <h2>Eventos cerca de tu ciudad</h2>
+            <h1>Chupala noi</h1>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eos
+                ab adipisci facilis amet eaque quas placeat iusto deserunt alias
+                optio illum, reiciendis omnis tempora commodi repudiandae dolore
+                provident perferendis? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Vel eos ab adipisci facilis amet eaque quas
+                placeat iusto deserunt alias optio illum, reiciendis omnis
+                tempora commodi repudiandae dolore provident perferendis? Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Vel eos ab
+                adipisci facilis amet eaque quas placeat iusto deserunt alias
+                optio illum, reiciendis omnis tempora commodi repudiandae dolore
+                provident perferendis? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Vel eos ab adipisci facilis amet eaque quas
+                placeat iusto deserunt alias optio illum, reiciendis omnis
+                tempora commodi repudiandae dolore provident perferendis? Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Vel eos ab
+                adipisci facilis amet eaque quas placeat iusto deserunt alias
+                optio illum, reiciendis omnis tempora commodi repudiandae dolore
+                provident perferendis? Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Vel eos ab adipisci facilis amet eaque quas
+                placeat iusto deserunt alias optio illum, reiciendis omnis
+                tempora commodi repudiandae dolore provident perferendis? Lorem
+                ipsum dolor sit amet consectetur adipisicing elit. Vel eos ab
+                adipisci facilis amet eaque quas placeat iusto deserunt alias
+                optio illum, reiciendis omnis tempora commodi repudiandae dolore
+                provident perferendis?
+            </p>
+            <h3>Eventos cerca de tu ciudad</h3>
             <ul>
-                {results.length > 0 ? ( //comprobamos si la data que nos manda la api no esta vacia y mapeamos si la hay
-                    results?.map((meetup) => (
-                        <li key={meetup.id}>
-                            <MeetupCard
-                                title={meetup.title}
-                                description={meetup.description}
-                                startDate={meetup.startDate}
-                                hourMeetup={meetup.hourMeetup}
-                                aforoMax={meetup.aforoMax}
-                            />
-                        </li>
-                    ))
+                {results.length > 0 ? (
+                    results
+                        .filter((meetup) => meetup.validated)
+                        .map((meetup) => (
+                            <li key={meetup.id}>
+                                <MeetupCard
+                                    title={meetup.title}
+                                    description={meetup.description}
+                                    startDate={meetup.startDate}
+                                    hourMeetup={meetup.hourMeetup}
+                                    aforoMax={meetup.aforoMax}
+                                />
+                            </li>
+                        ))
                 ) : (
                     <p>No se encontraron meetups.</p>
                 )}
