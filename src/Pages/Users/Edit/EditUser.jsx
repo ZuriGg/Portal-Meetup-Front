@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditUser.css';
-//import Avatar from '../../../Components/Avatar/Avatar.jsx';
+import Avatar from '../../../Components/Avatar/Avatar.jsx';
 
 export const EditUser = () => {
     const [user, enhancedSetUser] = useUser();
@@ -177,8 +177,11 @@ export const EditUser = () => {
                 <button type="submit">Guardar cambios</button>
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
-                {/* <Avatar /> NO SE PUEDE METER UN FORMULARIO DENTRO DE OTRO */}
             </form>
+            <div>
+                <h3>Actualizar Avatar</h3>
+                <Avatar /> {/* Incluyes el componente Avatar aquí */}
+            </div>
         </div>
     );
 };
