@@ -32,7 +32,7 @@
 }
 #datosUsuarioContainer > a > #botonCambioAvatar {
     justify-self: flex-end;
-    padding: 1vh;
+    padding: 1.5vh;
     font-size: 2vh;
 }
 #datosUsuarioContainer > #datosUsuario {

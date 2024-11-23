@@ -20,8 +20,8 @@ function ProfileCard({
                         : null,
                 }}
             >
-                <Link to="/user/edit">
-                    <button id="botonCambioAvatar">Editar perfil</button>
+                <Link to="/user/avatar">
+                    <button id="botonCambioAvatar">Editar avatar</button>
                 </Link>
                 <div id="datosUsuario">
                     <p>{username}</p>
