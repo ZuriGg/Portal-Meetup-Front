@@ -1,5 +1,5 @@
 #meetupListCard {
-    background-color: hsla(0, 0%, 100%, 0.797);
+    background-color: hsla(0, 0%, 100%, 0.586);
     border-radius: 2vh;
     color: black;
     padding: 3vh;
@@ -34,7 +34,6 @@
     gap: 0vh;
     width: 25vh;
     height: fit-content;
-    background-color: hsl(0, 0%, 100%);
     font-size: 1.4vh;
     padding: 2vh;
     border-radius: 2vh;
