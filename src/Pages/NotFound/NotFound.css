@@ -1,25 +1,38 @@
-
 .notFoundLiquid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    height: fit-content;
+    width: fit-content;
     text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: #ffffffae;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(4, 0, 0, 0.1);
+    gap: 2vh;
+    padding: 2vh;
 }
 
 .notFoundLiquid h1 {
     font-size: 3em;
     margin-bottom: 20px;
-    color: #333;
+    color: #000000;
+    text-shadow: 0px 0px 2px black;
 }
 
 .notFoundLiquid p {
     font-size: 1.2em;
-    color: #666;
+    color: #000000;
+    text-shadow: 0px 0px 1px black;
 }
 
-.comeBack {
+.notFoundLiquid a {
+    color: white;
+}
+
+/* .comeBack {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -28,8 +41,8 @@
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-}
+} */
 
-.comeBack:hover {
+/* .comeBack:hover {
     background-color: #4dbc70;
-}
+} */

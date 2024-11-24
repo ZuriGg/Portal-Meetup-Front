@@ -1,13 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
+import { useUser } from '../../UserContext.jsx';
 import './Filters.css';
 
 const Filters = () => {
+    const [user] = useUser();
     const { setFilters, setQry } = useMeetup();
     const [localFilters, setLocalFilters] = useState({
         search: '',
         location: '',
     });
+    const [userLocation, setUserLocation] = useState('');
+
+    useEffect(() => {
+        const fetchLocation = async () => {
+            try {
+                const locationRes = await fetch('https://ipapi.co/json/');
+                const locationData = await locationRes.json();
+                setUserLocation(locationData.city || ''); // Asignar la ciudad obtenida
+                setLocalFilters((prev) => ({
+                    ...prev,
+                    location: locationData.city || '', // Establecer como valor inicial
+                }));
+            } catch (error) {
+                console.error('Error al obtener la ubicación:', error);
+            }
+        };
+
+        fetchLocation();
+    }, []);
 
     // Maneja los cambios en los inputs
     const handleInputChange = (e) => {
@@ -40,7 +61,7 @@ const Filters = () => {
                 <input
                     type="text"
                     name="location"
-                    placeholder="Buscar meetups! por ubicación"
+                    placeholder={userLocation}
                     value={localFilters.location}
                     onChange={handleInputChange}
                 />

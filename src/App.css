@@ -12,15 +12,20 @@ div.areaFormulario {
 }
 
 form {
+    justify-self: center;
+    align-self: center;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: start;
-    gap: 1vh;
+    gap: 2vh;
     padding: 4vh;
-    background-color: #72a276;
+    background-color: #ffffffd0;
     border-radius: 2vh;
-    height: 70vh;
+    height: fit-content;
+    color: black;
+    text-shadow: 0px 0px 1px black;
+    margin-bottom: 6vh;
 }
 
 form > button {

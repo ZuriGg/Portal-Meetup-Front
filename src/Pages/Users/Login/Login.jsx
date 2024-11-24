@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -68,7 +68,7 @@ function Login() {
 
             setSuccess(true);
             setError(null);
-            setTimeout(() => navigate('/'), 1000);
+            setTimeout(() => navigate('/'), 100);
         } catch (error) {
             setError('Ocurrió un error al iniciar sesión');
             console.error('Error en el login:', error);
@@ -78,7 +78,7 @@ function Login() {
     return (
         <>
             <h1>Login</h1>
-            <div className="areaFormulario">
+            <div className="areaFormulario" id="login">
                 <form onSubmit={handleLogin}>
                     <label>
                         Email
@@ -99,6 +99,9 @@ function Login() {
                         />
                     </label>
                     <button type="submit">Login</button>
+                    <Link to="/user/password/recover">
+                        ¿Has olvidado tu contraseña?
+                    </Link>
                     {success && <p>Login hecho correctamente</p>}
                     {error && <p>{error}</p>}
                 </form>
