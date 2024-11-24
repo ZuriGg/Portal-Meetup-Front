@@ -1,8 +1,10 @@
 import { useLocation } from 'react-router-dom'; // para leer la información de la URL
 import { useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 //Importación de todas las rutas
 import AppRoutes from './Pages/Routes.jsx';
+import NotFound from './Pages/NotFound/NotFound.jsx';
 
 //Importación de header y Footer
 import Header from './Components/Header/Header.jsx';
@@ -43,14 +45,14 @@ function App() {
     }, [location]); //se actualiza cada vez que el path cambia
 
     return (
-        <>
+        <ErrorBoundary fallback={<NotFound />}>
             <Header />
             <main>
                 {/* Este componente hace las veces de "index" para importar todas las rutas a la vez, y "Switch" se encarga de asignar solo la ruta solicitada en la url o mediante un Navigate o "<a><a/>" */}
                 <AppRoutes />
             </main>
             <Footer />
-        </>
+        </ErrorBoundary>
     );
 }
 
