@@ -26,7 +26,7 @@ const OutOfService = ({ attendanceId }) => {
                 <p> 🚫🔊❌ Evento anulado ❌🔊🚫  </p>
             ) : (
                 <button onClick={handleCancelMeetup} className="cancelButton">
-                    Fumáte el evento Sergio, fumátelo!!!!
+                    Pulsa botón para cancelar la sesión seleccionada
                 </button>
             )
         }
