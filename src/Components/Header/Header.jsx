@@ -18,8 +18,9 @@ function Header() {
                     </Link>
                     <Link to={`/meetup/${attendanceId}/votes`}>
                         <button>/meetup/{attendanceId}/votes</button>{' '}
-                        {/* DE DONDE MI3RDAS SALE
-                        ATTENDANCE ID???¿¿¿ */}
+                    </Link>
+                    <Link to={`/votesMeetup`}>
+                        <button>/votesMeetup</button>{' '}
                     </Link>
                 </div>
                 <Filters />
