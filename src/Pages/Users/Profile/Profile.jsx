@@ -2,9 +2,10 @@ import './Profile.css';
 import React /* { useState, useEffect } */ from 'react';
 import { Navigate } from 'react-router-dom';
 import ProfileCard from '../../../Components/UserProfile/ProfileCard.jsx';
-import MeetupsListCard from '../../../Components/UserProfile/MeetupsListCard.jsx';
+import MeetupsAsistsCard from '../../../Components/UserProfile/MeetupsAsistsCard.jsx';
 import { useUser } from '../../../UserContext.jsx';
 import UserCard from '../../../Components/UserCard/UserCard.jsx';
+import MeetupsOwnerCard from '../../../Components/UserProfile/MeetupsOwnerCard.jsx';
 
 function Profile() {
     const [user] = useUser();
@@ -31,11 +32,11 @@ function Profile() {
                 />
             </div>
             <div id="listaMeetupsUsuario">
-                <MeetupsListCard
+                <MeetupsAsistsCard
                     titulo="Meetups a los que asistes"
-                    url="meetups"
+                    url="attendance"
                 />
-                <MeetupsListCard
+                <MeetupsOwnerCard
                     titulo="Meetups creados por ti"
                     url="meetups"
                 />
