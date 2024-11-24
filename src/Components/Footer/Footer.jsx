@@ -4,78 +4,31 @@ import './Footer.css';
 import { useUser } from '../../UserContext.jsx';
 
 function Footer() {
-    const [user] = useUser();
+    const [user, , handleLogout] = useUser();
 
     return (
         <footer>
-            <nav id="container-footer">
-                <h3>Tu cuenta</h3>
-                {user.token ? (
-                    // Si el usuario está logado, muestra el link al perfil
-                    <Link to="/users">Tu perfil</Link>
-                ) : (
-                    // Si el usuario no está logado, muestra el link al login
-                    <Link to="/users/login">Iniciar sesión</Link>
-                )}
-
-                <h3>
-                    <Link to="/meetups">Meet ups</Link>{' '}
-                </h3>
-                <div>
-                    <Link
-                        to={`/categories/${encodeURIComponent(
-                            'Viajes y aire libre'
-                        )}`}
-                    >
-                        Viajes y aire libre
-                    </Link>
-                    <Link
-                        to={`/categories/${encodeURIComponent(
-                            'Actividades sociales'
-                        )}`}
-                    >
-                        Actividades sociales
-                    </Link>
-                    <Link
-                        to={`/categories/${encodeURIComponent(
-                            'Aficiones y pasiones'
-                        )}`}
-                    >
-                        Aficiones y pasiones
-                    </Link>
-                    <Link
-                        to={`/categories/${encodeURIComponent(
-                            'Deportes y fitness'
-                        )}`}
-                    >
-                        Deportes y fitness
-                    </Link>
-                    <Link
-                        to={`"/categories/${encodeURIComponent(
-                            'Salud y bienestar'
-                        )}`}
-                    >
-                        Salud y bienestar
-                    </Link>
-                    <Link
-                        to={`/categories/${encodeURIComponent('Tecnología')}`}
-                    >
-                        Tecnología
-                    </Link>
-                    <Link
-                        to={`/categories/${encodeURIComponent(
-                            'Arte y cultura'
-                        )}`}
-                    >
-                        Arte y cultura
-                    </Link>
-                    <Link to={`/categories/${encodeURIComponent('Juegos')}`}>
-                        Juegos
+            <div id="footerContentAll">
+                <div className="footerContent">
+                    <h5>Tu cuenta</h5>
+                    {user.token ? (
+                        // Si el usuario está logado, muestra el link al perfil
+                        <Link to="/user/profile">Tu perfil</Link>
+                    ) : (
+                        // Si el usuario no está logado, muestra el link al login
+                        <Link to="/user/login">Iniciar sesión</Link>
+                    )}
+                    <p>Ajustes</p>
+                    <Link to="/meetup/create">Crear meetup</Link>
+                    <Link to="/" onClick={handleLogout}>
+                        Cerrar Sesión
                     </Link>
                 </div>
-                <h3>Conócenos</h3>
-                <p>
-                    <a /* a para rutas externas a direcciones fuera de nuestra API */
+
+                <div className="footerContent">
+                    <h5>Conócenos</h5>
+
+                    <a
                         href={
                             'https://www.linkedin.com/in/sergio-manzano-esclapez/'
                         }
@@ -109,17 +62,17 @@ function Footer() {
                     >
                         Diego
                     </a>
-                </p>
-            </nav>
-            <p>©2024 Meetups</p>
+                </div>
+
+                <div className="footerLogo">
+                    <Link to="/">
+                        <img src="/logotipo.webp" alt="logotipo de la web" />
+                    </Link>
+                    <p>©2024 OurMeet</p>
+                </div>
+            </div>
         </footer>
     );
 }
 
 export default Footer;
-
-/* footer responsive con 3 apartados:
-        - tu cuenta (link directo a perfil del usuario si está logado)
-        - meetups por categorias (links directos por categorías)
-        - conocenos (miembros del equipo de desarollo)
-*/

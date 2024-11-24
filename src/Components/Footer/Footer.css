@@ -1,3 +1,47 @@
 footer {
-    background-color: black;
+    background-image: url(../../../public/videoFondoFooter.gif);
+    background-color: rgba(0, 0, 0, 0.532);
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top: rgb(46, 46, 46) solid 0.2vh;
+    padding: 4vh;
+}
+
+footer img {
+    width: 30vh;
+    height: fit-content;
+    justify-self: center;
+    align-self: center;
+}
+
+footer a {
+    color: white;
+    font-size: 1.5vh;
+}
+
+#footerContentAll {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+footer h5 {
+    font-size: 2.5vh;
+    margin-bottom: 2vh;
+}
+
+.footerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5vh;
+}
+
+.footerLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
 }
