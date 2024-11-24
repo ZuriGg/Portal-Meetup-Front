@@ -25,5 +25,4 @@ export default UserCard;
 UserCard.propTypes = {
     avatar: PropTypes.node,
     username: PropTypes.node,
-    activatedButton: PropTypes.node,
 };

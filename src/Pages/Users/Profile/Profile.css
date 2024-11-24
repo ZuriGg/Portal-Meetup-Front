@@ -22,5 +22,9 @@
 }
 
 #profileContainer #meetupListCard {
-    margin-block: 5vh;
+    margin-top: 5vh;
+}
+
+#profileContainer :last-child {
+    margin-bottom: 3vh;
 }

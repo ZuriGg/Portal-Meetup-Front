@@ -54,5 +54,4 @@ ProfileCard.propTypes = {
     lastname: PropTypes.node,
     username: PropTypes.node,
     email: PropTypes.node,
-    location: PropTypes.node,
 };
