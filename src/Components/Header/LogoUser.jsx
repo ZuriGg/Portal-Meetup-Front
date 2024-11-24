@@ -42,8 +42,9 @@ function LogoUser() {
                     <img
                         id="avatarUsuario"
                         src={
-                            `http://localhost:3000/uploads/${user.avatar}` ||
-                            '/avatarDefault.webp'
+                            user.avatar === null
+                                ? '/avatarDefault.webp'
+                                : `http://localhost:3000/uploads/${user.avatar}`
                         }
                         alt="Avatar de usuario"
                     />
@@ -78,6 +79,13 @@ function LogoUser() {
                                 Panel de Admin
                             </Link>
                         )}
+                        <Link
+                            to="/meetup/create"
+                            className="modal-link"
+                            onClick={closeAndNavigate()}
+                        >
+                            Crear meetup
+                        </Link>
                         <p>Ajustes</p>
                         <Link
                             to="/"
