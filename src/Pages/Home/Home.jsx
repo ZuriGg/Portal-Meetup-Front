@@ -4,6 +4,7 @@ import { useUser } from '../../UserContext.jsx';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category.jsx';
+import { Link } from 'react-router-dom';
 
 function Home() {
     const [results, setResults] = useState([]);
@@ -79,13 +80,15 @@ function Home() {
                         .filter((meetup) => meetup.validated)
                         .map((meetup) => (
                             <li key={meetup.id}>
-                                <MeetupCard
-                                    title={meetup.title}
-                                    description={meetup.description}
-                                    startDate={meetup.startDate}
-                                    hourMeetup={meetup.hourMeetup}
-                                    aforoMax={meetup.aforoMax}
-                                />
+                                <Link to={`/meetup/${meetup.id}`}>
+                                    <MeetupCard
+                                        title={meetup.title}
+                                        description={meetup.description}
+                                        startDate={meetup.startDate}
+                                        hourMeetup={meetup.hourMeetup}
+                                        aforoMax={meetup.aforoMax}
+                                    />
+                                </Link>
                             </li>
                         ))
                 ) : (
