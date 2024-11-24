@@ -178,9 +178,6 @@ export const EditUser = () => {
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
             </form>
-            <div>
-                <h3>Actualizar Avatar</h3>
-            </div>
         </div>
     );
 };

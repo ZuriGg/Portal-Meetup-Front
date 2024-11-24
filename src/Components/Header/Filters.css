@@ -1,18 +1,22 @@
 .search-form {
     background: none;
+    margin-bottom: 00vh;
+    padding: 0vh;
+    align-self: flex-start;
+    justify-self: flex-end;
 }
 
 .search-form .filters {
     display: flex;
     justify-content: space-between;
     align-items: center; /* Alineación vertical de los elementos */
-    height: auto; /* Ajusta según el diseño deseado */
-    width: auto; /* Se adapta al ancho del contenedor */
-    padding: 5px 10px; /* Espaciado interno */
-    border-radius: 20px; /* Bordes redondeados */
+    height: fit-content; /* Ajusta según el diseño deseado */
+    width: fit-content; /* Se adapta al ancho del contenedor */
+    padding: 0.5vh 1vh; /* Espaciado interno */
+    border-radius: 2vh; /* Bordes redondeados */
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
     background-color: rgba(255, 255, 255, 0.502);
-    gap: 15px;
+    gap: 1.5vh;
 }
 
 .search-form input {
