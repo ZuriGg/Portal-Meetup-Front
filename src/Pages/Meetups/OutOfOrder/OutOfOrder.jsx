@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './OutOfOrder.css';
 
-const OutOfOrder = () => {
-    return (
-        <div>
-            <h3> ⛔📢❌ Fuera de Servicio ❌⛔📢 </h3>
-        </div>    
-    )
-}
+const OutOfOrder = ({ eventId, cancelEvent }) => {
+    const [isCancelled, setIsCancelled] = useState(false)
+    const handleCancelEvent = () => {
+        cancelEvent(eventId);
+        setIsCancelled(true);
+    };
 
-export default OutOfOrder
+    return (
+        <div className="outOfOrder">
+            {isCancelled ? (
+                <p> 🚫🔊❌ Evento anulado ❌🔊🚫  </p>
+            ) : (
+                <button onClick={handleCancelEvent} className="cancelButton">
+                    Fumáte el evento Sergio, fumátelo!!!!
+                </button>
+            )
+        }
+        </div>
+    )
+ }
+
+
+export default OutOfOrder;
