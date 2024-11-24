@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 
-export const RatingList = () => {
+//REVISAR PARA MOSTRAR VALORACIONES DE MEETUP POR USUARIO
+export const UserRatingList = () => {
     const [user] = useUser();
     const [ratings, setRatings] = useState([]);
     const [loading, setLoading] = useState(true);

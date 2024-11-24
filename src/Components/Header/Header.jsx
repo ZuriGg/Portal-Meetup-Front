@@ -20,6 +20,9 @@ function Header() {
                     <Link to={`/meetup/${attendanceId}/votes`}>
                         <button>/meetup/{attendanceId}/votes</button>{' '}
                     </Link>
+                    <Link to={`/votesMeetup`}>
+                        <button>/votesMeetup</button>{' '}
+                    </Link>
                 </div>
                 <Filters />
                 <LogoUser />
