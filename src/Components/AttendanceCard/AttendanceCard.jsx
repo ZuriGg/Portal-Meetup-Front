@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import './AttendanceCard.css';
-import React from 'react';
 
+//recibe como argumento date --> hacemos un map que recorra todas las fechas
 function AttendanceCard({ date }) {
     return (
         <div className="attendanceComponent">
@@ -10,3 +11,7 @@ function AttendanceCard({ date }) {
 }
 
 export default AttendanceCard;
+
+AttendanceCard.propTypes = {
+    date: PropTypes.node,
+};

@@ -17,7 +17,6 @@ export const MeetupProvider = ({ children }) => {
         // minVotes: '',
         category: '',
         search: '',
-
         filtersChange: false,
     });
 

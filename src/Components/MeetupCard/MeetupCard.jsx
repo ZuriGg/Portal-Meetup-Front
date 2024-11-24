@@ -1,4 +1,6 @@
 // Componente que muestra una previsualización de un meetup (Para mostrar los meetups como resultado en una búsqueda en home, etc)
+import PropTypes from 'prop-types';
+
 import './MeetupCard.css';
 
 function MeetupCard({
@@ -27,3 +29,13 @@ function MeetupCard({
 }
 
 export default MeetupCard;
+
+MeetupCard.propTypes = {
+    image: PropTypes.node,
+    title: PropTypes.node,
+    description: PropTypes.node,
+    startDate: PropTypes.node,
+    hourMeetup: PropTypes.node,
+    aforoMax: PropTypes.node,
+    inscribirseBoolean: PropTypes.node,
+};

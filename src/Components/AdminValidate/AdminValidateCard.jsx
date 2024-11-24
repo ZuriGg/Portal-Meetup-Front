@@ -1,7 +1,9 @@
-import './AdminValidateCard.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useUser } from '../../UserContext.jsx';
+
+import './AdminValidateCard.css';
 
 function AdminValidateCard({ titulo, url }) {
     const [results, setResults] = useState([]);
@@ -84,3 +86,8 @@ function AdminValidateCard({ titulo, url }) {
 }
 
 export default AdminValidateCard;
+
+AdminValidateCard.propTypes = {
+    titulo: PropTypes.node,
+    url: PropTypes.node,
+};

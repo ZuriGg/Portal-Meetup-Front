@@ -8,9 +8,6 @@ import Register from './Users/Register/Register.jsx';
 import Login from './Users/Login/Login.jsx';
 import NotFound from './NotFound/NotFound.jsx';
 
-// Import de rutas de gestión de contraseñas
-import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
-
 // Import de rutas de meetups
 import CreateMeetup from './Meetups/Create/CreateMeetup.jsx';
 import ChangePass from './Users/Password/changePass/ChangePass.jsx';
@@ -20,6 +17,9 @@ import Profile from './Users/Profile/Profile.jsx';
 import { Rating } from '../Components/Rating/Rating.jsx';
 import AdminPage from './Users/Admin/AdminPage.jsx';
 import Avatar from '../Components/Avatar/Avatar.jsx';
+
+// Import de rutas de gestión de contraseñas
+import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
 
 const AppRoutes = () => (
     <>

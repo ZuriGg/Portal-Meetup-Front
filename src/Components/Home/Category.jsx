@@ -1,8 +1,8 @@
 // Componente que muestra una categoría de meetup (Para filtrar desde el home)
-import './Category.css';
-
 import { useEffect } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
+
+import './Category.css';
 
 const Category = () => {
     const { filters, setFilters, loading, setQry } = useMeetup();

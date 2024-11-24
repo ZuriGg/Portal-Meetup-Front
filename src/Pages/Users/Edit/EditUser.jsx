@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditUser.css';
-import Avatar from '../../../Components/Avatar/Avatar.jsx';
 
 export const EditUser = () => {
     const [user, enhancedSetUser] = useUser();
@@ -106,7 +105,6 @@ export const EditUser = () => {
             }
 
             //2do actualizamos el contexto con los nuevos datos
-            //const updatedUser = (await response.json()).data.user;
             const { data } = await response.json();
 
             // Actualizar el estado local (inputDate) con los nuevos datos
@@ -178,9 +176,6 @@ export const EditUser = () => {
                 {success && <p>Usuario editado correctamente</p>}
                 {error && <p>{error}</p>}
             </form>
-            <div>
-                <h3>Actualizar Avatar</h3>
-            </div>
         </div>
     );
 };

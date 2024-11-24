@@ -1,15 +1,16 @@
 import { useLocation } from 'react-router-dom'; // para leer la información de la URL
 import { useEffect } from 'react';
 
-//Importación del archivo de css principal (No editar sin consultar)
-import './App.css';
-
 //Importación de todas las rutas
 import AppRoutes from './Pages/Routes.jsx';
 
 //Importación de header y Footer
 import Header from './Components/Header/Header.jsx';
 import Footer from './Components/Footer/Footer.jsx';
+
+//Importación del archivo de css principal (No editar sin consultar)
+import './App.css';
+
 function App() {
     const location = useLocation();
 

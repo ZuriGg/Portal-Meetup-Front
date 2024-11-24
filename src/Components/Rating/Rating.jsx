@@ -1,7 +1,8 @@
-import './Rating.css';
 import { useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 import { useParams } from 'react-router-dom';
+
+import './Rating.css';
 
 export const Rating = () => {
     const [user] = useUser();

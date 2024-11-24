@@ -1,8 +1,9 @@
 // Header condicional según si el usuario está registrado o no, accederá al token y mostrara un header u otro en cuestión del tipo de usuario que sea (Anónimo o Normal)
 import { Link } from 'react-router-dom';
-import './Header.css';
 import LogoUser from './LogoUser.jsx';
 import Filters from './Filters.jsx';
+
+import './Header.css';
 
 function Header() {
     const attendanceId = 1;
@@ -18,8 +19,6 @@ function Header() {
                     </Link>
                     <Link to={`/meetup/${attendanceId}/votes`}>
                         <button>/meetup/{attendanceId}/votes</button>{' '}
-                        {/* DE DONDE MI3RDAS SALE
-                        ATTENDANCE ID???¿¿¿ */}
                     </Link>
                 </div>
                 <Filters />

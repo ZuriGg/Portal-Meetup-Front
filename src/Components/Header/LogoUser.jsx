@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './LogoUser.css';
 import { useUser } from '../../UserContext.jsx';
+
+import './LogoUser.css';
 
 function LogoUser() {
     const [user, , handleLogout] = useUser();
@@ -30,7 +31,7 @@ function LogoUser() {
         };
     }, [isModalOpen]);
 
-    const closeAndNavigate = (callback) => (e) => {
+    const closeAndNavigate = (callback) => () => {
         setModalOpen(false);
         if (callback) callback();
     };

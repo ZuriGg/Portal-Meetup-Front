@@ -48,7 +48,7 @@ function Avatar() {
 
             setSuccess(true);
 
-            // Ahora hacemos un GET para actualizar la información del usuario, incl. el avatar
+            // hacemos un GET para actualizar la información del usuario, incluido el avatar
             const resUser = await fetch(
                 `http://localhost:3000/users/${user.id}`,
                 {
@@ -73,11 +73,6 @@ function Avatar() {
                 token: user.token, // No sobrescribir el token
                 location: user.location,
             });
-            /* setUser({
-                ...dataUser.data.user,
-                token: user.token,
-                location: user.location,
-            }); */
         } catch (error) {
             setError(`Ocurrió un error: ${error.message}`);
         }
@@ -105,11 +100,7 @@ function Avatar() {
                 <div>
                     Imagen subida con éxito!
                     <br />
-                    <a
-                        //href={avatarUrl} // Asegúrate de que se está mostrando la URL correctamente
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <a target="_blank" rel="noopener noreferrer">
                         Ver Avatar
                     </a>
                 </div>

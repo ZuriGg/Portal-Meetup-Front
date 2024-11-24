@@ -1,5 +1,4 @@
 import './MeetupsAsistsCard.css';
-import MeetupCard from '../MeetupCard/MeetupCard.jsx';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useUser } from '../../UserContext.jsx';

@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
-import { useUser } from '../../UserContext.jsx';
+
 import './Filters.css';
 
 const Filters = () => {
-    const [user] = useUser();
     const { setFilters, setQry } = useMeetup();
     const [localFilters, setLocalFilters] = useState({
         search: '',
