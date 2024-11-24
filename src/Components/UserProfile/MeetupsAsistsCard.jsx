@@ -40,8 +40,6 @@ function MeetupsListCard({ titulo, url }) {
                                             .toISOString()
                                             .split('T')[0]
                                     }
-                                    userId={atendance.userId}
-                                    meetupId={atendance.meetupId}
                                 />
                             </li>
                         );

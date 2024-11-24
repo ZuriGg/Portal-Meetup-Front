@@ -1,10 +1,11 @@
 header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 2vh;
-    margin-top: 2vh;
+    margin-top: 4vh;
     margin-inline: 4vh;
+    height: fit-content;
 }
 
 header > div {
