@@ -20,6 +20,7 @@ import Profile from './Users/Profile/Profile.jsx';
 import { Rating } from '../Components/Rating/Rating.jsx';
 import AdminPage from './Users/Admin/AdminPage.jsx';
 import Avatar from '../Components/Avatar/Avatar.jsx';
+import { MeetupRatingList } from '../Components/Rating/MeetupRatingList.jsx';
 
 const AppRoutes = () => (
     <>
@@ -58,6 +59,7 @@ const AppRoutes = () => (
                 <Route path="edit" element={<EditMeetup />} />
                 <Route path=":attendanceId/votes" element={<Rating />} />
             </Route>
+            <Route path="votesMeetup" element={<MeetupRatingList />} />
 
             {/* Ruta para redirigir cualquier ruta no válida */}
             <Route path="*" element={<Navigate to="notFound" replace />} />
