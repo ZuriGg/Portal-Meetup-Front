@@ -13,6 +13,8 @@ function Home() {
     const [user] = useUser();
     const { qry } = useMeetup();
 
+    console.log(qry);
+
     useEffect(() => {
         if (qry) {
             fetch(`http://localhost:3000/meetups?${qry}`)

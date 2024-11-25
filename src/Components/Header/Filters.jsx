@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
 
 import './Filters.css';
@@ -9,33 +9,16 @@ const Filters = () => {
         search: '',
         location: '',
     });
-    const [userLocation, setUserLocation] = useState('');
 
-    /* useEffect(() => {
-        const fetchLocation = async () => {
-            try {
-                const locationRes = await fetch('https://ipwhois.app/json/');
-                const locationData = await locationRes.json();
-                setUserLocation(locationData.city || ''); // Asignar la ciudad obtenida
-                setLocalFilters((prev) => ({
-                    ...prev,
-                    location: locationData.city || '', // Establecer como valor inicial
-                }));
-            } catch (error) {
-                console.log('Error al obtener la ubicación:', error);
-            }
-        };
-
-        fetchLocation();
-    }, []); */
+    console.log(`filtro to wapo to potente ${localFilters.location}`);
 
     // Maneja los cambios en los inputs
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        /* setLocalFilters((prev) => ({
+        setLocalFilters((prev) => ({
             ...prev,
-            [name]: value,
-        })); */
+            [name]: value, // Actualiza el estado de los filtros locales
+        }));
     };
 
     // Maneja el envío del formulario
@@ -60,7 +43,7 @@ const Filters = () => {
                 <input
                     type="text"
                     name="location"
-                    placeholder={userLocation}
+                    placeholder="Introduce una ubicación"
                     value={localFilters.location}
                     onChange={handleInputChange}
                 />

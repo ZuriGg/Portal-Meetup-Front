@@ -45,25 +45,13 @@ function Login() {
 
             const dataUser = await resUser.json();
 
-            // Obtenemos la ubicación
-            let userLocation = { city: 'Desconocida', region: '', country: '' };
-            try {
-                const locationRes = await fetch('https://ipwhois.app/json/');
-                const locationData = await locationRes.json();
-                userLocation = {
-                    city: locationData.city,
-                    region: locationData.region,
-                    country: locationData.country,
-                };
-            } catch (error) {
-                console.error('Error al obtener la ubicación:', error);
-            }
+            // Se elimina la lógica de obtener la ubicación del usuario
 
             // Guardamos todo el usuario en el contexto
             enhancedSetUser({
                 ...dataUser.data.user,
                 token: dataToken.token,
-                location: userLocation, // Añadimos la ubicación
+                location: { city: 'Desconocida', region: '', country: '' }, // Valor predeterminado para la ubicación
             });
 
             setSuccess(true);
