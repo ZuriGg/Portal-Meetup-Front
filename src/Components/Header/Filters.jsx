@@ -11,7 +11,7 @@ const Filters = () => {
     });
     const [userLocation, setUserLocation] = useState('');
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchLocation = async () => {
             try {
                 const locationRes = await fetch('https://ipwhois.app/json/');
@@ -27,15 +27,15 @@ const Filters = () => {
         };
 
         fetchLocation();
-    }, []);
+    }, []); */
 
     // Maneja los cambios en los inputs
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setLocalFilters((prev) => ({
+        /* setLocalFilters((prev) => ({
             ...prev,
             [name]: value,
-        }));
+        })); */
     };
 
     // Maneja el envío del formulario
