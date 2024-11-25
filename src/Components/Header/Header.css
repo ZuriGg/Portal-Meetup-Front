@@ -7,7 +7,8 @@ header {
     padding-bottom: 4vh;
     padding-inline: 3vh;
 
-    height: fit-content;
+    height: 100vh;
+    min-height: 100vh;
 
     background-color: rgba(0, 0, 0, 0.581);
     background-image: url(../public/videoFondo.gif);
@@ -18,6 +19,9 @@ header {
 }
 
 header #headerTop {
+    position: relative;
+    top: -14vh;
+    padding-inline: 3vh;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

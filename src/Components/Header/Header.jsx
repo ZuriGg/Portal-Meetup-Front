@@ -28,7 +28,7 @@ function Header() {
                             <button>/votesMeetup</button>{' '}
                         </Link>
                     </div>
-                    <Filters />
+                    {locationHome ? <Filters /> : null}
                     <LogoUser />
                 </div>
                 {locationHome ? (
