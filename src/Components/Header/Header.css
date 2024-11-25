@@ -5,6 +5,8 @@ header {
     align-items: center;
     padding-top: 4vh;
     padding-bottom: 4vh;
+    padding-inline: 3vh;
+
     height: fit-content;
 
     background-color: rgba(0, 0, 0, 0.581);
@@ -31,7 +33,7 @@ header #headerBottom {
     align-items: center;
     gap: 20px;
     padding: 20px;
-    width: 110%;
+    width: 100%;
 }
 
 header #headerBottom > p {
