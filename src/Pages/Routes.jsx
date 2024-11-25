@@ -21,7 +21,7 @@ import { MeetupRatingList } from '../Components/Rating/MeetupRatingList.jsx';
 
 // Import de rutas de gestión de contraseñas
 import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
-import DetailsMeetup from '../Components/Details/DetailsMeetup.jsx';
+import DetailsMeetup from './DetailsMeetup/DetailsMeetup.jsx';
 
 const AppRoutes = () => (
     <>
@@ -59,7 +59,7 @@ const AppRoutes = () => (
                 {/* Página para editar un meetup */}
                 <Route path="edit" element={<EditMeetup />} />
                 <Route path=":attendanceId/votes" element={<Rating />} />
-                <Route path=":id" element={<DetailsMeetup />} />
+                <Route path=":meetupId" element={<DetailsMeetup />} />
             </Route>
             <Route path="votesMeetup" element={<MeetupRatingList />} />
 
