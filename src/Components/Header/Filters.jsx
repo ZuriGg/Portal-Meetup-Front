@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
+
 import './Filters.css';
 
 const Filters = () => {
@@ -9,12 +10,14 @@ const Filters = () => {
         location: '',
     });
 
+    console.log(`filtro to wapo to potente ${localFilters.location}`);
+
     // Maneja los cambios en los inputs
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setLocalFilters((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: value, // Actualiza el estado de los filtros locales
         }));
     };
 
@@ -40,7 +43,7 @@ const Filters = () => {
                 <input
                     type="text"
                     name="location"
-                    placeholder="Buscar meetups! por ubicación"
+                    placeholder="Introduce una ubicación"
                     value={localFilters.location}
                     onChange={handleInputChange}
                 />

@@ -5,7 +5,6 @@
 }
 
 /* 
-
     #C4EAFF
     #BFAD95
     #FEE4C3
@@ -21,7 +20,7 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: rgba(0, 0, 0, 0.301);
+    background-color: rgba(0, 0, 0, 0.603);
     background-image: url(../public/videoFondo.gif);
     background-blend-mode: overlay;
     background-attachment: fixed;

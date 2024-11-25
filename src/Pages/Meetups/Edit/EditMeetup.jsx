@@ -49,9 +49,7 @@ function EditMeetup() {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            ...(user?.token && {
-                                Authorization: `Bearer ${user.token}`,
-                            }),
+                            Authorization: user.token.token,
                         },
                     }
                 );
@@ -66,9 +64,7 @@ function EditMeetup() {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json',
-                            ...(user?.token && {
-                                Authorization: `Bearer ${user.token}`,
-                            }),
+                            Authorization: user.token.token,
                         },
                     }
                 );
@@ -131,7 +127,7 @@ function EditMeetup() {
                     headers: {
                         'Content-Type': 'application/json',
                         ...(user?.token && {
-                            Authorization: `Bearer ${user.token}`,
+                            Authorization: user.token.token,
                         }),
                     },
                     body: JSON.stringify(formattedFormData),

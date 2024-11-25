@@ -1,8 +1,8 @@
 // Componente que muestra una categoría de meetup (Para filtrar desde el home)
-import './Category.css';
-
 import { useEffect } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
+
+import './Category.css';
 
 const Category = () => {
     const { filters, setFilters, loading, setQry } = useMeetup();
@@ -93,7 +93,7 @@ const Category = () => {
                 style={{
                     backgroundColor:
                         filters.category === '5' ? 'lightblue' : 'white',
-                    color: filters.category === '4' ? 'white' : 'black',
+                    color: filters.category === '5' ? 'white' : 'black',
                 }}
             >
                 Deportes y fitness

@@ -20,10 +20,8 @@ function ProfileCard({
                         : null,
                 }}
             >
-                <Link to="/user/edit">
-                    <button id="botonCambioAvatar">
-                        Cambiar foto de perfil
-                    </button>
+                <Link to="/user/avatar">
+                    <button id="botonCambioAvatar">Editar avatar</button>
                 </Link>
                 <div id="datosUsuario">
                     <p>{username}</p>
@@ -56,5 +54,4 @@ ProfileCard.propTypes = {
     lastname: PropTypes.node,
     username: PropTypes.node,
     email: PropTypes.node,
-    location: PropTypes.node,
 };

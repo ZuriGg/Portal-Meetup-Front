@@ -6,11 +6,7 @@ import Home from './Home/Home.jsx';
 import Validate from './Users/Validate/Validate.jsx';
 import Register from './Users/Register/Register.jsx';
 import Login from './Users/Login/Login.jsx';
-import NotFound from './NotFound/NotFound.jsx'
-
-
-// Import de rutas de gestión de contraseñas
-import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
+import NotFound from './NotFound/NotFound.jsx';
 
 // Import de rutas de meetups
 import CreateMeetup from './Meetups/Create/CreateMeetup.jsx';
@@ -19,16 +15,23 @@ import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
 import { Rating } from '../Components/Rating/Rating.jsx';
+import AdminPage from './Users/Admin/AdminPage.jsx';
+import Avatar from '../Components/Avatar/Avatar.jsx';
+import { MeetupRatingList } from '../Components/Rating/MeetupRatingList.jsx';
+
+// Import de rutas de gestión de contraseñas
+import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
 
 const AppRoutes = () => (
     <>
         <Routes>
             {/* Home según sea usuario anónimo o registrado */}
             <Route path="/" element={<Home />} />
+
             <Route path="notFound" element={<NotFound />} />
-            
-            
-            
+
+            <Route path="admin" element={<AdminPage />} />
+
             {/* Rutas de usuario */}
             <Route path="user">
                 {/* Página de registro de usuario */}
@@ -45,6 +48,7 @@ const AppRoutes = () => (
                     <Route path="changepass" element={<ChangePass />} />
                 </Route>
                 <Route path="edit" element={<EditUser />} />
+                <Route path="avatar" element={<Avatar />} />
             </Route>
 
             {/* Rutas de meetups */}
@@ -55,6 +59,7 @@ const AppRoutes = () => (
                 <Route path="edit" element={<EditMeetup />} />
                 <Route path=":attendanceId/votes" element={<Rating />} />
             </Route>
+            <Route path="votesMeetup" element={<MeetupRatingList />} />
 
             {/* Ruta para redirigir cualquier ruta no válida */}
             <Route path="*" element={<Navigate to="notFound" replace />} />

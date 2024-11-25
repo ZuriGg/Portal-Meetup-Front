@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './LogoUser.css';
 import { useUser } from '../../UserContext.jsx';
+
+import './LogoUser.css';
 
 function LogoUser() {
     const [user, , handleLogout] = useUser();
@@ -30,7 +31,7 @@ function LogoUser() {
         };
     }, [isModalOpen]);
 
-    const closeAndNavigate = (callback) => (e) => {
+    const closeAndNavigate = (callback) => () => {
         setModalOpen(false);
         if (callback) callback();
     };
@@ -42,8 +43,9 @@ function LogoUser() {
                     <img
                         id="avatarUsuario"
                         src={
-                            `http://localhost:3000/uploads/${user.avatar}` ||
-                            '/avatarDefault.webp'
+                            user.avatar === null
+                                ? '/avatarDefault.webp'
+                                : `http://localhost:3000/uploads/${user.avatar}`
                         }
                         alt="Avatar de usuario"
                     />
@@ -69,6 +71,23 @@ function LogoUser() {
                         >
                             Panel de Usuario
                         </Link>
+                        {user.role === 'admin' && (
+                            <Link
+                                to="/admin"
+                                className="modal-link"
+                                onClick={closeAndNavigate()}
+                            >
+                                Panel de Admin
+                            </Link>
+                        )}
+                        <Link
+                            to="/meetup/create"
+                            className="modal-link"
+                            onClick={closeAndNavigate()}
+                        >
+                            Crear meetup
+                        </Link>
+                        <p>Ajustes</p>
                         <Link
                             to="/"
                             className="modal-link"

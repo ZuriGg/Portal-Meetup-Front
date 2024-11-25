@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
@@ -9,7 +9,7 @@ function Login() {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
-    const [, setUser] = useUser();
+    const [, enhancedSetUser] = useUser();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -45,30 +45,18 @@ function Login() {
 
             const dataUser = await resUser.json();
 
-            // Obtenemos la ubicación
-            let userLocation = { city: 'Desconocida', region: '', country: '' };
-            try {
-                const locationRes = await fetch('https://ipapi.co/json/');
-                const locationData = await locationRes.json();
-                userLocation = {
-                    city: locationData.city,
-                    region: locationData.region,
-                    country: locationData.country_name,
-                };
-            } catch (error) {
-                console.error('Error al obtener la ubicación:', error);
-            }
+            // Se elimina la lógica de obtener la ubicación del usuario
 
             // Guardamos todo el usuario en el contexto
-            setUser({
+            enhancedSetUser({
                 ...dataUser.data.user,
                 token: dataToken.token,
-                location: userLocation, // Añadimos la ubicación
+                location: { city: 'Desconocida', region: '', country: '' }, // Valor predeterminado para la ubicación
             });
 
             setSuccess(true);
             setError(null);
-            setTimeout(() => navigate('/'), 1000);
+            setTimeout(() => navigate('/'), 100);
         } catch (error) {
             setError('Ocurrió un error al iniciar sesión');
             console.error('Error en el login:', error);
@@ -78,7 +66,7 @@ function Login() {
     return (
         <>
             <h1>Login</h1>
-            <div className="areaFormulario">
+            <div className="areaFormulario" id="login">
                 <form onSubmit={handleLogin}>
                     <label>
                         Email
@@ -99,6 +87,9 @@ function Login() {
                         />
                     </label>
                     <button type="submit">Login</button>
+                    <Link to="/user/password/recover">
+                        ¿Has olvidado tu contraseña?
+                    </Link>
                     {success && <p>Login hecho correctamente</p>}
                     {error && <p>{error}</p>}
                 </form>
@@ -108,6 +99,3 @@ function Login() {
 }
 
 export default Login;
-
-// DESDE EL BACK TE PIDE:
-// email, password

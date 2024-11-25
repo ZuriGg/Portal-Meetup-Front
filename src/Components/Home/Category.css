@@ -4,7 +4,7 @@
 
 .buttoms-categories {
     display: flex;
-
+    margin-block: 2vh;
     align-items: center;
     gap: 20px;
 }

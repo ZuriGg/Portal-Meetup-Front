@@ -1,15 +1,22 @@
 .search-form {
+    background: none;
+    margin-bottom: 00vh;
+    padding: 0vh;
+    align-self: flex-start;
+    justify-self: flex-end;
+}
+
+.search-form .filters {
     display: flex;
     justify-content: space-between;
     align-items: center; /* Alineación vertical de los elementos */
-    height: auto; /* Ajusta según el diseño deseado */
-    width: auto; /* Se adapta al ancho del contenedor */
-    padding: 5px 10px; /* Espaciado interno */
-    background-color: white; /* Fondo blanco */
-    border: 3px solid #ccc; /* Borde suave */
-    border-radius: 20px; /* Bordes redondeados */
+    height: fit-content; /* Ajusta según el diseño deseado */
+    width: fit-content; /* Se adapta al ancho del contenedor */
+    padding: 0.5vh 1vh; /* Espaciado interno */
+    border-radius: 2vh; /* Bordes redondeados */
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
-    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.502);
+    gap: 1.5vh;
 }
 
 .search-form input {
@@ -17,8 +24,9 @@
     margin-right: 10px;
     border: none; /* Sin borde */
     outline: none; /* Sin borde de enfoque */
-    font-size: 20px; /* Tamaño de fuente */
-    padding: 5px 10px; /* Espaciado interno */
+    font-size: 2vh; /* Tamaño de fuente */
+    padding: 1.2vh 1.2vh; /* Espaciado interno */
+    border-radius: 1vh;
 }
 
 .search-form input::placeholder {
@@ -26,10 +34,10 @@
 }
 
 .search-form button {
-    background-color: #7009ef; /* Rojo similar al botón de búsqueda de la imagen */
+    background-color: #000000; /* Rojo similar al botón de búsqueda de la imagen */
     color: white; /* Texto blanco */
     border: none; /* Sin borde */
-    border-radius: 50%; /* Forma circular */
+    border-radius: 2vh; /* Forma circular */
     width: 10vh;
     height: 5vh;
     cursor: pointer; /* Cambiar cursor a mano al pasar */
