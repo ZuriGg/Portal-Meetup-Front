@@ -25,17 +25,20 @@ function Profile() {
                     username={user.username}
                     location={user.location}
                 />
+
                 <UserCard
                     avatar={user.avatar}
                     username={user.username}
                     activatedButton={true}
                 />
             </div>
+
             <div id="listaMeetupsUsuario">
                 <MeetupsAsistsCard
                     titulo="Meetups a los que asistes"
                     url="attendance"
                 />
+
                 <MeetupsOwnerCard
                     titulo="Meetups creados por ti"
                     url="meetups"
