@@ -12,7 +12,13 @@ function Header() {
 
     return (
         <>
-            <header>
+            <header
+                style={
+                    locationHome
+                        ? { minHeight: '100vh' }
+                        : { minHeight: '20vh' }
+                }
+            >
                 <div id="headerTop">
                     <Link to="/">
                         <img src="/logotipo.webp" alt="logotipo de la web" />
@@ -33,7 +39,6 @@ function Header() {
                 </div>
                 {locationHome ? (
                     <div id="headerBottom">
-                        {' '}
                         <h1>OurMeet</h1>
                         <h2>nuestro lugar de encuentro</h2>
                         <p>

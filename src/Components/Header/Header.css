@@ -7,9 +7,6 @@ header {
     padding-bottom: 4vh;
     padding-inline: 3vh;
 
-    height: 100vh;
-    min-height: 100vh;
-
     background-color: rgba(0, 0, 0, 0.581);
     background-image: url(../public/videoFondo.gif);
     background-blend-mode: overlay;
@@ -19,9 +16,9 @@ header {
 }
 
 header #headerTop {
-    position: relative;
-    top: -14vh;
-    padding-inline: 3vh;
+    position: absolute;
+    top: 4vh;
+    padding-inline: 5vh;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -50,10 +47,4 @@ header #headerBottom > p {
 
 header img {
     width: 30vh;
-}
-
-header > div {
-    display: flex;
-    justify-content: center;
-    gap: 1vh;
 }
