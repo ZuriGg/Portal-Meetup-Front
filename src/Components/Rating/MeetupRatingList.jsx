@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import UserCard from '../UserCard/UserCard.jsx';
 
+//Lista de valoraciones que ha recibido un Meetup
 export const MeetupRatingList = ({ meetupId }) => {
     const [results, setResults] = useState([]); //para manejar el resultado final
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
     const [votes, setVotes] = useState([]); //para gestionar los votos
     const [allUsers, setAllUsers] = useState([]); //para gestionar todos los usuarios
+    const [avgRating, setAvgRating] = useState(0); //para la media de votos
 
     meetupId = 1; //hasta que se gestione el código de Jona
 
@@ -68,11 +70,36 @@ export const MeetupRatingList = ({ meetupId }) => {
             });
 
         setResults(combinedRatings); // Guardar las valoraciones combinadas
-    }, [attendance, votes]); // Se ejecuta cuando cambian las asistencias o los votos
+
+        //calculamos la media de los votos de este meetup;
+        const allVotes = votes
+            .filter((voto) =>
+                attendance.some(
+                    (sesion) =>
+                        sesion.id === voto.attendanceId &&
+                        sesion.meetupId === meetupId
+                )
+            )
+            .map((voto) => voto.value);
+
+        const average =
+            allVotes.length > 0
+                ? allVotes.reduce((sum, value) => sum + value, 0) /
+                  allVotes.length
+                : 0;
+
+        setAvgRating(average.toFixed(2)); //guardamos la media hasta con 2 decimales
+    }, [attendance, votes, meetupId]); // Se ejecuta cuando cambian las asistencias, los votos o el meetup
 
     return (
         <div id="meetupRatingList">
             <h3>Lista de valoraciones:</h3>
+            <h4>
+                Valoración media:
+                {avgRating > 0
+                    ? ` ${avgRating} / 5 ⭐`
+                    : 'Todavía nadie ha compartido su valoración'}
+            </h4>
             <ul>
                 {results.length > 0 ? (
                     results.map((rating, index) => {
