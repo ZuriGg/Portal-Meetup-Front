@@ -4,16 +4,16 @@ import UserCard from '../../Components/UserCard/UserCard';
 
 function DetailsMeetup() {
     const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
-    const [meetupDetail, setMeetupDetail] = useState(null); // Estado para almacenar los datos
+    const [meetupDetail, setMeetupDetail] = useState(''); // Estado para almacenar los datos
     const [attendance, setAttendance] = useState([]);
     const [meetupUsers, setMeetupUsers] = useState([]);
+    const [location, setLocation] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try {
-                // Fetch de detalles del meetup
                 const responseMeetup = await fetch(
                     `http://localhost:3000/meetups/${meetupId}`
                 );
@@ -21,9 +21,7 @@ function DetailsMeetup() {
                     throw new Error('Error al obtener los detalles del meetup');
                 }
                 const dataMeetup = await responseMeetup.json();
-                setMeetupDetail(dataMeetup.data);
-
-                // Fetch de asistencia al meetup
+                setMeetupDetail(dataMeetup.data); // Fetch de asistencia al meetup
                 const responseAttendance = await fetch(
                     'http://localhost:3000/attendance'
                 );
@@ -31,9 +29,7 @@ function DetailsMeetup() {
                     throw new Error('Error al obtener la asistencia al meetup');
                 }
                 const dataAttendance = await responseAttendance.json();
-                setAttendance(dataAttendance.data);
-
-                // Fetch de usuarios
+                setAttendance(dataAttendance.data); // Fetch de usuarios
                 const responseUsers = await fetch(
                     'http://localhost:3000/users'
                 );
@@ -48,19 +44,37 @@ function DetailsMeetup() {
                 setLoading(false); // Finalizamos el estado de carga
             }
         };
-
         fetchData();
     }, [meetupId]);
+    // Nuevo useEffect para obtener la location después de que meetupDetail ha sido actualizado
+    useEffect(() => {
+        if (meetupDetail && meetupDetail.locationId) {
+            const fetchLocation = async () => {
+                try {
+                    const responseLocation = await fetch(
+                        `http://localhost:3000/location/${meetupDetail.locationId}`
+                    );
+                    if (!responseLocation.ok) {
+                        throw new Error('Error al obtener la ubicación');
+                    }
+                    const dataLocation = await responseLocation.json();
+                    setLocation(dataLocation.data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            };
+            fetchLocation();
+        }
+    }, [meetupDetail]);
 
     // Filtrar usuarios que asistieron al meetup
     const attendanceMeetup = attendance
-        .filter((att) => att.meetupId === meetupId) // Convertimos meetupId a número
+        .filter((att) => att.meetupId === Number(meetupId))
         .map((att) => {
-            // Buscar el usuario correspondiente en meetupUsers
-            const user = meetupUsers.find((user) => user.id === att.userId);
-            return user;
-        })
-        .filter((user) => user !== undefined); // Filtramos usuarios válidos
+            return meetupUsers.find((user) => user.id === att.userId);
+        });
+
+    console.log(`los usuarios son ${attendanceMeetup}`);
 
     // Mostrar un mensaje de carga mientras se obtienen los datos
     if (loading) {
@@ -76,7 +90,7 @@ function DetailsMeetup() {
     return (
         <>
             <div className="detailsPage">
-                <div className="detailsTitle">{meetupDetail.title}</div>
+                <p className="detailsTitle">{meetupDetail.title}</p>
 
                 <img
                     src={meetupDetail.image || '/meetupPhotoDefault.jpg'}
@@ -84,15 +98,16 @@ function DetailsMeetup() {
                     className="detailsImage"
                 />
 
-                <div className="detailsStartDate">
+                <p className="detailsStartDate">
                     {new Date(meetupDetail.startDate).toLocaleDateString()}
-                </div>
+                </p>
 
                 <div className="detailsDescription">
                     {meetupDetail.description}
                 </div>
 
                 {/* Renderizar la lista de asistentes */}
+                <p className="mapLocation">{location.city}</p>
                 <ul>
                     {attendanceMeetup.map((user) => (
                         <li key={user.id}>
