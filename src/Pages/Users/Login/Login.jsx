@@ -48,12 +48,12 @@ function Login() {
             // Obtenemos la ubicación
             let userLocation = { city: 'Desconocida', region: '', country: '' };
             try {
-                const locationRes = await fetch('https://ipapi.co/json/');
+                const locationRes = await fetch('https://ipwhois.app/json/');
                 const locationData = await locationRes.json();
                 userLocation = {
                     city: locationData.city,
                     region: locationData.region,
-                    country: locationData.country_name,
+                    country: locationData.country,
                 };
             } catch (error) {
                 console.error('Error al obtener la ubicación:', error);

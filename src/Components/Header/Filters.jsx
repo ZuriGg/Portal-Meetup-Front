@@ -14,7 +14,7 @@ const Filters = () => {
     useEffect(() => {
         const fetchLocation = async () => {
             try {
-                const locationRes = await fetch('https://ipapi.co/json/');
+                const locationRes = await fetch('https://ipwhois.app/json/');
                 const locationData = await locationRes.json();
                 setUserLocation(locationData.city || ''); // Asignar la ciudad obtenida
                 setLocalFilters((prev) => ({
@@ -22,7 +22,7 @@ const Filters = () => {
                     location: locationData.city || '', // Establecer como valor inicial
                 }));
             } catch (error) {
-                console.error('Error al obtener la ubicación:', error);
+                console.log('Error al obtener la ubicación:', error);
             }
         };
 
