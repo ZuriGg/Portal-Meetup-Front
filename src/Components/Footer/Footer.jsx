@@ -4,7 +4,7 @@ import './Footer.css';
 import { useUser } from '../../UserContext.jsx';
 
 function Footer() {
-    const [user, , handleLogout] = useUser();
+    const [user] = useUser();
 
     return (
         <footer>
@@ -19,10 +19,6 @@ function Footer() {
                         <Link to="/user/login">Iniciar sesión</Link>
                     )}
                     <p>Ajustes</p>
-                    <Link to="/meetup/create">Crear meetup</Link>
-                    <Link to="/" onClick={handleLogout}>
-                        Cerrar Sesión
-                    </Link>
                 </div>
 
                 <div className="footerContent">
