@@ -16,7 +16,7 @@ function Header() {
                 style={
                     locationHome
                         ? { minHeight: '100vh' }
-                        : { minHeight: '20vh' }
+                        : { minHeight: '20vh', background: 'none' }
                 }
             >
                 <div id="headerTop">
