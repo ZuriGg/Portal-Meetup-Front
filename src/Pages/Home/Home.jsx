@@ -62,19 +62,6 @@ function Home() {
 
     return (
         <div className="home">
-            <h1>OurMeet</h1>
-            <h2>nuestro lugar de encuentro</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eos
-                ab adipisci facilis amet eaque quas placeat iusto deserunt alias
-                optio illum, reiciendis omnis tempora commodi repudiandae dolore
-                provident perferendis? Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Vel eos ab adipisci facilis amet eaque quas
-                placeat iusto deserunt alias optio illum, reiciendis omnis
-                tempora commodi repudiandae dolore provident perferendis? Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Vel eos ab
-                adipisci facilis amet e
-            </p>
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (

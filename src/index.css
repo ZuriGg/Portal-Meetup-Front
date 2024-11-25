@@ -20,8 +20,8 @@
 
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
-    background-color: rgba(0, 0, 0, 0.603);
-    background-image: url(../public/videoFondo.gif);
+    background-color: rgba(0, 0, 0, 0.428);
+    background-image: url(../public/texturaFondoredux.png);
     background-blend-mode: overlay;
     background-attachment: fixed;
     background-repeat: no-repeat;
