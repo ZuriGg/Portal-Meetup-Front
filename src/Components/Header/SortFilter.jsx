@@ -6,7 +6,7 @@ export default function SortFilter() {
     const { setFilters, setQry } = useMeetup();
     const [localFilters, setLocalFilters] = useState({
         minVotes: ' ',
-        order: 'createAt',
+        order: 'createdAt',
     });
     const handleInputChange = (e) => {
         const { name, value } = e.target;
