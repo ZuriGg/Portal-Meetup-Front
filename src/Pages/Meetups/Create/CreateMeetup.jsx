@@ -136,16 +136,15 @@ function CreateMeetup() {
 
             <form onSubmit={enviarDatos}>
                 {['image1', 'image2', 'image3'].map((inputName) => (
-                    <div id="upload" className="areaFormulario" key={inputName}>
-                        <label id="subida">
+                    <div className="PrevisualizacionImagen" key={inputName}>
+                        <label className="previsualizacion">
                             {previews[inputName] ? (
                                 <img
-                                    className="image-preview"
                                     src={previews[inputName]}
                                     alt={`Preview ${inputName}`}
                                 />
                             ) : (
-                                <div className="add-image" />
+                                <div className="añadirImagen" />
                             )}
                             <input
                                 type="file"
