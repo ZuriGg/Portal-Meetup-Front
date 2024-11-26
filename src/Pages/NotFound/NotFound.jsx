@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import './NotFound.css';
 
@@ -9,9 +8,7 @@ const NotFound = () => {
             <p>Lo sentimos, pero la página que buscas no existe.</p>
             <p>No nos vamos a engañar....has escrito mal la dirección 🤷‍♂️</p>
             <button>
-                <Link to="/" className="comeBack">
-                    Vuelve a intentarlo ooootra vez 🩷
-                </Link>
+                <Link to="/">Vuelve a intentarlo ooootra vez 🩷</Link>
             </button>
         </div>
     );
