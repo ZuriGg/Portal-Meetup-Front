@@ -1,4 +1,3 @@
-// Componente que muestra una categoría de meetup (Para filtrar desde el home)
 import { useEffect } from 'react';
 import { useMeetup } from '../../MeetupContext.jsx';
 
@@ -6,6 +5,7 @@ import './Category.css';
 
 const Category = () => {
     const { filters, setFilters, loading, setQry } = useMeetup();
+
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters((prevFilters) => ({
@@ -24,17 +24,22 @@ const Category = () => {
             console.log('Filtros:', filters);
         }
     }, [filters, setQry, loading]);
+
+    const buttonStyle = (categoryId) => ({
+        backgroundColor:
+            filters.category === categoryId
+                ? 'rgba(0, 0, 0, 0.731)'
+                : 'hsla(0, 0%, 100%, 0.797)', // Color por defecto o cuando está seleccionado
+        color: filters.category === categoryId ? 'white' : 'black', // Color del texto dependiendo de si está seleccionado
+    });
+
     return (
         <div className="buttoms-categories">
             <button
                 name="category"
                 value=""
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '' ? 'lightblue' : 'white',
-                    color: filters.category === '' ? 'white' : 'black',
-                }}
+                style={buttonStyle('')}
             >
                 Todas
             </button>
@@ -42,11 +47,7 @@ const Category = () => {
                 name="category"
                 value="1"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '1' ? 'lightblue' : 'white',
-                    color: filters.category === '1' ? 'white' : 'black',
-                }}
+                style={buttonStyle('1')}
             >
                 Viajes y aire libre
             </button>
@@ -54,11 +55,7 @@ const Category = () => {
                 name="category"
                 value="2"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '2' ? 'lightblue' : 'white',
-                    color: filters.category === '2' ? 'white' : 'black',
-                }}
+                style={buttonStyle('2')}
             >
                 Tecnología
             </button>
@@ -66,11 +63,7 @@ const Category = () => {
                 name="category"
                 value="3"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '3' ? 'lightblue' : 'white',
-                    color: filters.category === '3' ? 'white' : 'black',
-                }}
+                style={buttonStyle('3')}
             >
                 Salud y bienestar
             </button>
@@ -78,11 +71,7 @@ const Category = () => {
                 name="category"
                 value="4"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '4' ? 'lightblue' : 'white',
-                    color: filters.category === '4' ? 'white' : 'black',
-                }}
+                style={buttonStyle('4')}
             >
                 Juegos
             </button>
@@ -90,11 +79,7 @@ const Category = () => {
                 name="category"
                 value="5"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '5' ? 'lightblue' : 'white',
-                    color: filters.category === '5' ? 'white' : 'black',
-                }}
+                style={buttonStyle('5')}
             >
                 Deportes y fitness
             </button>
@@ -102,11 +87,7 @@ const Category = () => {
                 name="category"
                 value="6"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '6' ? 'lightblue' : 'white',
-                    color: filters.category === '6' ? 'white' : 'black',
-                }}
+                style={buttonStyle('6')}
             >
                 Arte y cultura
             </button>
@@ -114,11 +95,7 @@ const Category = () => {
                 name="category"
                 value="7"
                 onClick={handleFilterChange}
-                style={{
-                    backgroundColor:
-                        filters.category === '7' ? 'lightblue' : 'white',
-                    color: filters.category === '7' ? 'white' : 'black',
-                }}
+                style={buttonStyle('7')}
             >
                 Aficiones y pasiones
             </button>

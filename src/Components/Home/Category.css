@@ -1,10 +1,16 @@
 .buttoms-categories > button {
-    text-decoration: underline;
+    width: 15vh;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vh;
+    font-size: 1.7vh;
 }
 
 .buttoms-categories {
     display: flex;
-    margin-block: 2vh;
+    margin-top: 2vh;
     align-items: center;
-    gap: 20px;
+    gap: 5vh;
 }

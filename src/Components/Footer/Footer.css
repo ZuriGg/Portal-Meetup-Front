@@ -6,6 +6,7 @@ footer {
     background-size: cover;
     border-top: rgb(46, 46, 46) solid 0.2vh;
     padding-block: 2vh;
+    margin-top: 5vh;
 }
 
 footer img {
