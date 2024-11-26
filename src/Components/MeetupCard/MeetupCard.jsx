@@ -1,6 +1,4 @@
-// Componente que muestra una previsualización de un meetup (Para mostrar los meetups como resultado en una búsqueda en home, etc)
 import PropTypes from 'prop-types';
-
 import './MeetupCard.css';
 
 function MeetupCard({
@@ -15,7 +13,7 @@ function MeetupCard({
     return (
         <div className="meetupsCard">
             <img
-                src={image || '/meetupPhotoDefault.jpg'}
+                src={image || '/meetupPhotoDefault.jpg'} // Usa la imagen pasada como prop o la imagen por defecto
                 alt="imagen de un meetup"
             />
             <h4>{title}</h4>
@@ -31,11 +29,11 @@ function MeetupCard({
 export default MeetupCard;
 
 MeetupCard.propTypes = {
-    image: PropTypes.node,
-    title: PropTypes.node,
-    description: PropTypes.node,
-    startDate: PropTypes.node,
-    hourMeetup: PropTypes.node,
-    aforoMax: PropTypes.node,
-    inscribirseBoolean: PropTypes.node,
+    image: PropTypes.string, // Debería ser un string que es la URL de la imagen
+    title: PropTypes.string,
+    description: PropTypes.string,
+    startDate: PropTypes.string,
+    hourMeetup: PropTypes.string,
+    aforoMax: PropTypes.number,
+    inscribirseBoolean: PropTypes.bool,
 };

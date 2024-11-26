@@ -7,6 +7,11 @@
     padding: 2vh;
     border-radius: 2vh;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.609);
+    transition: transform 0.2s ease;
+}
+
+.meetupsCard:hover {
+    transform: scale(1.1);
 }
 
 .meetupsCard > h4 {
@@ -25,5 +30,6 @@
 .meetupsCard > img {
     border-radius: 2vh;
     width: 100%;
+    aspect-ratio: 16/9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.207);
 }
