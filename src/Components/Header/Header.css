@@ -47,4 +47,39 @@ header #headerBottom > p {
 
 header img {
     width: 30vh;
+    transition: transform 0.1s ease;
+}
+
+header img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+header img:active {
+    transform: scale(1);
+}
+
+.flechaAbajo {
+    width: 3.5vh;
+    aspect-ratio: 1/1;
+}
+
+.flechaAbajo img {
+    width: 100%;
+}
+
+#flechasDerecha {
+    position: absolute;
+    top: 85vh;
+    right: 3vw;
+}
+
+#flechasIzquierda {
+    position: absolute;
+    top: 85vh;
+    left: 3vw;
+}
+
+.flechasHeader:hover {
+    cursor: pointer;
 }

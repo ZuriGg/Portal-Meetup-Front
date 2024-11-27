@@ -77,7 +77,7 @@ function Home() {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="home">
+        <div className="home" id="seccionObjetivo">
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (
