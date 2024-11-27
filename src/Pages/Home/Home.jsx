@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category.jsx';
+import Filters from './Filters.jsx';
+import SortFilter from './SortFilter.jsx';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -129,6 +131,8 @@ function Home() {
 
     return (
         <div className="home" id="seccionObjetivo">
+            <Filters />
+            <SortFilter />
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (
