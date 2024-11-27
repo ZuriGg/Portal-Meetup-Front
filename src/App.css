@@ -64,6 +64,7 @@ form > label > textarea {
 }
 
 form > label > select {
+    width: 25vh;
     padding: 0.5vh;
     border-radius: 1vh;
 }
