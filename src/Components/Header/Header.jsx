@@ -92,58 +92,57 @@ function Header() {
                             consectetur adipisicing elit. Vel eos ab adipisci
                             facilis amet e
                         </p>
+                        <div
+                            id="flechasDerecha"
+                            className="flechasHeader"
+                            onClick={() => scrollToSection('seccionObjetivo')}
+                        >
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            id="flechasIzquierda"
+                            className="flechasHeader"
+                            onClick={() => scrollToSection('seccionObjetivo')}
+                        >
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                            <div className="flechaAbajo">
+                                <img
+                                    src="/interface/flechaAbajoBlanco.webp"
+                                    alt="flecha hacia abajo"
+                                />
+                            </div>
+                        </div>
                     </div>
                 ) : null}
-
-                <div
-                    id="flechasDerecha"
-                    className="flechasHeader"
-                    onClick={() => scrollToSection('seccionObjetivo')}
-                >
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                </div>
-
-                <div
-                    id="flechasIzquierda"
-                    className="flechasHeader"
-                    onClick={() => scrollToSection('seccionObjetivo')}
-                >
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                    <div className="flechaAbajo">
-                        <img
-                            src="/interface/flechaAbajoBlanco.webp"
-                            alt="flecha hacia abajo"
-                        />
-                    </div>
-                </div>
             </header>
         </>
     );

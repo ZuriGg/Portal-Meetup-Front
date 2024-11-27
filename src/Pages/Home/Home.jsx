@@ -14,8 +14,6 @@ function Home() {
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
     const [user] = useUser();
     const { qry } = useMeetup();
-    let meetupId;
-    console.log(meetupId);
     const [images, setImages] = useState({}); // Este estado almacenará las imágenes por id de meetup
 
     useEffect(() => {
@@ -104,7 +102,7 @@ function Home() {
             });
     }, []); //se ejecuta cuando se carga el componente
 
-    useEffect(() => {
+    /*     useEffect(() => {
         // Combinar las asistencias y los votos
         const combinedRatings = attendance
             .filter((sesion) => sesion.meetupId === meetupId) // Filtrar las asistencias para el meetup específico
@@ -121,7 +119,7 @@ function Home() {
             });
 
         setResults(combinedRatings); // Guardar las valoraciones combinadas
-    }, [attendance, votes]);
+    }, [attendance, votes]); */
 
     // Mostrar cargando o error
     if (loading) return <div>Loading...</div>;
