@@ -7,7 +7,7 @@
     border-radius: 2vh;
     color: black;
     padding: 2vh;
-    width: 45vh;
+    width: 40vh;
     height: 70vh;
 }
 
@@ -26,7 +26,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 2vh;
-    padding: 1vh;
+    padding: 2vh;
     width: 100%;
     height: 88%;
     overflow-x: hidden;
@@ -40,7 +40,7 @@
     align-items: center;
     gap: 1vh;
     border: solid black 2px;
-    width: 35vh;
+    width: 65vw;
     height: 20vh;
 
     background-color: hsl(0, 0%, 100%);

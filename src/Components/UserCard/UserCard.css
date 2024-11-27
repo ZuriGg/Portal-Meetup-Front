@@ -5,7 +5,7 @@
     width: fit-content;
     height: 10vh;
     border-radius: 2vh;
-    font-size: 3vh;
+    font-size: 2.7vh;
     padding: 2.5vh;
     background-color: hsla(0, 0%, 100%, 0.586);
     color: black;
@@ -13,7 +13,7 @@
 }
 
 .userCard img {
-    width: 7vh;
+    width: 6vh;
     aspect-ratio: 1/1;
     border-radius: 100%;
 }
@@ -29,5 +29,48 @@
     align-items: center;
     height: fit-content;
     width: fit-content;
-    padding: 1.7vh;
+    padding: 1.5vh;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    .userCard {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: fit-content;
+        height: 10vh;
+        border-radius: 2vh;
+        font-size: 3vh;
+        padding: 2.5vh;
+        background-color: hsla(0, 0%, 100%, 0.586);
+        color: black;
+        gap: 2vh;
+    }
+
+    .userCard img {
+        width: 7vh;
+        aspect-ratio: 1/1;
+        border-radius: 100%;
+    }
+
+    .userCard a {
+        color: white;
+        font-size: 2vh;
+    }
+
+    .userCard button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        width: fit-content;
+        padding: 1.7vh;
+    }
 }
