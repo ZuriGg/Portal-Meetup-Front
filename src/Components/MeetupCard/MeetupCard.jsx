@@ -36,4 +36,5 @@ MeetupCard.propTypes = {
     hourMeetup: PropTypes.string,
     aforoMax: PropTypes.number,
     inscribirseBoolean: PropTypes.bool,
+    dayOfTheWeek: PropTypes.string,
 };
