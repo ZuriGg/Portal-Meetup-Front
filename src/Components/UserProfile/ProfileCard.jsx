@@ -1,15 +1,59 @@
 import './ProfileCard.css';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useUser } from '../../UserContext';
 
-function ProfileCard({
-    avatar,
-    firstName,
-    lastname,
-    username,
-    email,
-    location,
-}) {
+function ProfileCard({ avatar, firstName, lastname, username, email }) {
+    const [createdMeetupsCount, setCreatedMeetupsCount] = useState(0);
+    const [attendedMeetupsCount, setAttendedMeetupsCount] = useState(0);
+    const [user] = useUser();
+
+    useEffect(() => {
+        const fetchCreatedMeetups = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/meetups');
+                if (!response.ok) {
+                    throw new Error('Error fetching meetups');
+                }
+                const data = await response.json();
+                // Filtrar los meetups creados por el usuario (usando user.id)
+                const createdMeetups = data.data.filter(
+                    (meetup) => meetup.userId === user.id
+                );
+                setCreatedMeetupsCount(createdMeetups.length); // Contamos cuántos meetups creó el usuario
+            } catch (err) {
+                console.error('Error fetching created meetups:', err);
+            }
+        };
+
+        fetchCreatedMeetups();
+    }, [user.id]);
+
+    useEffect(() => {
+        const fetchAttendances = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3000/attendance'
+                );
+                if (!response.ok) {
+                    throw new Error('Error fetching attendances');
+                }
+                const data = await response.json();
+                // Filtrar las asistencias por userId (el id del usuario actual)
+                const userAttendances = data.data.filter(
+                    (attendance) => attendance.userId === user.id
+                );
+                // Contamos los meetups a los que el usuario asistirá (basado en las asistencias)
+                setAttendedMeetupsCount(userAttendances.length);
+            } catch (err) {
+                console.error('Error fetching attendances:', err);
+            }
+        };
+
+        fetchAttendances();
+    }, [user.id]);
+
     return (
         <div id="profileCard">
             <div
@@ -37,12 +81,12 @@ function ProfileCard({
             </div>
             <div id="contenedorDatosMeetupsUsuario">
                 <div id="asistenciasMeetup">
-                    <p>12</p>
+                    <p>{attendedMeetupsCount}</p>
                     <p>Asistirás</p>
                 </div>
 
                 <div id="meetupsEnPosesion">
-                    <p>2</p>
+                    <p>{createdMeetupsCount}</p>
                     <p>Meetups propios</p>
                 </div>
             </div>

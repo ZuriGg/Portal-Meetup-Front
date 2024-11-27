@@ -12,7 +12,7 @@ function MeetupCard({
     return (
         <div className="meetupsCard">
             <img
-                src={image || '/meetupPhotoDefault.jpg'} // Usa la imagen pasada como prop o la imagen por defecto
+                src={image || '/meetupPhotoDefault.jpg'}
                 alt="imagen de un meetup"
             />
             <h4>{title}</h4>

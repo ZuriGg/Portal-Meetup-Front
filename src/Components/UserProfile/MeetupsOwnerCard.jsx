@@ -32,13 +32,12 @@ function MeetupsOwnerCard({ titulo, url }) {
                         `http://localhost:3000/meetups/${meetup.id}/photos`
                     );
                     const imagesData = await response.json();
-                    console.log(imagesData.data); // Asegúrate de que las imágenes están siendo devueltas
+                    console.log(imagesData.data);
 
-                    // Si hay imágenes, seleccionamos la primera (o la lógica que prefieras)
                     const imageUrl =
                         imagesData.data.length > 0
                             ? `http://localhost:3000/uploads/${imagesData.data[0].name}`
-                            : '/meetupPhotoDefault.jpg'; // Usamos la imagen por defecto si no hay imágenes
+                            : '/meetupPhotoDefault.jpg';
 
                     return {
                         [meetup.id]: imageUrl,
@@ -50,14 +49,14 @@ function MeetupsOwnerCard({ titulo, url }) {
                     (acc, curr) => ({ ...acc, ...curr }),
                     {}
                 );
-                setImages(imagesObj); // Almacenamos todas las imágenes en el estado
+                setImages(imagesObj);
             } catch (err) {
                 setError('Error fetching images');
             }
         };
 
         if (results.length > 0) {
-            fetchImages(); // Obtener las imágenes después de obtener los meetups
+            fetchImages();
         }
     }, [results]);
 
@@ -104,7 +103,6 @@ function MeetupsOwnerCard({ titulo, url }) {
 
 export default MeetupsOwnerCard;
 
-//ESPECIFICAR MEJOR ESTOS PROPTYPES
 MeetupsOwnerCard.propTypes = {
     titulo: PropTypes.node,
     url: PropTypes.node,
