@@ -72,7 +72,7 @@ function DetailsMeetup() {
         }
     }, [meetupDetail]);
 
-    // Filtrar usuarios que asistieron al meetup
+    // Filtrar usuarios que asistieron al meetup.sdds
     const attendanceMeetup = attendance
         .filter((att) => att.meetupId === Number(meetupId))
         .map((att) => {
