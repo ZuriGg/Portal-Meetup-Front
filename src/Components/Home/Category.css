@@ -1,3 +1,10 @@
+.buttoms-categories {
+    display: flex;
+    margin-top: 4vh;
+    align-items: center;
+    gap: 5vh;
+}
+
 .buttoms-categories > button {
     width: 15vh;
     height: 6vh;
@@ -6,11 +13,10 @@
     align-items: center;
     border-radius: 2vh;
     font-size: 1.7vh;
+    transition: transform 0.2s ease;
 }
 
-.buttoms-categories {
-    display: flex;
-    margin-top: 2vh;
-    align-items: center;
-    gap: 5vh;
+.buttoms-categories > button:hover {
+    cursor: pointer;
+    transform: scale(1.2);
 }

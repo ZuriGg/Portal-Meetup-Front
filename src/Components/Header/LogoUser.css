@@ -35,6 +35,9 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    height: fit-content;
+    width: 20vh;
+
     top: calc(100% + 2vh);
     left: -65%;
     background-color: white;
@@ -42,9 +45,7 @@
     border-radius: 2vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 2vh;
-    z-index: 10;
-    height: fit-content;
-    width: 20vh;
+    z-index: 2;
 }
 
 #componenteLogouser > .modal-link {
