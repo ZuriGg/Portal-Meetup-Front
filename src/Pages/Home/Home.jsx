@@ -10,9 +10,9 @@ function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [votes, setVotes] = useState([]); //para gestionar los votos
+    /*     const [votes, setVotes] = useState([]); //para gestionar los votos
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
-    const [user] = useUser();
+    const [user] = useUser(); */
     const { qry } = useMeetup();
     const [images, setImages] = useState({}); // Este estado almacenará las imágenes por id de meetup
 
@@ -74,7 +74,7 @@ function Home() {
         }
     }, [results]); // Solo ejecuta esto cuando los results cambian
 
-    useEffect(() => {
+    /* useEffect(() => {
         //obtenemos TODAS las asistencias
         fetch(`http://localhost:3000/attendance`)
             .then((res) => {
@@ -100,7 +100,7 @@ function Home() {
                 console.log(data);
                 setVotes(data.data); //guardamos los votos en el estado
             });
-    }, []); //se ejecuta cuando se carga el componente
+    }, []); //se ejecuta cuando se carga el componente */
 
     /*     useEffect(() => {
         // Combinar las asistencias y los votos
