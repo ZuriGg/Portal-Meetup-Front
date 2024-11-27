@@ -23,6 +23,7 @@ function UserCard({ avatar, username, activatedButton }) {
 export default UserCard;
 
 UserCard.propTypes = {
-    avatar: PropTypes.node,
-    username: PropTypes.node,
+    avatar: PropTypes.string.isRequired, // Es una URL relativa o el nombre del archivo, debe ser un string y requerido.
+    username: PropTypes.string.isRequired, // Es un texto que representa el nombre de usuario, también requerido.
+    activatedButton: PropTypes.bool, // Es un booleano que indica si se muestra el botón o no.
 };

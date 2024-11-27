@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 // Footer en común para todo el sitio web
-import './Footer.css';
+import { Link } from 'react-router-dom';
 import { useUser } from '../../UserContext.jsx';
+import './Footer.css';
 
 function Footer() {
     const [user] = useUser();
