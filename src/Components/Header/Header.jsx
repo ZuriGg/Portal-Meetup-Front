@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import LogoUser from './LogoUser.jsx';
 import Filters from './Filters.jsx';
 import { useLocation } from 'react-router-dom';
+import SortFilter from './SortFilter.jsx';
 
 import './Header.css';
 
@@ -71,6 +72,7 @@ function Header() {
                         </Link>
                     </div>
                     {locationHome ? <Filters /> : null}
+                    <SortFilter />
                     <LogoUser />
                 </div>
                 {locationHome ? (

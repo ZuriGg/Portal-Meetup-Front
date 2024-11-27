@@ -10,8 +10,12 @@ function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [votes, setVotes] = useState([]); //para gestionar los votos
+    const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
     const [user] = useUser();
     const { qry } = useMeetup();
+    let meetupId;
+    console.log(meetupId);
     const [images, setImages] = useState({}); // Este estado almacenará las imágenes por id de meetup
 
     useEffect(() => {
@@ -71,6 +75,53 @@ function Home() {
             fetchImages(); // Obtener las imágenes después de obtener los meetups
         }
     }, [results]); // Solo ejecuta esto cuando los results cambian
+
+    useEffect(() => {
+        //obtenemos TODAS las asistencias
+        fetch(`http://localhost:3000/attendance`)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Error fetching attendance data');
+                }
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setAttendance(data.data); //guardamos las asistencias
+            });
+
+        //obtenemos TODOS los votos de un meetup
+        fetch(`http://localhost:3000/votesMeetup`)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Error fetching votes meetup data');
+                }
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setVotes(data.data); //guardamos los votos en el estado
+            });
+    }, []); //se ejecuta cuando se carga el componente
+
+    useEffect(() => {
+        // Combinar las asistencias y los votos
+        const combinedRatings = attendance
+            .filter((sesion) => sesion.meetupId === meetupId) // Filtrar las asistencias para el meetup específico
+            .map((sesion) => {
+                // Buscar los votos relacionados con esta asistencia
+                const sessionVotes = votes.filter(
+                    (voto) => voto.attendanceId === sesion.id
+                );
+                return {
+                    userId: sesion.userId,
+                    date: sesion.date,
+                    sessionVotes,
+                };
+            });
+
+        setResults(combinedRatings); // Guardar las valoraciones combinadas
+    }, [attendance, votes]);
 
     // Mostrar cargando o error
     if (loading) return <div>Loading...</div>;
