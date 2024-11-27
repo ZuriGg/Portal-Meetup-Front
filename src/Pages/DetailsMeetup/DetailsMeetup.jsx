@@ -142,6 +142,7 @@ function DetailsMeetup() {
                     headers: {
                         'Content-Type': 'application/json',
                         user: userId,
+                        Authorization: `${user.token.token}`,
                     },
 
                     body: JSON.stringify({
