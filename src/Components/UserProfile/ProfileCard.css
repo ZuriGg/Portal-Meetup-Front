@@ -64,3 +64,7 @@
     font-size: 3vh;
     text-shadow: 0px 0px 2px black;
 }
+
+#contenedorDatosMeetupsUsuario p {
+    font-size: 2.7vh;
+}
