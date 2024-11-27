@@ -4,7 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 //Importación de todas las rutas
 import AppRoutes from './Pages/Routes.jsx';
-import NotFound from './Pages/NotFound/NotFound.jsx';
+import { ErrorPage } from './Pages/ErrorPage/ErrorPage.jsx';
 
 //Importación de header y Footer
 import Header from './Components/Header/Header.jsx';
@@ -45,7 +45,14 @@ function App() {
     }, [location]); //se actualiza cada vez que el path cambia
 
     return (
-        <ErrorBoundary fallback={<NotFound />}>
+        <ErrorBoundary
+            fallbackRender={({ error, resetErrorBoundary }) => (
+                <ErrorPage
+                    error={error}
+                    resetErrorBoundary={resetErrorBoundary}
+                />
+            )}
+        >
             <Header />
             <main>
                 {/* Este componente hace las veces de "index" para importar todas las rutas a la vez, y "Switch" se encarga de asignar solo la ruta solicitada en la url o mediante un Navigate o "<a><a/>" */}
