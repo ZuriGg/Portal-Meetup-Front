@@ -15,7 +15,7 @@ function AdminPage() {
     }
 
     return (
-        <div>
+        <div id="adminPage">
             <AdminValidateCard titulo="Meetups para validar" url="meetups" />
         </div>
     );

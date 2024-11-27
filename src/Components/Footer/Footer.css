@@ -11,7 +11,7 @@ footer {
 }
 
 footer img {
-    width: 30vh;
+    width: 10vh;
     height: fit-content;
     justify-self: center;
     align-self: center;
@@ -28,7 +28,10 @@ footer img:active {
 
 footer a {
     color: white;
-    font-size: 1.5vh;
+    font-size: 1.3vh;
+}
+footer p {
+    font-size: 1.3vh;
 }
 
 #footerContentAll {
@@ -38,7 +41,7 @@ footer a {
 }
 
 footer h5 {
-    font-size: 2.5vh;
+    font-size: 2vh;
     margin-bottom: 2vh;
 }
 
@@ -59,9 +62,7 @@ footer h5 {
 
 footer .flechaAbajo {
     position: absolute;
-    bottom: 3vh;
-    right: 5vh;
-    width: 6vh;
+    width: 2vh;
     transition: transform 0.1s ease;
 }
 
@@ -72,4 +73,148 @@ footer .flechaAbajo:hover {
 
 footer .flechaAbajo:active {
     transform: scale(1);
+}
+
+#flechaFooter1 {
+    top: 1.5vh;
+    right: 2vh;
+}
+
+#flechaFooter2 {
+    display: none;
+}
+
+#flechaFooter3 {
+    display: none;
+}
+
+#flechaFooter4 {
+    display: none;
+}
+
+#flechaFooter5 {
+    display: none;
+}
+
+#flechaFooter6 {
+    display: none;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    footer {
+        position: relative;
+        background-image: url(../../../public/videoFondoFooter.gif);
+        background-color: rgba(0, 0, 0, 0.532);
+        background-blend-mode: overlay;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-top: rgb(46, 46, 46) solid 0.2vh;
+        padding-block: 2vh;
+        margin-top: 5vh;
+    }
+
+    footer img {
+        width: 30vh;
+        height: fit-content;
+        justify-self: center;
+        align-self: center;
+        transition: transform 0.2s ease;
+    }
+
+    footer img:hover {
+        transform: scale(1.2);
+    }
+
+    footer img:active {
+        transform: scale(1);
+    }
+
+    footer a {
+        color: white;
+        font-size: 1.5vh;
+    }
+
+    #footerContentAll {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    footer h5 {
+        font-size: 2.5vh;
+        margin-bottom: 2vh;
+    }
+
+    .footerContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5vh;
+    }
+
+    .footerLogo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2vh;
+    }
+
+    footer .flechaAbajo {
+        position: absolute;
+
+        width: 4vh;
+        transition: transform 0.1s ease;
+    }
+
+    footer .flechaAbajo:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+
+    footer .flechaAbajo:active {
+        transform: scale(1);
+    }
+
+    #flechaFooter1 {
+        top: 7vh;
+        left: 6vh;
+    }
+
+    #flechaFooter2 {
+        display: block;
+        top: 10vh;
+        left: 6vh;
+    }
+
+    #flechaFooter3 {
+        display: block;
+        top: 13vh;
+        left: 6vh;
+    }
+
+    #flechaFooter4 {
+        display: block;
+        top: 7vh;
+        right: 6vh;
+    }
+
+    #flechaFooter5 {
+        display: block;
+        top: 10vh;
+        right: 6vh;
+    }
+
+    #flechaFooter6 {
+        display: block;
+        top: 13vh;
+        right: 6vh;
+    }
 }

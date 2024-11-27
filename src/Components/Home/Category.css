@@ -1,13 +1,17 @@
 .buttoms-categories {
     display: flex;
+    flex-direction: column;
     margin-top: 4vh;
     align-items: center;
-    gap: 5vh;
+    gap: 0.5vh;
+    background-color: rgba(255, 255, 255, 0.704);
+    padding: 2vh;
+    border-radius: 2vh;
 }
 
 .buttoms-categories > button {
-    width: 15vh;
-    height: 6vh;
+    width: 20vh;
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,4 +23,37 @@
 .buttoms-categories > button:hover {
     cursor: pointer;
     transform: scale(1.2);
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    .buttoms-categories {
+        display: flex;
+        flex-direction: row;
+        margin-top: 4vh;
+        align-items: center;
+        gap: 5vh;
+    }
+
+    .buttoms-categories > button {
+        width: 15vh;
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2vh;
+        font-size: 1.7vh;
+        transition: transform 0.2s ease;
+    }
+
+    .buttoms-categories > button:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
 }

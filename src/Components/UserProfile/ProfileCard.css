@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60vh;
-    height: 75vh;
+    width: 40vh;
+    height: fit-content;
     border-radius: 2vh;
     font-size: 3vh;
     padding: 2.5vh;
@@ -27,23 +27,31 @@
     background-size: cover;
     color: white;
 }
+
 #datosUsuarioContainer > a {
     align-self: flex-end;
 }
+
 #datosUsuarioContainer > a > #botonCambioAvatar {
     justify-self: flex-end;
     padding: 1.5vh;
     font-size: 2vh;
 }
+
 #datosUsuarioContainer > #datosUsuario {
     align-self: baseline;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 29vh;
     padding: 1.5vh;
     border-radius: 2vh;
     background-color: rgba(0, 0, 0, 0.711);
     box-shadow: 0 0 15px 8px rgba(0, 0, 0, 0.5);
+}
+
+#datosUsuarioContainer > #datosUsuario p {
+    font-size: 2.5vh;
 }
 
 #contenedorDatosMeetupsUsuario {
@@ -53,7 +61,7 @@
     align-items: center;
     width: fit-content;
     height: fit-content;
-    margin-top: 4vh;
+    margin-top: 1vh;
     gap: 5vh;
 }
 
@@ -63,4 +71,91 @@
     font-weight: bold;
     font-size: 3vh;
     text-shadow: 0px 0px 2px black;
+}
+
+#contenedorDatosMeetupsUsuario p {
+    font-size: 2.6vh;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    #profileCard {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 60vh;
+        height: 75vh;
+        border-radius: 2vh;
+        font-size: 3vh;
+        padding: 2.5vh;
+        background-color: hsla(0, 0%, 100%, 0.586);
+
+        color: black;
+    }
+
+    #datosUsuarioContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        aspect-ratio: 3/3;
+        padding: 3vh;
+        border-radius: 2vh;
+        background-color: #a31621;
+        background-repeat: repeat;
+        background-position: center;
+        background-size: cover;
+        color: white;
+    }
+
+    #datosUsuarioContainer > a {
+        align-self: flex-end;
+    }
+
+    #datosUsuarioContainer > a > #botonCambioAvatar {
+        justify-self: flex-end;
+        padding: 1.5vh;
+        font-size: 2vh;
+    }
+
+    #datosUsuarioContainer > #datosUsuario {
+        align-self: baseline;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5vh;
+        border-radius: 2vh;
+        background-color: rgba(0, 0, 0, 0.711);
+        box-shadow: 0 0 15px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #contenedorDatosMeetupsUsuario {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        height: fit-content;
+        margin-top: 4vh;
+        gap: 5vh;
+    }
+
+    #contenedorDatosMeetupsUsuario div {
+        padding: 0.7vh;
+        height: fit-content;
+        font-weight: bold;
+        font-size: 3vh;
+        text-shadow: 0px 0px 2px black;
+    }
+
+    #contenedorDatosMeetupsUsuario p {
+        font-size: 2.7vh;
+    }
 }

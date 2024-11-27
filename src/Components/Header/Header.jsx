@@ -59,7 +59,7 @@ function Header() {
                     <Link to="/">
                         <img src="/logotipo.webp" alt="logotipo de la web" />
                     </Link>
-                    <div>
+                    <div id="botonesHeaderTest">
                         <Link to="/meetup/edit">
                             <button>/meetup/edit</button>
                         </Link>
