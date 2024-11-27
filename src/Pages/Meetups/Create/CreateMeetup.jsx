@@ -1,7 +1,7 @@
 // Página para la creación de un Meetup
-import './CreateMeetup.css';
 import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
+import './CreateMeetup.css';
 
 function CreateMeetup() {
     const [user] = useUser();

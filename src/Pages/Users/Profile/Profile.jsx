@@ -35,12 +35,12 @@ function Profile() {
 
             <div id="listaMeetupsUsuario">
                 <MeetupsAsistsCard
-                    titulo="Meetups a los que asistes"
+                    titulo="Meetups a los que asiste:"
                     url="attendance"
                 />
 
                 <MeetupsOwnerCard
-                    titulo="Meetups creados por ti"
+                    titulo="Meetups creados por usted:"
                     url="meetups"
                 />
             </div>

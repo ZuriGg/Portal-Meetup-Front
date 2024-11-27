@@ -59,6 +59,6 @@ export default MeetupsOwnerCard;
 
 //ESPECIFICAR MEJOR ESTOS PROPTYPES
 MeetupsOwnerCard.propTypes = {
-    titulo: PropTypes.node,
-    url: PropTypes.node,
+    titulo: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };

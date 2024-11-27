@@ -162,5 +162,5 @@ export const MeetupRatingList = ({ meetupId }) => {
 };
 
 MeetupRatingList.propTypes = {
-    meetupId: PropTypes.node,
+    meetupId: PropTypes.number.isRequired,
 };
