@@ -81,13 +81,13 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
             </div>
             <div id="contenedorDatosMeetupsUsuario">
                 <div id="asistenciasMeetup">
-                    <p>{attendedMeetupsCount}</p>
-                    <p>Asistirás</p>
+                    <p>12</p>
+                    <p>A los que asiste</p>
                 </div>
 
                 <div id="meetupsEnPosesion">
-                    <p>{createdMeetupsCount}</p>
-                    <p>Meetups propios</p>
+                    <p>2</p>
+                    <p>Creados por usted</p>
                 </div>
             </div>
         </div>
