@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center; /* Alineación vertical de los elementos */
     height: fit-content; /* Ajusta según el diseño deseado */
-    width: 45vh; /* Se adapta al ancho del contenedor */
+    width: 90vw; /* Se adapta al ancho del contenedor */
     padding: 2vh; /* Espaciado interno */
     border-radius: 2vh; /* Bordes redondeados */
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
@@ -55,7 +55,7 @@
     color: white; /* Texto blanco */
     border: none; /* Sin borde */
     border-radius: 2vh; /* Forma circular */
-    width: 15vh;
+    width: 19vh;
     height: 5vh;
     cursor: pointer; /* Cambiar cursor a mano al pasar */
     display: flex;
