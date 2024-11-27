@@ -1,14 +1,16 @@
-import './MeetupsOwnerCard.css';
 import MeetupCard from '../MeetupCard/MeetupCard.jsx';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useUser } from '../../UserContext.jsx';
 import { Link } from 'react-router-dom';
 
+import './MeetupsOwnerCard.css';
+
 function MeetupsOwnerCard({ titulo, url }) {
     const [results, setResults] = useState([]);
     const [user] = useUser();
     const [images, setImages] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         fetch(`http://localhost:3000/${url}`)
@@ -21,8 +23,13 @@ function MeetupsOwnerCard({ titulo, url }) {
             .then((data) => {
                 console.log(data);
                 setResults(data.data);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+                setIsLoading(false);
             });
-    }, []);
+    }, [url]);
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -51,14 +58,18 @@ function MeetupsOwnerCard({ titulo, url }) {
                 );
                 setImages(imagesObj);
             } catch (err) {
-                setError('Error fetching images');
-            }
+                console.error('Error fetching meetups:', err);
+            } //ARREGLADO
         };
 
         if (results.length > 0) {
             fetchImages();
         }
     }, [results]);
+
+    if (isLoading) {
+        return <p>Cargando contenido...</p>;
+    }
 
     return (
         <div id="meetupListCard">
@@ -76,10 +87,14 @@ function MeetupsOwnerCard({ titulo, url }) {
                                     <MeetupCard
                                         title={meetup.title}
                                         startDate={meetup.startDate}
-                                        hourMeetup={meetup.hourMeetup
-                                            .split(':')
-                                            .slice(0, 2)
-                                            .join(':')}
+                                        hourMeetup={
+                                            meetup.hourMeetup
+                                                ? meetup.hourMeetup
+                                                      .split(':')
+                                                      .slice(0, 2)
+                                                      .join(':')
+                                                : 'N/A'
+                                        }
                                         aforoMax={meetup.aforoMax}
                                         image={images[meetup.id]}
                                         dayOfTheWeek={
