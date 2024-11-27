@@ -1,5 +1,6 @@
 import './Home.css';
 import { useEffect, useState } from 'react';
+
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category/Category.jsx';
@@ -12,8 +13,8 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     /*     const [votes, setVotes] = useState([]); //para gestionar los votos
-    const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
-    const [user] = useUser(); */
+    const [attendance, setAttendance] = useState([]); //para gestionar las asistencias */
+
     const { qry } = useMeetup();
     const [images, setImages] = useState({}); // Este estado almacenará las imágenes por id de meetup
 

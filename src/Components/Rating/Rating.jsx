@@ -81,6 +81,7 @@ export const Rating = () => {
                     <label>
                         Comentario:
                         <textarea
+                            id="textarea-star"
                             value={coment}
                             onChange={(e) => setComent(e.target.value)}
                             placeholder="Escriba un comentario (opcional):"
