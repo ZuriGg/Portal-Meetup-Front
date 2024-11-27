@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import UserCard from '../../Components/UserCard/UserCard';
+import { useUser } from '../../UserContext.jsx';
 
 function DetailsMeetup() {
     const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
@@ -9,6 +10,9 @@ function DetailsMeetup() {
     const [meetupUsers, setMeetupUsers] = useState([]);
     const [location, setLocation] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
+    const [availableDates, setAvailableDates] = useState([]); // Estado para guardar los días disponibles en la BBDD
+    const [selectedDay, setSelectedDay] = useState(null); // Nuevo estado que guarda el día seleccionado
+    const [user, ,] = useUser(); // Obtén el usuario desde el UserContext
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,6 +50,7 @@ function DetailsMeetup() {
         };
         fetchData();
     }, [meetupId]);
+
     // Nuevo useEffect para obtener la location después de que meetupDetail ha sido actualizado
     useEffect(() => {
         if (meetupDetail && meetupDetail.locationId) {
@@ -74,7 +79,87 @@ function DetailsMeetup() {
             return meetupUsers.find((user) => user.id === att.userId);
         });
 
-    console.log(`los usuarios son ${attendanceMeetup}`);
+    console.log('Los usuarios son:', attendanceMeetup);
+
+    // Renderiza los días disponibles
+    useEffect(() => {
+        if (meetupDetail?.dayOfTheWeek) {
+            const calculateNextDates = () => {
+                const today = new Date();
+                const currentDay = today.getDay(); // Día actual (0 = domingo, 6 = sábado)
+                const dayOfWeekMap = {
+                    domingo: 0,
+                    lunes: 1,
+                    martes: 2,
+                    miercoles: 3,
+                    jueves: 4,
+                    viernes: 5,
+                    sabado: 6,
+                };
+
+                const targetDay =
+                    dayOfWeekMap[meetupDetail.dayOfTheWeek.toLowerCase()];
+                const dates = [];
+
+                // Si el día objetivo ya pasó esta semana, lo ajustamos para la próxima semana
+                const diffToNextWeek =
+                    targetDay >= currentDay
+                        ? targetDay - currentDay
+                        : 7 - (currentDay - targetDay);
+
+                // Primera fecha disponible
+                const firstDate = new Date(today);
+                firstDate.setDate(today.getDate() + diffToNextWeek);
+                dates.push(firstDate);
+
+                // Segunda fecha disponible (una semana después)
+                const secondDate = new Date(firstDate);
+                secondDate.setDate(firstDate.getDate() + 7);
+                dates.push(secondDate);
+
+                setAvailableDates(dates);
+            };
+
+            calculateNextDates();
+        }
+    }, [meetupDetail]);
+
+    // Función que maneja la selección de la fecha
+    const handleDateSelect = async (date) => {
+        setSelectedDay(date);
+        alert(`Has seleccionado el día: ${date.toLocaleDateString()}`);
+
+        // Obtener el userId desde el UserContext
+        const userId = user.id;
+        const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); // '2024-12-04 04:04:05'
+
+        // Enviar la solicitud de inscripción al backend
+        try {
+            const response = await fetch(
+                `http://localhost:3000/meetups/${meetupId}/inscription`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        user: userId,
+                    },
+
+                    body: JSON.stringify({
+                        date: formattedDate,
+                    }),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Error al inscribirse al meetup');
+            }
+
+            const result = await response.json();
+            console.log('Inscripción exitosa:', result);
+        } catch (error) {
+            console.error('Error al inscribirse:', error);
+        }
+    };
 
     // Mostrar un mensaje de carga mientras se obtienen los datos
     if (loading) {
@@ -109,16 +194,40 @@ function DetailsMeetup() {
                 {/* Renderizar la lista de asistentes */}
                 <p className="mapLocation">{location.city}</p>
                 <ul>
-                    {attendanceMeetup.map((user) => (
-                        <li key={user.id}>
-                            <UserCard
-                                avatar={user.avatar}
-                                username={user.username}
-                                activatedButton={false}
-                            />
-                        </li>
-                    ))}
+                    {attendanceMeetup.map(
+                        (user) =>
+                            user && ( // Asegura que user no es null o undefined
+                                <li key={user.id}>
+                                    <UserCard
+                                        avatar={user.avatar}
+                                        username={user.username}
+                                        activatedButton={false}
+                                    />
+                                </li>
+                            )
+                    )}
                 </ul>
+                <div className="available-dates">
+                    <h3>Fechas disponibles para inscribirse:</h3>
+                    {availableDates.map((date, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handleDateSelect(date)}
+                        >
+                            {date.toLocaleDateString()}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Mostrar la fecha seleccionada si existe */}
+                {selectedDay && (
+                    <div>
+                        <p>
+                            Has seleccionado el día:{' '}
+                            {selectedDay.toLocaleDateString()}
+                        </p>
+                    </div>
+                )}
             </div>
         </>
     );
