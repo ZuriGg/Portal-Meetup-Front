@@ -15,6 +15,19 @@ header {
     background-size: cover;
 }
 
+#botonesHeaderTest button {
+    background-color: rgba(245, 222, 179, 0);
+}
+
+header h1 {
+    font-size: 12vh;
+    padding-top: 15vh;
+}
+
+header h2 {
+    font-size: 3.5vh;
+}
+
 header #headerTop {
     position: absolute;
     top: 4vh;
@@ -41,7 +54,7 @@ header #headerBottom > p {
     width: 50%;
     padding: 2vh;
     border-radius: 2vh;
-    font-size: 2vh;
+    font-size: 2.5vh;
     margin-block: 6vh;
 }
 
