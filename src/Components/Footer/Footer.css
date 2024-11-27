@@ -15,6 +15,15 @@ footer img {
     height: fit-content;
     justify-self: center;
     align-self: center;
+    transition: transform 0.2s ease;
+}
+
+footer img:hover {
+    transform: scale(1.2);
+}
+
+footer img:active {
+    transform: scale(1);
 }
 
 footer a {
@@ -53,8 +62,14 @@ footer .flechaAbajo {
     bottom: 3vh;
     right: 5vh;
     width: 6vh;
+    transition: transform 0.1s ease;
 }
 
 footer .flechaAbajo:hover {
     cursor: pointer;
+    transform: scale(1.2);
+}
+
+footer .flechaAbajo:active {
+    transform: scale(1);
 }
