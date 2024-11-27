@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMeetup } from '../../MeetupContext.jsx';
+import { useMeetup } from '../../../MeetupContext.jsx';
 import './SortFilter.css';
 
 export default function SortFilter() {

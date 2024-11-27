@@ -2,9 +2,9 @@ import './Home.css';
 import { useEffect, useState } from 'react';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
-import Category from '../../Components/Home/Category.jsx';
-import Filters from './Filters.jsx';
-import SortFilter from './SortFilter.jsx';
+import Category from '../../Components/Home/Category/Category.jsx';
+import Filters from '../../Components/Home/Filters/Filters.jsx';
+import SortFilter from '../../Components/Home/SortFilter/SortFilter.jsx';
 import { Link } from 'react-router-dom';
 
 function Home() {

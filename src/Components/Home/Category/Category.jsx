@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useMeetup } from '../../MeetupContext.jsx';
+import { useMeetup } from '../../../MeetupContext.jsx';
 
 import './Category.css';
 
