@@ -1,9 +1,10 @@
 import './Home.css';
 import { useEffect, useState } from 'react';
-import { useUser } from '../../UserContext.jsx';
 import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category.jsx';
+import Filters from './Filters.jsx';
+import SortFilter from './SortFilter.jsx';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -65,6 +66,8 @@ function Home() {
                 );
                 setImages(imagesObj); // Almacenamos todas las imágenes en el estado
             } catch (err) {
+                console.log(err);
+
                 setError('Error fetching images');
             }
         };
@@ -127,6 +130,8 @@ function Home() {
 
     return (
         <div className="home" id="seccionObjetivo">
+            <Filters />
+            <SortFilter />
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (
