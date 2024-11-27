@@ -3,13 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 2vh;
+    padding: 2vh;
     width: 100%;
 }
 
 .home > h3 {
-    font-size: 6vh;
+    font-size: 5vh;
     margin-bottom: 2vh;
 }
 
@@ -29,4 +29,46 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    .home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+    }
+
+    .home > h3 {
+        font-size: 6vh;
+        margin-bottom: 2vh;
+    }
+
+    .home > ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 5vh;
+    }
+
+    .home > ul > li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+    }
 }
