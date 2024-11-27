@@ -104,6 +104,6 @@ function MeetupsOwnerCard({ titulo, url }) {
 export default MeetupsOwnerCard;
 
 MeetupsOwnerCard.propTypes = {
-    titulo: PropTypes.node,
-    url: PropTypes.node,
+    titulo: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };

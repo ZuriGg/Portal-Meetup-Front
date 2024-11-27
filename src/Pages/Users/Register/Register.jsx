@@ -114,7 +114,7 @@ const Register = () => {
                 </label>
                 <button type="submit">Registrarse</button>
                 {success && (
-                    <p>Se ha registrado correctamente, mira tu correo</p>
+                    <p>Se ha registrado correctamente, revise su email</p>
                 )}
                 {error && <p>{error}</p>}
             </form>

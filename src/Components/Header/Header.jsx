@@ -78,19 +78,19 @@ function Header() {
                 {locationHome ? (
                     <div id="headerBottom">
                         <h1>OurMeet</h1>
-                        <h2>nuestro lugar de encuentro</h2>
+                        <h2>Nuestro lugar de encuentro</h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Vel eos ab adipisci facilis amet eaque quas
-                            placeat iusto deserunt alias optio illum, reiciendis
-                            omnis tempora commodi repudiandae dolore provident
-                            perferendis? Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Vel eos ab adipisci facilis amet
-                            eaque quas placeat iusto deserunt alias optio illum,
-                            reiciendis omnis tempora commodi repudiandae dolore
-                            provident perferendis? Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Vel eos ab adipisci
-                            facilis amet e
+                            🎉 ¡Bienvenidos a nuestro lugar de encuentro! Unimos
+                            a grupos de personas apasionadas por diversas
+                            actividades, donde puedan compartir ideas, aprender
+                            y crecer juntas. 🌟 Ya sea que seas un experto en el
+                            tema o estés comenzando, este espacio es para
+                            compartir experiencias, descubrir nuevas
+                            perspectivas y crear una comunidad vibrante. 🙌 💬
+                            ¿Qué puedes esperar? Reuniones dinámicas, talleres
+                            interactivos, charlas inspiradoras y, por supuesto,
+                            ¡buena compañía! ✨ Únete a nosotros y sé parte de
+                            esta aventura. ¡Te esperamos!
                         </p>
                         <div
                             id="flechasDerecha"

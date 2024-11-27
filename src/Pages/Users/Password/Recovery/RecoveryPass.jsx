@@ -37,7 +37,7 @@ export default function RecoveryPass() {
 
     return (
         <>
-            <h1>Recover</h1>
+            <h1>Recover Pass</h1>
             <p>
                 Inserte su correo electrónico, para iniciar el proceso de
                 recuperación de contraseña:

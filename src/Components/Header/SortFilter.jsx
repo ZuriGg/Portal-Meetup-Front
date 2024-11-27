@@ -39,11 +39,11 @@ export default function SortFilter() {
                     onChange={handleInputChange}
                 >
                     <option value="createdAt">
-                        ordenar por fecha de creacion
+                        Ordenar por fecha de creación
                     </option>
-                    <option value="votes">ordenar por numero de votos</option>
+                    <option value="votes">Ordenar por número de votos</option>
                 </select>
-                <button type="submit">aplicar ordernacion</button>
+                <button type="submit">Aplicar ordernación</button>
             </div>
         </form>
     );
