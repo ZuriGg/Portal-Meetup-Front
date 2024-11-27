@@ -1,7 +1,7 @@
 #profileContainer {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3vh;
 }
 
 #listaMeetupsUsuario {
@@ -18,9 +19,45 @@
 }
 
 #profileContainer #profileCard {
-    margin: 5vh;
+    margin-inline: 2vh;
 }
 
 #profileContainer #meetupListCard {
     margin-top: 5vh;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    #profileContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    #panelesUsuario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #listaMeetupsUsuario {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #profileContainer #profileCard {
+        margin: 5vh;
+    }
+
+    #profileContainer #meetupListCard {
+        margin-top: 5vh;
+    }
 }

@@ -62,9 +62,7 @@ footer h5 {
 
 footer .flechaAbajo {
     position: absolute;
-    top: 2vh;
-    right: 2vh;
-    width: 3vh;
+    width: 2vh;
     transition: transform 0.1s ease;
 }
 
@@ -75,6 +73,31 @@ footer .flechaAbajo:hover {
 
 footer .flechaAbajo:active {
     transform: scale(1);
+}
+
+#flechaFooter1 {
+    top: 1.5vh;
+    right: 2vh;
+}
+
+#flechaFooter2 {
+    display: none;
+}
+
+#flechaFooter3 {
+    display: none;
+}
+
+#flechaFooter4 {
+    display: none;
+}
+
+#flechaFooter5 {
+    display: none;
+}
+
+#flechaFooter6 {
+    display: none;
 }
 
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
@@ -146,9 +169,8 @@ footer .flechaAbajo:active {
 
     footer .flechaAbajo {
         position: absolute;
-        bottom: 3vh;
-        right: 5vh;
-        width: 6vh;
+
+        width: 4vh;
         transition: transform 0.1s ease;
     }
 
@@ -159,5 +181,40 @@ footer .flechaAbajo:active {
 
     footer .flechaAbajo:active {
         transform: scale(1);
+    }
+
+    #flechaFooter1 {
+        top: 7vh;
+        left: 6vh;
+    }
+
+    #flechaFooter2 {
+        display: block;
+        top: 10vh;
+        left: 6vh;
+    }
+
+    #flechaFooter3 {
+        display: block;
+        top: 13vh;
+        left: 6vh;
+    }
+
+    #flechaFooter4 {
+        display: block;
+        top: 7vh;
+        right: 6vh;
+    }
+
+    #flechaFooter5 {
+        display: block;
+        top: 10vh;
+        right: 6vh;
+    }
+
+    #flechaFooter6 {
+        display: block;
+        top: 13vh;
+        right: 6vh;
     }
 }

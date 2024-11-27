@@ -7,14 +7,14 @@
 }
 
 .PrevisualizacionImagen .añadirImagen {
-    width: 40vh;
+    width: 35vh;
     aspect-ratio: 16/9;
     border: 2px dashed #888;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    margin-bottom: 5px;
+    margin-bottom: 1vh;
 }
 
 .PrevisualizacionImagen .añadirImagen::after {
@@ -28,12 +28,12 @@
 }
 
 .PrevisualizacionImagen img {
-    width: 60vh;
+    width: 35vh;
     aspect-ratio: 16/9;
     object-fit: cover;
     border: 2px dashed #888;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 1vh;
 }
 
 .PrevisualizacionImagen form {
@@ -48,4 +48,65 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    .PrevisualizacionImagen {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .PrevisualizacionImagen .añadirImagen {
+        width: 40vh;
+        aspect-ratio: 16/9;
+        border: 2px dashed #888;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+
+    .PrevisualizacionImagen .añadirImagen::after {
+        content: '+';
+        font-size: 400%;
+        color: #8f8;
+    }
+
+    .PrevisualizacionImagen input {
+        display: none;
+    }
+
+    .PrevisualizacionImagen img {
+        width: 60vh;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border: 2px dashed #888;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .PrevisualizacionImagen form {
+        height: 100%;
+    }
+
+    .añadirImagen {
+        text-align: center;
+    }
+
+    .previsualizacion {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

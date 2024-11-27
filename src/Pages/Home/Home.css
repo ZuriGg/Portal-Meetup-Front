@@ -31,6 +31,16 @@
     width: fit-content;
 }
 
+.home #filtrosHome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+    width: 100%;
+    margin-top: 2vh;
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -51,7 +61,7 @@
 
     .home > h3 {
         font-size: 6vh;
-        margin-bottom: 2vh;
+        margin-bottom: 5vh;
     }
 
     .home > ul {
@@ -70,5 +80,15 @@
         justify-content: center;
         align-items: center;
         width: fit-content;
+    }
+
+    .home #filtrosHome {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 100%;
+        margin-top: 2vh;
+        margin-bottom: 15vh;
     }
 }

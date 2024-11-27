@@ -131,8 +131,10 @@ function Home() {
 
     return (
         <div className="home" id="seccionObjetivo">
-            <Filters />
-            <SortFilter />
+            <div id="filtrosHome">
+                <Filters />
+                <SortFilter />
+            </div>
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (

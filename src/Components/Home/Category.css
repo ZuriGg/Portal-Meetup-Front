@@ -35,6 +35,7 @@
 @media (min-width: 900px) {
     .buttoms-categories {
         display: flex;
+        flex-direction: row;
         margin-top: 4vh;
         align-items: center;
         gap: 5vh;

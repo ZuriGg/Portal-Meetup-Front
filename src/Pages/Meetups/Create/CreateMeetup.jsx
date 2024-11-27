@@ -132,7 +132,7 @@ function CreateMeetup() {
 
     return (
         <div className="areaFormulario">
-            <h1>Creación de un nuevo meetup</h1>
+            <h3>Creando nuevo meetup</h3>
 
             <form onSubmit={enviarDatos}>
                 {['image1', 'image2', 'image3'].map((inputName) => (

@@ -43,7 +43,7 @@ export default function SortFilter() {
                     </option>
                     <option value="votes">Ordenar por número de votos</option>
                 </select>
-                <button type="submit">Aplicar ordernación</button>
+                <button type="submit">Ordernación</button>
             </div>
         </form>
     );

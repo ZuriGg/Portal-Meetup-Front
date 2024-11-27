@@ -8,18 +8,23 @@ div.areaFormulario {
     align-items: center;
     gap: 2vh;
     height: 100%;
-    width: 100%;
+    width: 10vh;
     font-size: 1.5vh;
 }
 
+div.areaFormulario h3 {
+    font-size: 4vh;
+    width: 450%;
+}
+
 form {
-    justify-self: center;
     align-self: center;
+    justify-self: center;
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    align-items: start;
-    gap: 2vh;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
     padding: 4vh;
     background-color: #ffffffd0;
     border-radius: 2vh;
@@ -34,24 +39,33 @@ form > button {
 }
 
 form > label {
-    width: 60vh;
+    width: 35vh;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    justify-content: left;
+    align-items: center;
+    grid-template-columns: 1fr 3fr;
     gap: 2vh;
     border-radius: 2vh;
 }
 
 form > label > input {
     padding: 0.5vh;
+    width: 25vh;
+    height: 4vh;
+    border-radius: 1vh;
 }
 
 form > label > textarea {
     padding: 0.5vh;
-    height: 10vh;
+    width: 25vh;
+    height: 12vh;
+    border-radius: 1vh;
+    resize: none;
 }
 
 form > label > select {
     padding: 0.5vh;
+    border-radius: 1vh;
 }
 
 form > label > :last-child {
@@ -93,4 +107,113 @@ a {
 
 a:hover {
     color: #535bf2;
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    /* ----------------------- Formularios ----------------------- */
+
+    div.areaFormulario {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2vh;
+        height: 100%;
+        width: 100%;
+        font-size: 1.5vh;
+    }
+
+    form {
+        justify-self: center;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+        gap: 2vh;
+        padding: 4vh;
+        background-color: #ffffffd0;
+        border-radius: 2vh;
+        height: fit-content;
+        color: black;
+        text-shadow: 0px 0px 1px black;
+        margin-bottom: 6vh;
+    }
+
+    form > button {
+        align-self: center;
+    }
+
+    form > label {
+        width: 60vh;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: 2vh;
+        border-radius: 2vh;
+    }
+
+    form > label > input {
+        width: 45vh;
+        padding: 0.5vh;
+    }
+
+    form > label > textarea {
+        width: 45vh;
+        padding: 0.5vh;
+        height: 10vh;
+    }
+
+    form > label > select {
+        width: 45vh;
+        padding: 0.5vh;
+    }
+
+    form > label > :last-child {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* ----------------------- Botones ----------------------- */
+
+    button {
+        border-radius: 8px;
+        border: 1px solid transparent;
+        padding: 0.6em 1.2em;
+        font-size: 1em;
+        font-weight: 500;
+        font-family: inherit;
+        background-color: black;
+        cursor: pointer;
+        transition: background-color 0.25s;
+        min-width: 7vh;
+    }
+    button:hover {
+        background-color: #1a1a1ab4;
+        cursor: pointer;
+    }
+    button:focus,
+    button:focus-visible {
+        outline: 4px auto -webkit-focus-ring-color;
+    }
+
+    /* ----------------------- Links ( <a />, <Link /> ) ----------------------- */
+
+    a {
+        font-weight: 500;
+        color: #646cff;
+        text-decoration: inherit;
+    }
+
+    a:hover {
+        color: #535bf2;
+    }
 }

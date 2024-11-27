@@ -1,4 +1,137 @@
 .sort-form {
-    width: auto;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    margin-bottom: 00vh;
+    padding: 0vh;
+    align-self: flex-start;
+    justify-self: flex-end;
+}
+
+.sort-form .filters-sort {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Alineación vertical de los elementos */
+    height: fit-content; /* Ajusta según el diseño deseado */
+    width: 45vh; /* Se adapta al ancho del contenedor */
+    padding: 2vh; /* Espaciado interno */
+    border-radius: 2vh; /* Bordes redondeados */
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
+    background-color: rgba(255, 255, 255, 0.502);
+    gap: 1.5vh;
+}
+
+.sort-form input {
+    width: 35vh;
+    flex: 1;
+    margin-right: 10px;
+    border: none; /* Sin borde */
+    outline: none; /* Sin borde de enfoque */
+    font-size: 2vh; /* Tamaño de fuente */
+    padding: 1.2vh 1.2vh; /* Espaciado interno */
+    border-radius: 1vh;
+}
+
+.sort-form select {
+    width: 35vh;
+    flex: 1;
+    margin-right: 10px;
+    border: none; /* Sin borde */
+    outline: none; /* Sin borde de enfoque */
+    font-size: 2vh; /* Tamaño de fuente */
+    padding: 1.2vh 1.2vh; /* Espaciado interno */
+    border-radius: 1vh;
+}
+
+.sort-form input::placeholder {
+    color: #aaa; /* Color del texto del placeholder */
+}
+
+.sort-form button {
+    background-color: #000000; /* Rojo similar al botón de búsqueda de la imagen */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 2vh; /* Forma circular */
+    width: 15vh;
+    height: 5vh;
+    cursor: pointer; /* Cambiar cursor a mano al pasar */
+    display: flex;
+    align-items: center;
+
+    justify-content: center; /* Centrar el icono */
+    font-size: 20px; /* Tamaño del icono */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+}
+
+/* -------------------------------------------- Media query tablet ---------------------------------------------- */
+
+@media (min-width: 600px) and (max-width: 900px) {
+}
+
+/* -------------------------------------------- Media query PC ---------------------------------------------- */
+
+@media (min-width: 900px) {
+    .sort-form {
+        background: none;
+        margin-bottom: 00vh;
+        padding: 0vh;
+        align-self: flex-start;
+        justify-self: flex-end;
+    }
+    .sort-form .filters-sort {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; /* Alineación vertical de los elementos */
+        height: fit-content; /* Ajusta según el diseño deseado */
+        width: fit-content; /* Se adapta al ancho del contenedor */
+        padding: 0.5vh 1vh; /* Espaciado interno */
+        border-radius: 2vh; /* Bordes redondeados */
+        box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
+        background-color: rgba(255, 255, 255, 0.502);
+        gap: 1.5vh;
+    }
+
+    .sort-form input {
+        flex: 1;
+        margin-right: 10px;
+        border: none; /* Sin borde */
+        outline: none; /* Sin borde de enfoque */
+        font-size: 2vh; /* Tamaño de fuente */
+        padding: 1.2vh 1.2vh; /* Espaciado interno */
+        border-radius: 1vh;
+    }
+
+    .sort-form select {
+        flex: 1;
+        margin-right: 10px;
+        border: none; /* Sin borde */
+        outline: none; /* Sin borde de enfoque */
+        font-size: 2vh; /* Tamaño de fuente */
+        padding: 1.2vh 1.2vh; /* Espaciado interno */
+        border-radius: 1vh;
+    }
+
+    .sort-form input::placeholder {
+        color: #aaa; /* Color del texto del placeholder */
+    }
+
+    .sort-form button {
+        background-color: #000000; /* Rojo similar al botón de búsqueda de la imagen */
+        color: white; /* Texto blanco */
+        border: none; /* Sin borde */
+        border-radius: 2vh; /* Forma circular */
+        width: 13vh;
+        height: 5vh;
+        cursor: pointer; /* Cambiar cursor a mano al pasar */
+        display: flex;
+        align-items: center;
+
+        justify-content: center; /* Centrar el icono */
+        font-size: 20px; /* Tamaño del icono */
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
+    }
 }

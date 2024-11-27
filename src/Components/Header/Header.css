@@ -4,8 +4,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 4vh;
-    padding-inline: 3vh;
+    padding-inline: 2vh;
 
     background-color: rgba(0, 0, 0, 0.726);
     background-image: url(../public/videoFondo.gif);

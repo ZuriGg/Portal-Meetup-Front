@@ -74,8 +74,67 @@ function Footer() {
                     <p>©2024 OurMeet</p>
                 </div>
             </div>
-            <div className="flechaAbajo" onClick={scrollToTop}>
-                <img src="/interface/flechaArribaBlanco.webp" alt="" />
+
+            <div
+                className="flechaAbajo"
+                id="flechaFooter1"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
+            </div>
+            <div
+                className="flechaAbajo"
+                id="flechaFooter2"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
+            </div>
+            <div
+                className="flechaAbajo"
+                id="flechaFooter3"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
+            </div>
+
+            <div
+                className="flechaAbajo"
+                id="flechaFooter4"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
+            </div>
+            <div
+                className="flechaAbajo"
+                id="flechaFooter5"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
+            </div>
+            <div
+                className="flechaAbajo"
+                id="flechaFooter6"
+                onClick={scrollToTop}
+            >
+                <img
+                    src="/interface/flechaArribaBlanco.webp"
+                    alt="flecha arriba"
+                />
             </div>
         </footer>
     );

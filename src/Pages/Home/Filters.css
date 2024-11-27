@@ -1,4 +1,8 @@
 .search-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: none;
     margin-bottom: 00vh;
     padding: 0vh;
@@ -8,11 +12,12 @@
 
 .search-form .filters {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center; /* Alineación vertical de los elementos */
     height: fit-content; /* Ajusta según el diseño deseado */
-    width: fit-content; /* Se adapta al ancho del contenedor */
-    padding: 0.5vh 1vh; /* Espaciado interno */
+    width: 45vh; /* Se adapta al ancho del contenedor */
+    padding: 2vh; /* Espaciado interno */
     border-radius: 2vh; /* Bordes redondeados */
     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.648); /* Sombra sutil */
     background-color: rgba(255, 255, 255, 0.502);
@@ -20,6 +25,7 @@
 }
 
 .search-form input {
+    width: 35vh;
     flex: 1;
     margin-right: 10px;
     border: none; /* Sin borde */
@@ -38,7 +44,7 @@
     color: white; /* Texto blanco */
     border: none; /* Sin borde */
     border-radius: 2vh; /* Forma circular */
-    width: 10vh;
+    width: 15vh;
     height: 5vh;
     cursor: pointer; /* Cambiar cursor a mano al pasar */
     display: flex;
@@ -48,6 +54,7 @@
     font-size: 20px; /* Tamaño del icono */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para el botón */
 }
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -66,6 +73,7 @@
 
     .search-form .filters {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center; /* Alineación vertical de los elementos */
         height: fit-content; /* Ajusta según el diseño deseado */
@@ -96,7 +104,7 @@
         color: white; /* Texto blanco */
         border: none; /* Sin borde */
         border-radius: 2vh; /* Forma circular */
-        width: 10vh;
+        width: 13vh;
         height: 5vh;
         cursor: pointer; /* Cambiar cursor a mano al pasar */
         display: flex;
