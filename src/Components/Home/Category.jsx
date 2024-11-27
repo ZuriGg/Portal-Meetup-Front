@@ -57,7 +57,7 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('2')}
             >
-                Tecnología
+                Actividades sociales
             </button>
             <button
                 name="category"
@@ -65,7 +65,7 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('3')}
             >
-                Salud y bienestar
+                Aficiones y pasiones
             </button>
             <button
                 name="category"
@@ -73,7 +73,7 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('4')}
             >
-                Juegos
+                Deportes y fitness
             </button>
             <button
                 name="category"
@@ -81,7 +81,7 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('5')}
             >
-                Deportes y fitness
+                Salud y bienestar
             </button>
             <button
                 name="category"
@@ -89,7 +89,7 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('6')}
             >
-                Arte y cultura
+                Tecnología
             </button>
             <button
                 name="category"
@@ -97,7 +97,15 @@ const Category = () => {
                 onClick={handleFilterChange}
                 style={buttonStyle('7')}
             >
-                Aficiones y pasiones
+                Arte y cultura
+            </button>
+            <button
+                name="category"
+                value="8"
+                onClick={handleFilterChange}
+                style={buttonStyle('8')}
+            >
+                Juegos
             </button>
         </div>
     );
