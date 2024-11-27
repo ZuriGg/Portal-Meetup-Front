@@ -1,4 +1,5 @@
 footer {
+    position: relative;
     background-image: url(../../../public/videoFondoFooter.gif);
     background-color: rgba(0, 0, 0, 0.532);
     background-blend-mode: overlay;
@@ -45,4 +46,15 @@ footer h5 {
     justify-content: center;
     align-items: center;
     gap: 2vh;
+}
+
+footer .flechaAbajo {
+    position: absolute;
+    bottom: 3vh;
+    right: 5vh;
+    width: 6vh;
+}
+
+footer .flechaAbajo:hover {
+    cursor: pointer;
 }

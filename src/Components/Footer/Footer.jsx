@@ -6,6 +6,13 @@ import { useUser } from '../../UserContext.jsx';
 function Footer() {
     const [user] = useUser();
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth', // Desplazamiento suave
+        });
+    };
+
     return (
         <footer>
             <div id="footerContentAll">
@@ -66,6 +73,9 @@ function Footer() {
                     </Link>
                     <p>©2024 OurMeet</p>
                 </div>
+            </div>
+            <div className="flechaAbajo" onClick={scrollToTop}>
+                <img src="/interface/flechaArribaBlanco.webp" alt="" />
             </div>
         </footer>
     );
