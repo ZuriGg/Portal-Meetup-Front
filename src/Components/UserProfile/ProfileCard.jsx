@@ -33,12 +33,12 @@ function ProfileCard({
             <div id="contenedorDatosMeetupsUsuario">
                 <div id="asistenciasMeetup">
                     <p>12</p>
-                    <p>Asistirás</p>
+                    <p>A los que asiste</p>
                 </div>
 
                 <div id="meetupsEnPosesion">
                     <p>2</p>
-                    <p>Meetups propios</p>
+                    <p>Creados por usted</p>
                 </div>
             </div>
         </div>
