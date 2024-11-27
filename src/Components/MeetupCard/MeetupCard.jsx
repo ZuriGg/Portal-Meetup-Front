@@ -4,11 +4,10 @@ import './MeetupCard.css';
 function MeetupCard({
     image,
     title,
-    description,
+    dayOfTheWeek,
     startDate,
     hourMeetup,
     aforoMax,
-    inscribirseBoolean,
 }) {
     return (
         <div className="meetupsCard">
@@ -17,11 +16,12 @@ function MeetupCard({
                 alt="imagen de un meetup"
             />
             <h4>{title}</h4>
-            <p>{description}</p>
-            <p>Fecha de inicio: {new Date(startDate).toLocaleDateString()}</p>
-            <p>Hora: {hourMeetup}</p>
+            <p>
+                {dayOfTheWeek} - {new Date(startDate).toLocaleDateString()} -{' '}
+                {hourMeetup}
+            </p>
+
             <p>Aforo máximo: {aforoMax}</p>
-            {inscribirseBoolean && <button>Inscríbete</button>}
         </div>
     );
 }
@@ -29,7 +29,7 @@ function MeetupCard({
 export default MeetupCard;
 
 MeetupCard.propTypes = {
-    image: PropTypes.string, // Debería ser un string que es la URL de la imagen
+    image: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
     startDate: PropTypes.string,

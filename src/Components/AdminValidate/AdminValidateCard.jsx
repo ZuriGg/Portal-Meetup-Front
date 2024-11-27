@@ -62,12 +62,17 @@ function AdminValidateCard({ titulo, url }) {
                 {results.length > 0 ? (
                     results.map((meetup) => (
                         <li key={meetup.id}>
-                            <div>
-                                <Link to={`meetup/${meetup.id}`}>
+                            <div className="meetupValidateCard">
+                                <Link to={`/meetup/${meetup.id}`}>
                                     <h4>{meetup.title}</h4>
                                     <p>{meetup.description}</p>
                                 </Link>
                                 <button
+                                    style={
+                                        meetup.validated
+                                            ? { backgroundColor: 'red' }
+                                            : { backgroundColor: 'green' }
+                                    }
                                     onClick={() =>
                                         handleClick(meetup.id, meetup.validated)
                                     }

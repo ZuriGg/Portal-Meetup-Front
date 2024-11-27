@@ -1,20 +1,21 @@
-#meetupListCard {
+#attendanceListCard {
     background-color: hsla(0, 0%, 100%, 0.586);
     border-radius: 2vh;
     color: black;
     padding: 3vh;
     width: 50vw;
-    height: 60vh;
+    height: 50vh;
+    margin-top: 5vh;
 }
 
-#meetupListCard > h3 {
+#attendanceListCard > h3 {
     font-size: 5vh;
     justify-self: flex-start;
     padding-left: 2vh;
     text-shadow: 0px 0px 2px black;
 }
 
-#meetupListCard > ul {
+#attendanceListCard > ul {
     list-style-type: none;
     display: flex;
     align-items: center;
@@ -28,7 +29,7 @@
     overflow-y: scroll;
 }
 
-#meetupListCard > ul .meetupsCard {
+#attendanceListCard > ul .meetupsCard {
     display: flex;
     flex-direction: column;
     gap: 0vh;
@@ -40,14 +41,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#meetupListCard > ul .meetupsCard > h4 {
+#attendanceListCard > ul .meetupsCard > h4 {
     font-weight: bold;
     font-size: 1.8vh;
     color: black;
     text-shadow: 0px 0px 1px black;
 }
 
-#meetupListCard > ul .meetupsCard > p {
+#attendanceListCard > ul .meetupsCard > p {
     color: #424242;
     padding-block: 0.5vh;
     text-shadow: 0px 0px 1px #424242;

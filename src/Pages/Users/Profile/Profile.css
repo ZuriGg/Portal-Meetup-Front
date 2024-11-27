@@ -24,7 +24,3 @@
 #profileContainer #meetupListCard {
     margin-top: 5vh;
 }
-
-#profileContainer #listaMeetupsUsuario :last-child {
-    margin-bottom: 5vh;
-}

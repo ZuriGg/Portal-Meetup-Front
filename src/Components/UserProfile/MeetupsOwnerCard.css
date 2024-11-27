@@ -31,16 +31,21 @@
 #meetupListCard > ul .meetupsCard {
     display: flex;
     flex-direction: column;
-    gap: 0vh;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    gap: 0.5vh;
     width: 25vh;
-    height: fit-content;
+    height: 25vh;
     font-size: 1.4vh;
     padding: 2vh;
+    margin: 0vh;
     border-radius: 2vh;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #meetupListCard > ul .meetupsCard > h4 {
+    overflow: hidden;
+    height: 3vh;
     font-weight: bold;
     font-size: 1.8vh;
     color: black;
@@ -48,6 +53,7 @@
 }
 
 #meetupListCard > ul .meetupsCard > p {
+    overflow: hidden;
     color: #424242;
     padding-block: 0.5vh;
     text-shadow: 0px 0px 1px #424242;

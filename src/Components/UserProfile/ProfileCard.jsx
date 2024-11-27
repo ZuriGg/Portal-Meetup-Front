@@ -24,10 +24,15 @@ function ProfileCard({
                     <button id="botonCambioAvatar">Editar avatar</button>
                 </Link>
                 <div id="datosUsuario">
-                    <p>{username}</p>
-                    <p>{`${firstName} ${lastname}`}</p>
+                    <p>
+                        {username.charAt(0).toUpperCase() + username.slice(1)}
+                    </p>
+                    <p>{`${
+                        firstName.charAt(0).toUpperCase() + firstName.slice(1)
+                    } ${
+                        lastname.charAt(0).toUpperCase() + lastname.slice(1)
+                    }`}</p>
                     <p>{email}</p>
-                    <p>{`${location.city}, ${location.region}, ${location.country}`}</p>
                 </div>
             </div>
             <div id="contenedorDatosMeetupsUsuario">

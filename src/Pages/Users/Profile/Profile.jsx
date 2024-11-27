@@ -23,7 +23,6 @@ function Profile() {
                     firstName={user.firstName}
                     lastname={user.lastname}
                     username={user.username}
-                    location={user.location}
                 />
 
                 <UserCard

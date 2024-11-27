@@ -23,9 +23,8 @@ function MeetupsListCard({ titulo, url }) {
     }, []);
 
     return (
-        <div id="meetupListCard">
+        <div id="attendanceListCard">
             <h3>{titulo}</h3>
-            <div id="listaMeetups"></div>
             <ul>
                 {results.length > 0 ? (
                     results?.map((atendance) => {

@@ -137,11 +137,16 @@ function Home() {
                                 <Link to={`/meetup/${meetup.id}`}>
                                     <MeetupCard
                                         title={meetup.title}
-                                        description={meetup.description}
                                         startDate={meetup.startDate}
                                         hourMeetup={meetup.hourMeetup}
                                         aforoMax={meetup.aforoMax}
-                                        image={images[meetup.id]} // Pasamos la imagen correspondiente
+                                        image={images[meetup.id]}
+                                        dayOfTheWeek={
+                                            meetup.dayOfTheWeek
+                                                .charAt(0)
+                                                .toUpperCase() +
+                                            meetup.dayOfTheWeek.slice(1)
+                                        }
                                     />
                                 </Link>
                             </li>
