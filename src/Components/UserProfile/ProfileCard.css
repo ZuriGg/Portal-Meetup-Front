@@ -92,6 +92,10 @@
         height: 75vh;
     }
 
+    #datosUsuarioContainer > #datosUsuario {
+        width: 31vh;
+    }
+
     #contenedorDatosMeetupsUsuario {
         margin-top: 4vh;
     }
