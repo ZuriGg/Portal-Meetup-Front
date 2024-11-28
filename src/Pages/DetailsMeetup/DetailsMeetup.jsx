@@ -1,6 +1,6 @@
 import './DetailsMeetup.css';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import UserCard from '../../Components/UserCard/UserCard';
 import { useUser } from '../../UserContext.jsx';
 import { MeetupRatingList } from '../../Components/Rating/MeetupRatingList.jsx';
@@ -239,6 +239,14 @@ function DetailsMeetup() {
                 </div>
 
                 <div className="available-dates">
+                    {meetupDetail.userId === user.id ? (
+                        <button id="meetupEditButton">
+                            <NavLink to={`/meetup/${meetupId}/edit`}>
+                                Editar meetup
+                            </NavLink>
+                        </button>
+                    ) : null}
+
                     <h4>Fechas disponibles para inscribirse:</h4>
                     {availableDates.map((date, index) => (
                         <button
@@ -302,6 +310,7 @@ function DetailsMeetup() {
             <div>
                 <OutOfService />
             </div>
+
             <div id="locationContainer"></div>
         </>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditMeetup.css';
+import { useParams } from 'react-router-dom';
 
 function EditMeetup() {
     const [user] = useUser();
@@ -34,6 +35,8 @@ function EditMeetup() {
         locationId: '',
     });
 
+    const { meetupId } = useParams();
+
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -65,7 +68,6 @@ function EditMeetup() {
     useEffect(() => {
         const fetchMeetupData = async () => {
             try {
-                const meetupId = 1; // El ID del meetup, puedes hacerlo dinámico si lo necesitas
                 const responseMeetup = await fetch(
                     `http://localhost:3000/meetups/${meetupId}`,
                     {
@@ -162,6 +164,7 @@ function EditMeetup() {
         e.preventDefault();
 
         try {
+            // Validaciones de los campos
             if (formData.title.length < 5) {
                 throw new Error(
                     'El Nombre del evento debe tener al menos 5 caracteres'
@@ -172,7 +175,7 @@ function EditMeetup() {
                     'La descripción del evento debe tener al menos 10 caracteres'
                 );
             }
-            if (formData.zip.length != 5) {
+            if (formData.zip.length !== 5) {
                 throw new Error('El código postal debe tener 5 dígitos');
             }
 
@@ -182,8 +185,9 @@ function EditMeetup() {
                 startDate: formData.startDate.split('T')[0], // Extraer solo la parte de la fecha (YYYY-MM-DD)
             };
 
+            // Aquí ya no necesitas extraer `meetupId` desde la respuesta
             const response = await fetch(
-                `http://localhost:3000/meetups/edit/1`,
+                `http://localhost:3000/meetups/edit/${meetupId}`, // Usamos el `meetupId` que viene de useParams
                 {
                     method: 'PUT',
                     headers: {
@@ -200,16 +204,15 @@ function EditMeetup() {
                 throw new Error('Error en la solicitud');
             }
 
-            const { meetupId } = await response.json();
-
-            // Subir imágenes secuencialmente
+            // No es necesario volver a obtener el `meetupId` de la respuesta
+            // Subir imágenes
             for (const [key, file] of Object.entries(files)) {
                 if (file) {
                     const formDataImage = new FormData();
                     formDataImage.append(key, file);
 
                     const uploadResponse = await fetch(
-                        `http://localhost:3000/meetups/${meetupId}/photo/${key}`,
+                        `http://localhost:3000/meetups/${meetupId}/photo/${key}`, // Aquí usas `meetupId` directamente
                         {
                             method: 'PUT',
                             headers: {

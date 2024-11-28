@@ -77,6 +77,19 @@
     cursor: pointer;
 }
 
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    padding: 2vh;
+    width: 25vh;
+    height: 30vh;
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 2vh;
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {

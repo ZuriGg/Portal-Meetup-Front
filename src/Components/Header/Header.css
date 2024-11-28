@@ -112,6 +112,7 @@ header img:active {
     }
 
     #botonesHeaderTest button {
+        display: block;
         background-color: rgba(245, 222, 179, 0);
     }
 

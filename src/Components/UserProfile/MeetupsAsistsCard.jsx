@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { useUser } from '../../UserContext.jsx';
 import AttendanceCard from '../AttendanceCard/AttendanceCard.jsx';
 import MeetupCard from '../MeetupCard/MeetupCard.jsx';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function MeetupsListCard({ titulo, url }) {
     const [attendances, setAttendances] = useState([]);
     const [meetups, setMeetups] = useState([]);
     const [images, setImages] = useState({});
     const [user] = useUser();
+    const [selectedAttendance, setSelectedAttendance] = useState(null); // Nuevo estado para el `li` seleccionado
 
     useEffect(() => {
         // Fetch de las asistencias
@@ -90,6 +91,9 @@ function MeetupsListCard({ titulo, url }) {
         }
     }, [meetups]);
 
+    // Obtener la fecha actual en formato YYYY-MM-DD (solo la fecha, sin la hora)
+    const currentDate = new Date().toISOString().split('T')[0];
+
     return (
         <div id="attendanceListCard">
             <h3>{titulo}</h3>
@@ -102,9 +106,38 @@ function MeetupsListCard({ titulo, url }) {
 
                         if (!meetup) return null;
 
+                        const isSelected = selectedAttendance === attendance.id;
+
+                        // Compara la fecha de la asistencia con la fecha actual
+                        const canVote = attendance.date <= currentDate; // Mostrar el botón solo si la fecha de la asistencia es anterior o igual a la fecha actual
+
                         return (
-                            <li key={attendance.id}>
-                                <Link to={`/meetup/${meetup.id}`}>
+                            <li
+                                key={attendance.id}
+                                onClick={
+                                    () => setSelectedAttendance(attendance.id) // Cambia el estado al hacer clic
+                                }
+                            >
+                                {/* Si el li está seleccionado, mostramos los botones */}
+                                {isSelected ? (
+                                    <div className="buttons-container">
+                                        <NavLink
+                                            to={`/meetup/${meetup.id}`}
+                                            className="button"
+                                        >
+                                            <button>Ver Meetup</button>
+                                        </NavLink>
+                                        {/* Mostrar el botón "Votar Sesión" solo si la fecha es anterior o igual a la fecha actual */}
+                                        {canVote && (
+                                            <NavLink
+                                                to={`/meetup/${attendance.id}/votes`}
+                                                className="button"
+                                            >
+                                                <button>Votar Sesión</button>
+                                            </NavLink>
+                                        )}
+                                    </div>
+                                ) : (
                                     <div className="meetup-and-attendance">
                                         <MeetupCard
                                             title={meetup.title}
@@ -130,7 +163,7 @@ function MeetupsListCard({ titulo, url }) {
                                             }
                                         />
                                     </div>
-                                </Link>
+                                )}
                             </li>
                         );
                     })

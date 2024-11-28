@@ -14,10 +14,9 @@ import ChangePass from './Users/Password/changePass/ChangePass.jsx';
 import EditMeetup from './Meetups/Edit/EditMeetup.jsx';
 import { EditUser } from './Users/Edit/EditUser.jsx';
 import Profile from './Users/Profile/Profile.jsx';
-import { Rating } from '../Components/Rating/Rating.jsx';
+import { Rating } from './Meetups/Rating/Rating.jsx';
 import AdminPage from './Users/Admin/AdminPage.jsx';
 import Avatar from '../Components/Avatar/Avatar.jsx';
-import { MeetupRatingList } from '../Components/Rating/MeetupRatingList.jsx';
 
 // Import de rutas de gestión de contraseñas
 import RecoveryPass from './Users/Password/Recovery/RecoveryPass.jsx';
@@ -57,11 +56,10 @@ const AppRoutes = () => (
                 {/* Página para crear un meetup */}
                 <Route path="create" element={<CreateMeetup />} />
                 {/* Página para editar un meetup */}
-                <Route path="edit" element={<EditMeetup />} />
+                <Route path=":meetupId/edit" element={<EditMeetup />} />
                 <Route path=":attendanceId/votes" element={<Rating />} />
                 <Route path=":meetupId" element={<DetailsMeetup />} />
             </Route>
-            <Route path="votesMeetup" element={<MeetupRatingList />} />
 
             {/* Ruta para redirigir cualquier ruta no válida */}
             <Route path="*" element={<Navigate to="notFound" replace />} />

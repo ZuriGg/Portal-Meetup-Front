@@ -59,17 +59,6 @@ function Header() {
                     <Link to="/">
                         <img src="/logotipo.webp" alt="logotipo de la web" />
                     </Link>
-                    <div id="botonesHeaderTest">
-                        <Link to="/meetup/edit">
-                            <button>/meetup/edit</button>
-                        </Link>
-                        <Link to={`/meetup/${attendanceId}/votes`}>
-                            <button>/meetup/{attendanceId}/votes</button>{' '}
-                        </Link>
-                        <Link to={`/votesMeetup`}>
-                            <button>/votesMeetup</button>{' '}
-                        </Link>
-                    </div>
 
                     <LogoUser />
                 </div>
