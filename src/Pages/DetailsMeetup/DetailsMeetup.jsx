@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import UserCard from '../../Components/UserCard/UserCard';
 import { useUser } from '../../UserContext.jsx';
 import { MeetupRatingList } from '../../Components/Rating/MeetupRatingList.jsx';
+import Mapa from '../../Components/Mapa/Mapa.jsx';
 import OutOfService from '../../Components/OutOfService/OutOfService.jsx';
 
 function DetailsMeetup() {
@@ -201,118 +202,128 @@ function DetailsMeetup() {
 
     // Renderizar los datos del meetup
     return (
-        <>
-            <div className="detailsPage">
-                <h3 className="detailsTitle">{meetupDetail.title}</h3>
+        <div id="detallesMeetupContainer">
+            <div id="meetupDetalles">
+                <div className="detailsPage">
+                    <h3 className="detailsTitle">{meetupDetail.title}</h3>
 
-                <div id="areaImagen">
-                    {responsePhotos[imgIndex] &&
-                    responsePhotos[imgIndex].name ? (
-                        <>
-                            <img
-                                className="flechaDetallesMeetup"
-                                id="flechaDerecha"
-                                src="/interface/flechaDerechaBlanco.webp"
-                                alt="flecha de cambio de imagen"
-                                onClick={handleImgChangeMore}
-                            />
-                            <img
-                                className="flechaDetallesMeetup"
-                                id="FlechaIzquierda"
-                                src="/interface/flechaIzquierdaBlanco.webp"
-                                alt="flecha de cambio de imagen"
-                                onClick={handleImgChangeLess}
-                            />
-                        </>
-                    ) : null}
+                    <div id="areaImagen">
+                        {responsePhotos[imgIndex] &&
+                        responsePhotos[imgIndex].name ? (
+                            <>
+                                <img
+                                    className="flechaDetallesMeetup"
+                                    id="flechaDerecha"
+                                    src="/interface/flechaDerechaBlanco.webp"
+                                    alt="flecha de cambio de imagen"
+                                    onClick={handleImgChangeMore}
+                                />
+                                <img
+                                    className="flechaDetallesMeetup"
+                                    id="FlechaIzquierda"
+                                    src="/interface/flechaIzquierdaBlanco.webp"
+                                    alt="flecha de cambio de imagen"
+                                    onClick={handleImgChangeLess}
+                                />
+                            </>
+                        ) : null}
 
-                    <img
-                        src={
-                            responsePhotos[imgIndex] &&
-                            responsePhotos[imgIndex].name
-                                ? `http://localhost:3000/uploads/${responsePhotos[imgIndex].name}`
-                                : '/meetupPhotoDefault.jpg'
-                        }
-                        alt="Imagen del meetup"
-                        className="detailsImage"
-                    />
-                </div>
-
-                <div className="available-dates">
-                    {meetupDetail.userId === user.id ? (
-                        <button id="meetupEditButton">
-                            <NavLink to={`/meetup/${meetupId}/edit`}>
-                                Editar meetup
-                            </NavLink>
-                        </button>
-                    ) : null}
-
-                    <h4>Fechas disponibles para inscribirse:</h4>
-                    {availableDates.map((date, index) => (
-                        <button
-                            key={index}
-                            onClick={() => handleDateSelect(date)}
-                        >
-                            {date.toLocaleDateString()}
-                        </button>
-                    ))}
-                </div>
-
-                <p className="detailsStartDate">
-                    {` Primera sesión ${new Date(
-                        meetupDetail.startDate
-                    ).toLocaleDateString()}`}
-                </p>
-
-                <h4>Descripción</h4>
-                <p className="detailsDescription">{meetupDetail.description}</p>
-
-                <h4>Ubicación</h4>
-                <p className="mapLocation">{`${location.city}, ${location.address}, ${location.zip}`}</p>
-
-                <h4 id="h4Asistentes">Asistentes</h4>
-                <ul>
-                    {attendanceMeetup &&
-                    Array.isArray(attendanceMeetup) &&
-                    attendanceMeetup.length > 0 ? (
-                        attendanceMeetup.map(
-                            (user) =>
-                                user && ( // Asegura que user no es null o undefined
-                                    <li key={user.id}>
-                                        <UserCard
-                                            avatar={user.avatar}
-                                            username={user.username}
-                                            activatedButton={false}
-                                        />
-                                    </li>
-                                )
-                        )
-                    ) : (
-                        <p>Nadie asistirá por el momento.</p> // Puedes mostrar un mensaje si el array está vacío o es null/undefined
-                    )}
-                </ul>
-
-                {/* Mostrar la fecha seleccionada si existe */}
-                {selectedDay && success && (
-                    <div>
-                        <p>
-                            Has seleccionado el día:
-                            {selectedDay.toLocaleDateString()}
-                        </p>
-                        {error && <p>{error}</p>}
+                        <img
+                            src={
+                                responsePhotos[imgIndex] &&
+                                responsePhotos[imgIndex].name
+                                    ? `http://localhost:3000/uploads/${responsePhotos[imgIndex].name}`
+                                    : '/meetupPhotoDefault.jpg'
+                            }
+                            alt="Imagen del meetup"
+                            className="detailsImage"
+                        />
                     </div>
-                )}
-            </div>
-            <div id="votesContainer">
-                <MeetupRatingList />
+
+                    <div className="available-dates">
+                        {meetupDetail.userId === user.id ? (
+                            <button id="meetupEditButton">
+                                <NavLink to={`/meetup/${meetupId}/edit`}>
+                                    Editar meetup
+                                </NavLink>
+                            </button>
+                        ) : null}
+
+                        <h4>Fechas disponibles para inscribirse:</h4>
+                        {availableDates.map((date, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleDateSelect(date)}
+                            >
+                                {date.toLocaleDateString()}
+                            </button>
+                        ))}
+
+                        {selectedDay && success && (
+                            <div>
+                                <p>
+                                    Has seleccionado el día:
+                                    {selectedDay.toLocaleDateString()}
+                                </p>
+                                {error && <p>{error}</p>}
+                            </div>
+                        )}
+                    </div>
+
+                    <p className="detailsStartDate">
+                        {` Primera sesión ${new Date(
+                            meetupDetail.startDate
+                        ).toLocaleDateString()}`}
+                    </p>
+
+                    <h4>Descripción</h4>
+                    <p className="detailsDescription">
+                        {meetupDetail.description}
+                    </p>
+                </div>
+                <div id="votesContainer">
+                    <MeetupRatingList />
+                </div>
+
+                {/*  <div>
+                    <OutOfService />
+                </div> */}
             </div>
 
-            <div>
-                <OutOfService />
-            </div>
+            <div id="locationContainer">
+                <div id="datosUbicacionDetallesMeetup">
+                    <h4>Ubicación</h4>
+                    <p className="mapLocation">{`${location.city}, ${location.address}, ${location.zip}`}</p>
 
-            <div id="locationContainer"></div>
-        </>
+                    <h4 id="h4Asistentes">Asistentes</h4>
+                    <ul>
+                        {attendanceMeetup &&
+                        Array.isArray(attendanceMeetup) &&
+                        attendanceMeetup.length > 0 ? (
+                            attendanceMeetup.map(
+                                (user) =>
+                                    user && ( // Asegura que user no es null o undefined
+                                        <li key={user.id}>
+                                            <UserCard
+                                                avatar={user.avatar}
+                                                username={user.username}
+                                                activatedButton={false}
+                                            />
+                                        </li>
+                                    )
+                            )
+                        ) : (
+                            <p>Nadie asistirá por el momento.</p> // Puedes mostrar un mensaje si el array está vacío o es null/undefined
+                        )}
+                    </ul>
+                </div>
+                <Mapa
+                    city={location.city}
+                    street={location.address}
+                    zip={location.zip}
+                />
+            </div>
+        </div>
     );
 }
 
