@@ -100,12 +100,111 @@ header img:active {
 
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
-@media (min-width: 600px) and (max-width: 900px) {
+@media (min-width: 600px) and (max-width: 1100px) {
+    header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-inline: 2vh;
+
+        background-color: rgba(0, 0, 0, 0.726);
+        background-image: url(../public/videoFondo.gif);
+        background-blend-mode: overlay;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    #botonesHeaderTest button {
+        display: none;
+        background-color: rgba(245, 222, 179, 0);
+    }
+
+    header h1 {
+        font-size: 8vh;
+        padding-top: 0vh;
+    }
+
+    header h2 {
+        font-size: 3vh;
+    }
+
+    header #headerTop {
+        position: absolute;
+        top: 4vh;
+        padding-inline: 5vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2vh;
+        height: fit-content;
+        width: 100%;
+    }
+
+    header #headerBottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        width: 100%;
+        height: fit-content;
+    }
+
+    header #headerBottom > p {
+        width: 100%;
+        padding: 0vh;
+        border-radius: 0vh;
+        font-size: 2vh;
+        margin-block: 1vh;
+    }
+
+    header img {
+        width: 15vh;
+        transition: transform 0.1s ease;
+    }
+
+    header img:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+
+    header img:active {
+        transform: scale(1);
+    }
+
+    .flechaAbajo {
+        width: 2vh;
+        aspect-ratio: 1/1;
+    }
+
+    .flechaAbajo img {
+        width: 100%;
+    }
+
+    #flechasDerecha {
+        position: absolute;
+        top: 85vh;
+        right: 3vw;
+    }
+
+    #flechasIzquierda {
+        position: absolute;
+        top: 85vh;
+        left: 3vw;
+    }
+
+    .flechasHeader:hover {
+        cursor: pointer;
+    }
 }
 
 /* -------------------------------------------- Media query PC ---------------------------------------------- */
 
-@media (min-width: 900px) {
+@media (min-width: 1100px) {
     header {
         position: relative;
         display: flex;
