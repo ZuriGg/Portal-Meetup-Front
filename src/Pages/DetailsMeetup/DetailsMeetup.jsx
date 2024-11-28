@@ -13,6 +13,8 @@ function DetailsMeetup() {
     const [availableDates, setAvailableDates] = useState([]); // Estado para guardar los días disponibles en la BBDD
     const [selectedDay, setSelectedDay] = useState(null); // Nuevo estado que guarda el día seleccionado
     const [user, ,] = useUser(); // Obtén el usuario desde el UserContext
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,6 +44,7 @@ function DetailsMeetup() {
                 }
                 const dataUsers = await responseUsers.json();
                 setMeetupUsers(dataUsers.data);
+                setSuccess(true);
             } catch (error) {
                 console.error('Error:', error);
             } finally {
@@ -127,7 +130,6 @@ function DetailsMeetup() {
     // Función que maneja la selección de la fecha
     const handleDateSelect = async (date) => {
         setSelectedDay(date);
-        alert(`Has seleccionado el día: ${date.toLocaleDateString()}`);
 
         // Obtener el userId desde el UserContext
         const userId = user.id;
@@ -150,12 +152,8 @@ function DetailsMeetup() {
                 }
             );
 
-            if (!response.ok) {
-                throw new Error('Error al inscribirse al meetup');
-            }
-
-            const result = await response.json();
-            console.log('Inscripción exitosa:', result);
+            if (!response.ok)
+                setError('no puedes incribirte dos veces en la misma fecha');
         } catch (error) {
             console.error('Error al inscribirse:', error);
         }
@@ -220,12 +218,13 @@ function DetailsMeetup() {
                 </div>
 
                 {/* Mostrar la fecha seleccionada si existe */}
-                {selectedDay && (
+                {selectedDay && success && (
                     <div>
                         <p>
-                            Has seleccionado el día:{' '}
+                            Has seleccionado el día:
                             {selectedDay.toLocaleDateString()}
                         </p>
+                        {error && <p>{error}</p>}
                     </div>
                 )}
             </div>
