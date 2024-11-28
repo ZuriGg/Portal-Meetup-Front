@@ -278,7 +278,7 @@
         position: absolute;
         height: 8vh;
         width: 5vh;
-        top: 20vh;
+        top: 16vh;
         opacity: 0;
         transition: opacity 0.4s ease, transform 0.2s ease;
     }
