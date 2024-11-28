@@ -5,7 +5,7 @@ import UserCard from '../../Components/UserCard/UserCard';
 import { useUser } from '../../UserContext.jsx';
 import { MeetupRatingList } from '../../Components/Rating/MeetupRatingList.jsx';
 import Mapa from '../../Components/Mapa/Mapa.jsx';
-import OutOfService from '../../Components/OutOfService/OutOfService.jsx';
+//import OutOfService from '../../Components/OutOfService/OutOfService.jsx';
 
 function DetailsMeetup() {
     const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
