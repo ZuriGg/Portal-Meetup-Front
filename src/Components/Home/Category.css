@@ -34,26 +34,12 @@
 
 @media (min-width: 1100px) {
     .buttoms-categories {
-        display: flex;
         flex-direction: row;
-        margin-top: 4vh;
-        align-items: center;
         gap: 5vh;
     }
 
     .buttoms-categories > button {
         width: 15vh;
         height: 6vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2vh;
-        font-size: 1.7vh;
-        transition: transform 0.2s ease;
-    }
-
-    .buttoms-categories > button:hover {
-        cursor: pointer;
-        transform: scale(1.2);
     }
 }

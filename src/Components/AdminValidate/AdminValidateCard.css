@@ -42,7 +42,6 @@
     border: solid black 2px;
     width: 65vw;
     height: 20vh;
-
     background-color: hsl(0, 0%, 100%);
     font-size: 1.4vh;
     padding: 1vh;
@@ -67,68 +66,7 @@
 
 @media (min-width: 600px) and (max-width: 1100px) {
     .adminValidateCard {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        background-color: hsla(0, 0%, 100%, 0.797);
-        border-radius: 2vh;
-        color: black;
-        padding: 2vh;
         width: 80vw;
-        height: 70vh;
-    }
-
-    .adminValidateCard h3 {
-        font-size: 3vh;
-        justify-self: flex-start;
-        padding-left: 2vh;
-        text-shadow: 0px 0px 2px black;
-        padding-bottom: 2vh;
-    }
-
-    .adminValidateCard ul {
-        list-style-type: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 2vh;
-        padding: 2vh;
-        width: 100%;
-        height: 88%;
-        overflow-x: hidden;
-        overflow-y: scroll;
-    }
-
-    .adminValidateCard ul .meetupValidateCard {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1vh;
-        border: solid black 2px;
-        width: 65vw;
-        height: 20vh;
-
-        background-color: hsl(0, 0%, 100%);
-        font-size: 1.4vh;
-        padding: 1vh;
-        border-radius: 2vh;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .adminValidateCard ul .meetupValidateCard h4 {
-        font-weight: bold;
-        font-size: 1.8vh;
-        color: black;
-        text-shadow: 0px 0px 1px black;
-    }
-
-    .adminValidateCard ul .meetupValidateCard p {
-        color: #424242;
-        padding-block: 0.5vh;
-        text-shadow: 0px 0px 1px #424242;
     }
 }
 
@@ -136,64 +74,24 @@
 
 @media (min-width: 1100px) {
     .adminValidateCard {
-        background-color: hsla(0, 0%, 100%, 0.797);
-        border-radius: 2vh;
-        color: black;
         padding: 3vh;
         width: 50vw;
-        height: 70vh;
         margin-left: 5vh;
     }
 
     .adminValidateCard > h3 {
         font-size: 5vh;
-        justify-self: flex-start;
-        padding-left: 2vh;
-        text-shadow: 0px 0px 2px black;
-        padding-bottom: 2vh;
     }
 
     .adminValidateCard > ul {
-        list-style-type: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
         gap: 5vh;
         padding: 1vh;
-        width: 100%;
-        height: 88%;
-        overflow-x: hidden;
-        overflow-y: scroll;
     }
 
     .adminValidateCard > ul .meetupValidateCard {
-        display: flex;
-        flex-direction: column;
         justify-content: space-around;
-        align-items: center;
         gap: 0vh;
-        border: solid black 2px;
         width: 25vh;
-        height: 20vh;
-
-        background-color: hsl(0, 0%, 100%);
-        font-size: 1.4vh;
         padding: 0.5vh;
-        border-radius: 2vh;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .adminValidateCard > ul .meetupValidateCard h4 {
-        font-weight: bold;
-        font-size: 1.8vh;
-        color: black;
-        text-shadow: 0px 0px 1px black;
-    }
-
-    .adminValidateCard > ul .meetupValidateCard p {
-        color: #424242;
-        padding-block: 0.5vh;
-        text-shadow: 0px 0px 1px #424242;
     }
 }

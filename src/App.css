@@ -89,10 +89,12 @@ button {
     transition: background-color 0.25s;
     min-width: 7vh;
 }
+
 button:hover {
     background-color: #1a1a1ab4;
     cursor: pointer;
 }
+
 button:focus,
 button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -121,89 +123,35 @@ a:hover {
     /* ----------------------- Formularios ----------------------- */
 
     div.areaFormulario {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2vh;
-        height: 100%;
         width: 100%;
-        font-size: 1.5vh;
     }
 
     form {
-        justify-self: center;
-        align-self: center;
-        display: flex;
-        flex-direction: column;
         justify-content: left;
         align-items: start;
         gap: 2vh;
-        padding: 4vh;
-        background-color: #ffffffd0;
-        border-radius: 2vh;
-        height: fit-content;
-        color: black;
-        text-shadow: 0px 0px 1px black;
-        margin-bottom: 6vh;
-    }
-
-    form > button {
-        align-self: center;
     }
 
     form > label {
         width: 60vh;
-        display: grid;
         grid-template-columns: 1fr 4fr;
-        gap: 2vh;
-        border-radius: 2vh;
     }
 
-    form > label > input {
-        width: 45vh;
-        padding: 0.5vh;
-    }
-
-    form > label > textarea {
-        width: 45vh;
-        padding: 0.5vh;
-        height: 10vh;
-    }
-
+    form > label > input,
+    form > label > textarea,
     form > label > select {
         width: 45vh;
         padding: 0.5vh;
     }
 
-    form > label > :last-child {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    form > label > textarea {
+        height: 10vh;
     }
 
     /* ----------------------- Botones ----------------------- */
 
     button {
-        border-radius: 8px;
-        border: 1px solid transparent;
-        padding: 0.6em 1.2em;
-        font-size: 1em;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: black;
-        cursor: pointer;
-        transition: background-color 0.25s;
         min-width: 7vh;
-    }
-    button:hover {
-        background-color: #1a1a1ab4;
-        cursor: pointer;
-    }
-    button:focus,
-    button:focus-visible {
-        outline: 4px auto -webkit-focus-ring-color;
     }
 
     /* ----------------------- Links ( <a />, <Link /> ) ----------------------- */

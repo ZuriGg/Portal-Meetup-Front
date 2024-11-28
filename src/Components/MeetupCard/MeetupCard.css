@@ -44,39 +44,6 @@
 
 @media (min-width: 1100px) {
     .meetupsCard {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
         width: 50vh;
-        background-color: hsla(0, 0%, 100%, 0.797);
-        padding: 2vh;
-        border-radius: 2vh;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.609);
-        transition: transform 0.2s ease;
-    }
-
-    .meetupsCard:hover {
-        transform: scale(1.1);
-    }
-
-    .meetupsCard > h4 {
-        font-weight: bold;
-        font-size: 3vh;
-        color: black;
-        text-shadow: 0px 0px 2px black;
-    }
-
-    .meetupsCard > p {
-        padding-block: 0.8vh;
-        color: black;
-        text-shadow: 0px 0px 2px black;
-    }
-
-    .meetupsCard > img {
-        border-radius: 2vh;
-        width: 100%;
-        aspect-ratio: 16/9;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.207);
-        object-fit: cover;
     }
 }
