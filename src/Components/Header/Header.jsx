@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
-    const attendanceId = 1;
     const location = useLocation();
     const locationHome = location.pathname === '/';
 
@@ -67,17 +66,18 @@ function Header() {
                         <h1>OurMeet</h1>
                         <h2>Nuestro lugar de encuentro</h2>
                         <p>
-                            🎉 ¡Bienvenidos a nuestro lugar de encuentro! Unimos
+                            🎉 ¡Bienvenides a nuestro lugar de encuentro! Unimos
                             a grupos de personas apasionadas por diversas
                             actividades, donde puedan compartir ideas, aprender
-                            y crecer juntas. 🌟 Ya sea que seas un experto en el
-                            tema o estés comenzando, este espacio es para
-                            compartir experiencias, descubrir nuevas
-                            perspectivas y crear una comunidad vibrante. 🙌 💬
-                            ¿Qué puedes esperar? Reuniones dinámicas, talleres
-                            interactivos, charlas inspiradoras y, por supuesto,
-                            ¡buena compañía! ✨ Únete a nosotros y sé parte de
-                            esta aventura. ¡Te esperamos!
+                            y crecer juntas. 🌟 Ya sea porque sientes que eres
+                            un experto en el tema o estés comenzando a
+                            informarte, este espacio es para compartir
+                            experiencias, descubrir nuevas perspectivas y crear
+                            una comunidad vibrante. 🙌 💬 ¿Qué puedes esperar?
+                            Reuniones dinámicas, talleres interactivos, charlas
+                            inspiradoras y, por supuesto, ¡buena compañía! ✨
+                            Únete a nosotros y sé parte de esta aventura. ¡Te
+                            esperamos!
                         </p>
                         <div
                             id="flechasDerecha"
