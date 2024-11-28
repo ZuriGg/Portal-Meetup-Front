@@ -56,7 +56,7 @@ h1 {
 
 ::-webkit-scrollbar {
     width: 1vh;
-    height: 2vh;
+    height: 1vh;
 }
 
 ::-webkit-scrollbar-track {
@@ -119,7 +119,7 @@ h1 {
 
     ::-webkit-scrollbar {
         width: 1vh;
-        height: 2vh;
+        height: 1vh;
     }
 
     ::-webkit-scrollbar-track {

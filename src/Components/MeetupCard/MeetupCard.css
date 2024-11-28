@@ -8,6 +8,10 @@
     border-radius: 2vh;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.609);
     transition: transform 0.2s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
 }
 
 .meetupsCard:hover {

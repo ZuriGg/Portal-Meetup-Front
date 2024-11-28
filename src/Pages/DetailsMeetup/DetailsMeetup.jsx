@@ -1,13 +1,18 @@
+import './DetailsMeetup.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import UserCard from '../../Components/UserCard/UserCard';
 import { useUser } from '../../UserContext.jsx';
+import { MeetupRatingList } from '../../Components/Rating/MeetupRatingList.jsx';
+import OutOfService from '../../Components/OutOfService/OutOfService.jsx';
 
 function DetailsMeetup() {
     const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
     const [meetupDetail, setMeetupDetail] = useState(''); // Estado para almacenar los datos
     const [attendance, setAttendance] = useState([]);
     const [meetupUsers, setMeetupUsers] = useState([]);
+    const [responsePhotos, setResponsePhotos] = useState([]);
+    const [imgIndex, setImgIndex] = useState(0);
     const [location, setLocation] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para manejar el estado de carga
     const [availableDates, setAvailableDates] = useState([]); // Estado para guardar los días disponibles en la BBDD
@@ -44,6 +49,7 @@ function DetailsMeetup() {
                 }
                 const dataUsers = await responseUsers.json();
                 setMeetupUsers(dataUsers.data);
+
                 setSuccess(true);
             } catch (error) {
                 console.error('Error:', error);
@@ -53,6 +59,21 @@ function DetailsMeetup() {
         };
         fetchData();
     }, [meetupId]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const responsePhotos = await fetch(
+                `http://localhost:3000/meetups/${meetupId}/photos`
+            );
+            const dataPhotos = await responsePhotos.json();
+            setResponsePhotos(dataPhotos.data);
+
+            if (!responsePhotos.ok) {
+                throw new Error('Error al obtener los usuarios');
+            }
+        };
+        fetchData();
+    }, [imgIndex]);
 
     // Nuevo useEffect para obtener la location después de que meetupDetail ha sido actualizado
     useEffect(() => {
@@ -170,44 +191,55 @@ function DetailsMeetup() {
         return <p>Meetup no encontrado.</p>;
     }
 
+    const handleImgChangeMore = () => {
+        setImgIndex((prevIndex) => (prevIndex < 2 ? prevIndex + 1 : prevIndex));
+    };
+
+    const handleImgChangeLess = () => {
+        setImgIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+    };
+
     // Renderizar los datos del meetup
     return (
         <>
             <div className="detailsPage">
-                <p className="detailsTitle">{meetupDetail.title}</p>
+                <h3 className="detailsTitle">{meetupDetail.title}</h3>
 
-                <img
-                    src={meetupDetail.image || '/meetupPhotoDefault.jpg'}
-                    alt="Imagen del meetup"
-                    className="detailsImage"
-                />
+                <div id="areaImagen">
+                    {responsePhotos[imgIndex] &&
+                    responsePhotos[imgIndex].name ? (
+                        <>
+                            <img
+                                className="flechaDetallesMeetup"
+                                id="flechaDerecha"
+                                src="/interface/flechaDerechaBlanco.webp"
+                                alt="flecha de cambio de imagen"
+                                onClick={handleImgChangeMore}
+                            />
+                            <img
+                                className="flechaDetallesMeetup"
+                                id="FlechaIzquierda"
+                                src="/interface/flechaIzquierdaBlanco.webp"
+                                alt="flecha de cambio de imagen"
+                                onClick={handleImgChangeLess}
+                            />
+                        </>
+                    ) : null}
 
-                <p className="detailsStartDate">
-                    {new Date(meetupDetail.startDate).toLocaleDateString()}
-                </p>
-
-                <div className="detailsDescription">
-                    {meetupDetail.description}
+                    <img
+                        src={
+                            responsePhotos[imgIndex] &&
+                            responsePhotos[imgIndex].name
+                                ? `http://localhost:3000/uploads/${responsePhotos[imgIndex].name}`
+                                : '/meetupPhotoDefault.jpg'
+                        }
+                        alt="Imagen del meetup"
+                        className="detailsImage"
+                    />
                 </div>
 
-                {/* Renderizar la lista de asistentes */}
-                <p className="mapLocation">{location.city}</p>
-                <ul>
-                    {attendanceMeetup.map(
-                        (user) =>
-                            user && ( // Asegura que user no es null o undefined
-                                <li key={user.id}>
-                                    <UserCard
-                                        avatar={user.avatar}
-                                        username={user.username}
-                                        activatedButton={false}
-                                    />
-                                </li>
-                            )
-                    )}
-                </ul>
                 <div className="available-dates">
-                    <h3>Fechas disponibles para inscribirse:</h3>
+                    <h4>Fechas disponibles para inscribirse:</h4>
                     {availableDates.map((date, index) => (
                         <button
                             key={index}
@@ -217,6 +249,40 @@ function DetailsMeetup() {
                         </button>
                     ))}
                 </div>
+
+                <p className="detailsStartDate">
+                    {` Primera sesión ${new Date(
+                        meetupDetail.startDate
+                    ).toLocaleDateString()}`}
+                </p>
+
+                <h4>Descripción</h4>
+                <p className="detailsDescription">{meetupDetail.description}</p>
+
+                <h4>Ubicación</h4>
+                <p className="mapLocation">{`${location.city}, ${location.address}, ${location.zip}`}</p>
+
+                <h4 id="h4Asistentes">Asistentes</h4>
+                <ul>
+                    {attendanceMeetup &&
+                    Array.isArray(attendanceMeetup) &&
+                    attendanceMeetup.length > 0 ? (
+                        attendanceMeetup.map(
+                            (user) =>
+                                user && ( // Asegura que user no es null o undefined
+                                    <li key={user.id}>
+                                        <UserCard
+                                            avatar={user.avatar}
+                                            username={user.username}
+                                            activatedButton={false}
+                                        />
+                                    </li>
+                                )
+                        )
+                    ) : (
+                        <p>Nadie asistirá por el momento.</p> // Puedes mostrar un mensaje si el array está vacío o es null/undefined
+                    )}
+                </ul>
 
                 {/* Mostrar la fecha seleccionada si existe */}
                 {selectedDay && success && (
@@ -229,6 +295,14 @@ function DetailsMeetup() {
                     </div>
                 )}
             </div>
+            <div id="votesContainer">
+                <MeetupRatingList />
+            </div>
+
+            <div>
+                <OutOfService />
+            </div>
+            <div id="locationContainer"></div>
         </>
     );
 }

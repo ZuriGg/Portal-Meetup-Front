@@ -50,6 +50,8 @@
     font-size: 1.8vh;
     color: black;
     text-shadow: 0px 0px 1px black;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #meetupListCard > ul .meetupsCard > p {
@@ -81,5 +83,9 @@
     #meetupListCard > ul {
         padding: 1vh;
         height: 88%;
+    }
+
+    #meetupListCard > ul .meetupsCard > h4 {
+        height: 4vh;
     }
 }

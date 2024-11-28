@@ -33,12 +33,16 @@
 #attendanceListCard > ul .meetupsCard {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
     gap: 0vh;
     width: 25vh;
     height: fit-content;
     font-size: 1.4vh;
-    padding: 2vh;
+    padding: 0vh;
+    padding-inline: 2vh;
+    padding-top: 2vh;
     border-radius: 2vh;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
 }
 
@@ -51,6 +55,9 @@
     font-size: 1.8vh;
     color: black;
     text-shadow: 0px 0px 1px black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #attendanceListCard > ul .meetupsCard > p {
@@ -77,7 +84,6 @@
         width: 80vw;
     }
 }
-
 /* -------------------------------------------- Media query PC ---------------------------------------------- */
 
 @media (min-width: 1100px) {

@@ -1,3 +1,5 @@
+import './MeetupRatingList.css';
+
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import UserCard from '../UserCard/UserCard.jsx';
@@ -100,63 +102,74 @@ export const MeetupRatingList = ({ meetupId }) => {
                     ? ` ${avgRating} / 5 ⭐`
                     : 'Todavía nadie ha compartido su valoración'}
             </h4>
-            <ul>
-                {results.length > 0 ? (
-                    results.map((rating, index) => {
-                        //buscamos al user que hizo la valoración
-                        const user = allUsers.find(
-                            (user) => user.id === rating.userId
-                        );
+            <div id="valorationContainer">
+                <ul>
+                    {results.length > 0 ? (
+                        results.map((rating, index) => {
+                            //buscamos al user que hizo la valoración
+                            const user = allUsers.find(
+                                (user) => user.id === rating.userId
+                            );
 
-                        if (!user) {
-                            return null; //si no encuentra usuario, no renderizar
-                        }
+                            if (!user) {
+                                return null; //si no encuentra usuario, no renderizar
+                            }
 
-                        return (
-                            <li key={index}>
-                                <UserCard
-                                    avatar={
-                                        user.avatar ||
-                                        '/interface/avatarDefault.webp'
-                                    } // Avatar del usuario
-                                    username={
-                                        user.username || 'Usuario desconocido'
-                                    } // Nombre de usuario
-                                    activatedButton={false}
-                                />
-                                <p>
-                                    Fecha de asistencia:{' '}
-                                    {new Date(rating.date).toLocaleDateString()}
-                                </p>
-                                <h4>Valoraciones:</h4>
-                                {rating.sessionVotes.length > 0 ? (
-                                    rating.sessionVotes.map(
-                                        (vote, voteIndex) => (
-                                            <div key={voteIndex}>
-                                                <p>
-                                                    Puntuación:{' '}
-                                                    {Array(vote.value)
-                                                        .fill('⭐')
-                                                        .join('')}
-                                                </p>
-                                                <p>
-                                                    Comentario:{' '}
-                                                    {vote.coment ||
-                                                        'Sin comentario'}
-                                                </p>
-                                            </div>
-                                        )
-                                    )
-                                ) : (
-                                    <p>No hay valoraciones para esta sesión.</p>
-                                )}
-                            </li>
-                        );
-                    })
-                ) : (
-                    <p>No se encontraron valoraciones para este meetup.</p>
-                )}
-            </ul>
+                            return (
+                                <li key={index}>
+                                    <UserCard
+                                        avatar={user.avatar} // Avatar del usuario
+                                        username={
+                                            user.username ||
+                                            'Usuario desconocido'
+                                        } // Nombre de usuario
+                                        activatedButton={false}
+                                    />
+                                    <div id="datosValoracion">
+                                        <p id="fechaAsistencia">
+                                            Fecha de asistencia:{' '}
+                                            {new Date(
+                                                rating.date
+                                            ).toLocaleDateString()}
+                                        </p>
+                                        <h4>Valoraciones:</h4>
+                                        {rating.sessionVotes.length > 0 ? (
+                                            rating.sessionVotes.map(
+                                                (vote, voteIndex) => (
+                                                    <div key={voteIndex}>
+                                                        <div id="estrellasContainer">
+                                                            <p>Puntuación:</p>
+                                                            <p id="estrellas">
+                                                                {Array(
+                                                                    vote.value
+                                                                )
+                                                                    .fill('⭐')
+                                                                    .join('')}
+                                                            </p>
+                                                        </div>
+                                                        <p>
+                                                            Comentario:{' '}
+                                                            {vote.coment ||
+                                                                'Sin comentario'}
+                                                        </p>
+                                                    </div>
+                                                )
+                                            )
+                                        ) : (
+                                            <p>
+                                                No hay valoraciones para esta
+                                                sesión.
+                                            </p>
+                                        )}
+                                    </div>
+                                </li>
+                            );
+                        })
+                    ) : (
+                        <p>No se encontraron valoraciones para este meetup.</p>
+                    )}
+                </ul>
+            </div>
         </div>
     );
 };

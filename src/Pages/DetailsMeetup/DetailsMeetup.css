@@ -1,0 +1,104 @@
+.detailsPage {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.637);
+    border-radius: 2vh;
+    padding: 4vh;
+    width: 80vh;
+    height: fit-content;
+    color: black;
+}
+
+.detailsPage p {
+    text-shadow: 0px 0px 2px black;
+    font-size: 2vh;
+}
+
+.detailsPage ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2vh;
+    height: fit-content;
+    background-color: hsla(0, 0%, 100%, 0);
+    border-radius: 2vh;
+    padding: 2vh;
+    overflow: scroll;
+    width: 100%;
+    height: fit-content;
+    overflow-y: hidden;
+}
+
+#h4Asistentes {
+    margin-bottom: 0;
+}
+
+.detailsPage ul .userCard {
+    flex-direction: column;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 1vh;
+}
+
+.detailsPage li {
+    list-style-type: none;
+}
+
+.detailsPage h3 {
+    font-size: 5vh;
+    text-shadow: 0px 0px 2px black;
+    margin-bottom: 2vh;
+}
+
+.detailsPage h4 {
+    font-size: 3vh;
+    margin-block: 2vh;
+    text-shadow: 0px 0px 2px black;
+}
+
+.detailsPage #areaImagen {
+    position: relative;
+}
+
+.detailsPage #areaImagen > img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 2vh;
+}
+
+.detailsPage button:last-child {
+    margin-left: 2vh;
+}
+
+.available-dates {
+    margin-bottom: 2vh;
+}
+
+#areaImagen > img.flechaDetallesMeetup {
+    position: absolute;
+    height: 8vh;
+    width: 5vh;
+    top: 15vh;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.2s ease;
+}
+
+#areaImagen > img.flechaDetallesMeetup:hover {
+    transform: scale(1.2);
+}
+
+#areaImagen > img.flechaDetallesMeetup:active {
+    transform: scale(1);
+}
+
+#areaImagen:hover .flechaDetallesMeetup {
+    opacity: 1;
+}
+
+#flechaDerecha {
+    right: 2vh;
+}
+
+#FlechaIzquierda {
+    left: 2vh;
+}
