@@ -1,7 +1,9 @@
-import './Mapa.css';
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import PropTypes from 'prop-types';
+
 import 'leaflet/dist/leaflet.css'; // Importa los estilos de Leaflet
+import './Mapa.css';
 
 // Función para obtener las coordenadas (latitud y longitud) usando Nominatim API
 const getCoordinates = async (city, street, zip) => {
@@ -103,3 +105,9 @@ const Mapa = ({ city, street, zip }) => {
 };
 
 export default Mapa;
+
+Mapa.propTypes = {
+    city: PropTypes.string, //es opcional y debe ser una cadena
+    street: PropTypes.string, //es opcional y debe ser una cadena
+    zip: PropTypes.string, //es opcional y debe ser una cadena para evitar problemas de 0 a la izquierda
+};
