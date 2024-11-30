@@ -66,18 +66,11 @@ function Header() {
                         <h1>OurMeet</h1>
                         <h2>Nuestro lugar de encuentro</h2>
                         <p>
-                            🎉 ¡Bienvenides a nuestro lugar de encuentro! Unimos
-                            a grupos de personas apasionadas por diversas
-                            actividades, donde puedan compartir ideas, aprender
-                            y crecer juntas. 🌟 Ya sea porque sientes que eres
-                            un experto en el tema o estés comenzando a
-                            informarte, este espacio es para compartir
-                            experiencias, descubrir nuevas perspectivas y crear
-                            una comunidad vibrante. 🙌 💬 ¿Qué puedes esperar?
-                            Reuniones dinámicas, talleres interactivos, charlas
-                            inspiradoras y, por supuesto, ¡buena compañía! ✨
-                            Únete a nosotros y sé parte de esta aventura. ¡Te
-                            esperamos!
+                            🎉 ¡Bienvenides! Este es un espacio para compartir
+                            ideas, aprender y crecer juntes. 🌟 Tanto si eres
+                            experte como si recién comienzas, aquí encontrarás
+                            talleres, charlas inspiradoras y buena compañía. 🙌
+                            ¡Únete y vive esta aventura! ✨
                         </p>
                         <div
                             id="flechasDerecha"
