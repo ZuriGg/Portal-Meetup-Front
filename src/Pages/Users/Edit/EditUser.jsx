@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useUser } from '../../../UserContext.jsx';
+import { useNavigate } from 'react-router-dom';
+
 import './EditUser.css';
 
 export const EditUser = () => {
@@ -12,6 +14,8 @@ export const EditUser = () => {
         email: '',
         username: '',
     });
+
+    const navigate = useNavigate(); // Crear instancia de navigate
 
     // capturar el cambio de los campos del formulario
     const handleChange = (e) => {
@@ -122,6 +126,9 @@ export const EditUser = () => {
             });
 
             setSuccess(true); // Operación exitosa
+
+            //redirigir al panel de usuario
+            navigate('/user/profile');
         } catch (error) {
             setError(`${error}`);
         }
