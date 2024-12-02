@@ -12,6 +12,7 @@ function Home() {
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     /*     const [votes, setVotes] = useState([]); //para gestionar los votos
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias */
 
@@ -135,6 +136,9 @@ function Home() {
                 <Filters />
                 <SortFilter />
             </div>
+            <div className="categories">
+                <Category />
+            </div>
             <h3>Eventos cerca de tu ciudad</h3>
             <ul>
                 {results.length > 0 ? (
@@ -163,9 +167,6 @@ function Home() {
                     <p>No se encontraron meetups.</p>
                 )}
             </ul>
-            <div className="categories">
-                <Category />
-            </div>
         </div>
     );
 }

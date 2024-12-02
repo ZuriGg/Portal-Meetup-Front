@@ -255,6 +255,15 @@ function DetailsMeetup() {
                         ) : null}
 
                         <h4>Fechas disponibles para inscribirse:</h4>
+
+                        <h5>
+                            Hora del meetup:{' '}
+                            {meetupDetail.hourMeetup
+                                .split(':')
+                                .slice(0, 2)
+                                .join(':')}
+                        </h5>
+
                         {availableDates.map((date, index) => (
                             <button
                                 key={index}
