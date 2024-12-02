@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import UserCard from '../UserCard/UserCard.jsx';
 
 //Lista de valoraciones que ha recibido un Meetup
-export const MeetupRatingList = ({ meetupId }) => {
+export const MeetupRatingList = ({ meetupId, setVotos }) => {
     const [results, setResults] = useState([]); //para manejar el resultado final
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias
     const [votes, setVotes] = useState([]); //para gestionar los votos
     const [allUsers, setAllUsers] = useState([]); //para gestionar todos los usuarios
     const [avgRating, setAvgRating] = useState(0); //para la media de votos
 
-    meetupId = 1; //hasta que se gestione el código de Jona
+    console.log('MeetupRatingList - Props recibidas:', { meetupId });
 
     useEffect(() => {
         //obtenemos TODOS los usuarios
@@ -62,24 +62,26 @@ export const MeetupRatingList = ({ meetupId }) => {
             .map((sesion) => {
                 // Buscar los votos relacionados con esta asistencia
                 const sessionVotes = votes.filter(
-                    (voto) => voto.attendanceId === sesion.id
+                    (voto) => voto.attendanceId === sesion.id && voto.value // Solo incluir votos con un valor
                 );
                 return {
                     userId: sesion.userId,
                     date: sesion.date,
                     sessionVotes,
                 };
-            });
+            })
+            .filter((rating) => rating.sessionVotes.length > 0); // Excluir los que no tienen votos
 
         setResults(combinedRatings); // Guardar las valoraciones combinadas
 
-        //calculamos la media de los votos de este meetup;
+        // Calcular la media de los votos de este meetup;
         const allVotes = votes
             .filter((voto) =>
                 attendance.some(
                     (sesion) =>
                         sesion.id === voto.attendanceId &&
-                        sesion.meetupId === meetupId
+                        sesion.meetupId === meetupId &&
+                        voto.value // Solo considerar votos con valor
                 )
             )
             .map((voto) => voto.value);
@@ -90,7 +92,8 @@ export const MeetupRatingList = ({ meetupId }) => {
                   allVotes.length
                 : 0;
 
-        setAvgRating(average.toFixed(2)); //guardamos la media hasta con 2 decimales
+        setAvgRating(average.toFixed(2)); // Guardar la media hasta con 2 decimales
+        setVotos(average.toFixed(2)); // Actualizar el estado externo
     }, [attendance, votes, meetupId]); // Se ejecuta cuando cambian las asistencias, los votos o el meetup
 
     return (

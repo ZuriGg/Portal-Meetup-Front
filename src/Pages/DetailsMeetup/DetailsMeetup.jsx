@@ -21,8 +21,13 @@ function DetailsMeetup() {
     const [user, ,] = useUser(); // Obtén el usuario desde el UserContext
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [votos, setVotos] = useState('');
+
+    console.log('DetailsMeetup - meetupId obtenido de useParams:', meetupId);
 
     useEffect(() => {
+        console.log('Fetching data for meetupId:', meetupId);
+        if (!meetupId) return;
         const fetchData = async () => {
             setLoading(true);
             try {
@@ -271,10 +276,17 @@ function DetailsMeetup() {
                     </div>
 
                     <p className="detailsStartDate">
-                        {` Primera sesión ${new Date(
+                        <b>Primera sesión:</b>
+                        {` ${new Date(
                             meetupDetail.startDate
                         ).toLocaleDateString()}`}
                     </p>
+
+                    <p>
+                        <b>Valoración media:</b> {votos} / 5 ⭐
+                    </p>
+
+                    <p>{`${location.city}, ${location.address}, ${location.zip}`}</p>
 
                     <h4>Descripción</h4>
                     <p className="detailsDescription">
@@ -282,7 +294,10 @@ function DetailsMeetup() {
                     </p>
                 </div>
                 <div id="votesContainer">
-                    <MeetupRatingList />
+                    <MeetupRatingList
+                        meetupId={Number(meetupId)}
+                        setVotos={setVotos}
+                    />
                 </div>
 
                 {/*  <div>
