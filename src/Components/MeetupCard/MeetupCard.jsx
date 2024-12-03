@@ -8,6 +8,8 @@ function MeetupCard({
     startDate,
     hourMeetup,
     aforoMax,
+    averageRating,
+    location,
 }) {
     return (
         <div className="meetupsCard">
@@ -20,6 +22,8 @@ function MeetupCard({
                 {dayOfTheWeek} - {new Date(startDate).toLocaleDateString()} -{' '}
                 {hourMeetup}
             </p>
+            <p>{averageRating}</p>
+            <p>{/* location */}</p>
 
             <p>Aforo máximo: {aforoMax}</p>
         </div>
