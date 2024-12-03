@@ -81,7 +81,7 @@ function DetailsMeetup() {
         fetchData();
     }, [imgIndex]);
 
-    // Nuevo useEffect para obtener la location después de que meetupDetail ha sido actualizado
+    //  useEffect para obtener la location después de que meetupDetail ha sido actualizado
     useEffect(() => {
         if (meetupDetail && meetupDetail.locationId) {
             const fetchLocation = async () => {
@@ -173,19 +173,54 @@ function DetailsMeetup() {
                         user: userId,
                         Authorization: `${user.token.token}`,
                     },
-
                     body: JSON.stringify({
                         date: formattedDate,
                     }),
                 }
             );
 
-            if (!response.ok)
-                setError('no puedes incribirte dos veces en la misma fecha');
+            if (response.ok) {
+                // Si la inscripción fue exitosa, obtener los datos actualizados de asistencia
+                const updatedAttendance = await fetch(
+                    'http://localhost:3000/attendance'
+                );
+                if (!updatedAttendance.ok) {
+                    throw new Error('Error al actualizar la asistencia');
+                }
+
+                const dataAttendance = await updatedAttendance.json();
+                setAttendance(dataAttendance.data); // Actualizar el estado con los nuevos datos
+                setSuccess(true);
+                setError('');
+            } else {
+                setError(
+                    'No puedes inscribirte dos veces en la misma fecha o ha ocurrido otro error'
+                );
+            }
         } catch (error) {
             console.error('Error al inscribirse:', error);
+            setError('Error al procesar la inscripción');
         }
     };
+
+    useEffect(() => {
+        const fetchAttendance = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3000/attendance'
+                );
+                if (!response.ok) {
+                    throw new Error('Error al obtener la asistencia al meetup');
+                }
+                const data = await response.json();
+                setAttendance(data.data); // Actualiza el estado de asistencia
+            } catch (error) {
+                console.error('Error al actualizar asistencia:', error);
+            }
+        };
+
+        fetchAttendance(); // Llamada para actualizar la asistencia
+    }, [selectedDay, meetupId]); // Dependencias: cuando cambian selectedDay o meetupId
 
     // Mostrar un mensaje de carga mientras se obtienen los datos
     if (loading) {
