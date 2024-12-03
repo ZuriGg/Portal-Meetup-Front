@@ -179,4 +179,5 @@ export const MeetupRatingList = ({ meetupId, setVotos }) => {
 
 MeetupRatingList.propTypes = {
     meetupId: PropTypes.number,
+    setVotos: PropTypes.func,
 };
