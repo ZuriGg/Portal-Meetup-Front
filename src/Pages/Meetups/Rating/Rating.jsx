@@ -13,7 +13,7 @@ export const Rating = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null); // Mensaje de éxito
     const [loading, setLoading] = useState(false); // Estado de carga
-    const emojis = ['🤢', '😔', '😐', '😌', '😍']; //emojis para cada puntuación
+    const emojis = ['⭐', '⭐', '⭐', '⭐', '⭐']; //emojis para cada puntuación
 
     const handleVoteSubmit = async (e) => {
         e.preventDefault();
