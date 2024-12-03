@@ -11,19 +11,28 @@
     border: none;
     cursor: pointer;
     color: rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, color 0.3s ease;
+    transition: transform 0.2s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .star.selected {
     color: #ffcc33;
     transform: scale(1.2);
+    box-shadow: 0 0 10px #ffcc33;
+    margin: 1.2rem;
 }
 
 .star:hover {
-    color: #ffd700; /* Color más brillante para hover */
-    transform: scale(1.3); /* Efecto de escala en hover */
+    color: #ffd700;
+    transform: scale(1.3);
+    box-shadow: 0 0 15px #ffd700;
 }
 
 #textarea-star {
     width: 150%;
+    resize: none;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
