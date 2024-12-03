@@ -7,22 +7,21 @@ export default function RecoveryPass() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
         setSuccess(false);
-        const res = await fetch(
-            'http://localhost:3000/users/password/recover',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }), //enviamos mediante POST nuestro email
-            }
-        );
+        const res = await fetch(`${URL_BACK}/users/password/recover`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }), //enviamos mediante POST nuestro email
+        });
         const json = await res.json();
         if (res.ok) {
             setSuccess(true);

@@ -12,8 +12,10 @@ function MeetupsOwnerCard({ titulo, url }) {
     const [images, setImages] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     useEffect(() => {
-        fetch(`http://localhost:3000/${url}`)
+        fetch(`${URL_BACK}/${url}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching data');
@@ -36,14 +38,14 @@ function MeetupsOwnerCard({ titulo, url }) {
             try {
                 const imagePromises = results.map(async (meetup) => {
                     const response = await fetch(
-                        `http://localhost:3000/meetups/${meetup.id}/photos`
+                        `${URL_BACK}/meetups/${meetup.id}/photos`
                     );
                     const imagesData = await response.json();
                     console.log(imagesData.data);
 
                     const imageUrl =
                         imagesData.data.length > 0
-                            ? `http://localhost:3000/uploads/${imagesData.data[0].name}`
+                            ? `${URL_BACK}/uploads/${imagesData.data[0].name}`
                             : '/meetupPhotoDefault.jpg';
 
                     return {

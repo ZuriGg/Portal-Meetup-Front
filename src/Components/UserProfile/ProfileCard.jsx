@@ -9,10 +9,12 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
     const [attendedMeetupsCount, setAttendedMeetupsCount] = useState(0);
     const [user] = useUser();
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     useEffect(() => {
         const fetchCreatedMeetups = async () => {
             try {
-                const response = await fetch('http://localhost:3000/meetups');
+                const response = await fetch(`${URL_BACK}/meetups`);
                 if (!response.ok) {
                     throw new Error('Error fetching meetups');
                 }
@@ -33,9 +35,7 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
     useEffect(() => {
         const fetchAttendances = async () => {
             try {
-                const response = await fetch(
-                    'http://localhost:3000/attendance'
-                );
+                const response = await fetch(`${URL_BACK}/attendance`);
                 if (!response.ok) {
                     throw new Error('Error fetching attendances');
                 }
@@ -60,7 +60,7 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
                 id="datosUsuarioContainer"
                 style={{
                     backgroundImage: avatar
-                        ? `url(http://localhost:3000/uploads/${avatar})`
+                        ? `url(${URL_BACK}/uploads/${avatar})`
                         : null,
                 }}
             >

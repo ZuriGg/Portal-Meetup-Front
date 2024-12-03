@@ -9,8 +9,10 @@ function AdminValidateCard({ titulo, url }) {
     const [results, setResults] = useState([]);
     const [user] = useUser();
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     useEffect(() => {
-        fetch(`http://localhost:3000/${url}`)
+        fetch(`${URL_BACK}/${url}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching data');
@@ -28,7 +30,7 @@ function AdminValidateCard({ titulo, url }) {
             const newValidated = !currentValidated; // Invertir el valor actual
 
             const response = await fetch(
-                `http://localhost:3000/meetups/${meetupId}/validate`,
+                `${URL_BACK}/meetups/${meetupId}/validate`,
                 {
                     method: 'PUT',
                     headers: {

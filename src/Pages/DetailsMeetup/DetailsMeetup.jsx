@@ -23,6 +23,8 @@ function DetailsMeetup() {
     const [success, setSuccess] = useState('');
     const [votos, setVotos] = useState('');
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     console.log('DetailsMeetup - meetupId obtenido de useParams:', meetupId);
 
     useEffect(() => {
@@ -32,7 +34,7 @@ function DetailsMeetup() {
             setLoading(true);
             try {
                 const responseMeetup = await fetch(
-                    `http://localhost:3000/meetups/${meetupId}`
+                    `${URL_BACK}/meetups/${meetupId}`
                 );
                 if (!responseMeetup.ok) {
                     throw new Error('Error al obtener los detalles del meetup');
@@ -40,16 +42,14 @@ function DetailsMeetup() {
                 const dataMeetup = await responseMeetup.json();
                 setMeetupDetail(dataMeetup.data); // Fetch de asistencia al meetup
                 const responseAttendance = await fetch(
-                    'http://localhost:3000/attendance'
+                    `${URL_BACK}/attendance`
                 );
                 if (!responseAttendance.ok) {
                     throw new Error('Error al obtener la asistencia al meetup');
                 }
                 const dataAttendance = await responseAttendance.json();
                 setAttendance(dataAttendance.data); // Fetch de usuarios
-                const responseUsers = await fetch(
-                    'http://localhost:3000/users'
-                );
+                const responseUsers = await fetch(`${URL_BACK}/users`);
                 if (!responseUsers.ok) {
                     throw new Error('Error al obtener los usuarios');
                 }
@@ -69,7 +69,7 @@ function DetailsMeetup() {
     useEffect(() => {
         const fetchData = async () => {
             const responsePhotos = await fetch(
-                `http://localhost:3000/meetups/${meetupId}/photos`
+                `${URL_BACK}/meetups/${meetupId}/photos`
             );
             const dataPhotos = await responsePhotos.json();
             setResponsePhotos(dataPhotos.data);
@@ -87,7 +87,7 @@ function DetailsMeetup() {
             const fetchLocation = async () => {
                 try {
                     const responseLocation = await fetch(
-                        `http://localhost:3000/location/${meetupDetail.locationId}`
+                        `${URL_BACK}/location/${meetupDetail.locationId}`
                     );
                     if (!responseLocation.ok) {
                         throw new Error('Error al obtener la ubicación');
@@ -165,7 +165,7 @@ function DetailsMeetup() {
         // Enviar la solicitud de inscripción al backend
         try {
             const response = await fetch(
-                `http://localhost:3000/meetups/${meetupId}/inscription`,
+                `${URL_BACK}/meetups/${meetupId}/inscription`,
                 {
                     method: 'POST',
                     headers: {
@@ -237,7 +237,7 @@ function DetailsMeetup() {
                             src={
                                 responsePhotos[imgIndex] &&
                                 responsePhotos[imgIndex].name
-                                    ? `http://localhost:3000/uploads/${responsePhotos[imgIndex].name}`
+                                    ? `${URL_BACK}/uploads/${responsePhotos[imgIndex].name}`
                                     : '/meetupPhotoDefault.jpg'
                             }
                             alt="Imagen del meetup"

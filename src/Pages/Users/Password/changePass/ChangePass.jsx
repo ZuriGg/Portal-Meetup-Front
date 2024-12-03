@@ -11,6 +11,7 @@ export default function ChangePass() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate();
     const [, , handleLogout] = useUser(); //importo el logOut desde el contexto
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,7 +24,7 @@ export default function ChangePass() {
             return;
         }
 
-        const res = await fetch('http://localhost:3000/users/password', {
+        const res = await fetch(`${URL_BACK}/users/password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

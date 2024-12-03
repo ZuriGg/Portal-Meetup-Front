@@ -13,9 +13,11 @@ function MeetupsListCard({ titulo, url }) {
     const [user] = useUser();
     const [selectedAttendance, setSelectedAttendance] = useState(null); // Nuevo estado para el `li` seleccionado
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     useEffect(() => {
         // Fetch de las asistencias
-        fetch(`http://localhost:3000/${url}`)
+        fetch(`${URL_BACK}/${url}`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching attendance data');
@@ -34,9 +36,7 @@ function MeetupsListCard({ titulo, url }) {
         const fetchMeetups = async () => {
             try {
                 const meetupPromises = attendances.map((attendance) =>
-                    fetch(
-                        `http://localhost:3000/meetups/${attendance.meetupId}`
-                    )
+                    fetch(`${URL_BACK}/meetups/${attendance.meetupId}`)
                         .then((res) => {
                             if (!res.ok)
                                 throw new Error('Error fetching meetup');
@@ -63,13 +63,13 @@ function MeetupsListCard({ titulo, url }) {
             try {
                 const imagePromises = meetups.map(async (meetup) => {
                     const response = await fetch(
-                        `http://localhost:3000/meetups/${meetup.id}/photos`
+                        `${URL_BACK}/meetups/${meetup.id}/photos`
                     );
                     const imagesData = await response.json();
 
                     const imageUrl =
                         imagesData.data.length > 0
-                            ? `http://localhost:3000/uploads/${imagesData.data[0].name}`
+                            ? `${URL_BACK}/uploads/${imagesData.data[0].name}`
                             : '/meetupPhotoDefault.jpg';
 
                     return { [meetup.id]: imageUrl };

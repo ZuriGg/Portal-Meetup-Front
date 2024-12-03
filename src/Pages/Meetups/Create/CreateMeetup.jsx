@@ -8,6 +8,8 @@ function CreateMeetup() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     // Estados para los datos de previsualización e imágenes
     const [files, setFiles] = useState({
         image1: null,
@@ -80,7 +82,7 @@ function CreateMeetup() {
             }
 
             // Enviar datos del formulario
-            const response = await fetch('http://localhost:3000/meetups', {
+            const response = await fetch(`${URL_BACK}/meetups`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +106,7 @@ function CreateMeetup() {
                     formDataImage.append(key, file); // Aquí utilizamos 'key' en lugar de 'inputName'
 
                     const uploadResponse = await fetch(
-                        `http://localhost:3000/meetups/${newMeetupId}/photo/${key}`,
+                        `${URL_BACK}/meetups/${newMeetupId}/photo/${key}`,
                         {
                             method: 'PUT',
                             headers: {

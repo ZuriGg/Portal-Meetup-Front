@@ -13,6 +13,8 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     /*     const [votes, setVotes] = useState([]); //para gestionar los votos
     const [attendance, setAttendance] = useState([]); //para gestionar las asistencias */
 
@@ -23,9 +25,7 @@ function Home() {
         const fetchMeetups = async () => {
             try {
                 const response = await fetch(
-                    qry
-                        ? `http://localhost:3000/meetups?${qry}`
-                        : 'http://localhost:3000/meetups'
+                    qry ? `${URL_BACK}/meetups?${qry}` : `${URL_BACK}/meetups`
                 );
                 if (!response.ok) throw new Error('Error fetching data');
                 const data = await response.json();
@@ -45,7 +45,7 @@ function Home() {
             try {
                 const imagePromises = results.map(async (meetup) => {
                     const response = await fetch(
-                        `http://localhost:3000/meetups/${meetup.id}/photos`
+                        `${URL_BACK}/meetups/${meetup.id}/photos`
                     );
                     const imagesData = await response.json();
                     console.log(imagesData.data); // Asegúrate de que las imágenes están siendo devueltas
@@ -53,7 +53,7 @@ function Home() {
                     // Si hay imágenes, seleccionamos la primera (o la lógica que prefieras)
                     const imageUrl =
                         imagesData.data.length > 0
-                            ? `http://localhost:3000/uploads/${imagesData.data[0].name}`
+                            ? `${URL_BACK}/uploads/${imagesData.data[0].name}`
                             : '/meetupPhotoDefault.jpg'; // Usamos la imagen por defecto si no hay imágenes
 
                     return {

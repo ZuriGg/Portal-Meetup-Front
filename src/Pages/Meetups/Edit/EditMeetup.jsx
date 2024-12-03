@@ -8,6 +8,8 @@ function EditMeetup() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const [files, setFiles] = useState({
         image1: null,
         image2: null,
@@ -69,7 +71,7 @@ function EditMeetup() {
         const fetchMeetupData = async () => {
             try {
                 const responseMeetup = await fetch(
-                    `http://localhost:3000/meetups/${meetupId}`,
+                    `${URL_BACK}/meetups/${meetupId}`,
                     {
                         method: 'GET',
                         headers: {
@@ -85,7 +87,7 @@ function EditMeetup() {
 
                 // Obtener los datos de la ubicación
                 const responseLocation = await fetch(
-                    `http://localhost:3000/location/${dataMeetup.data.locationId}`,
+                    `${URL_BACK}/location/${dataMeetup.data.locationId}`,
                     {
                         method: 'GET',
                         headers: {
@@ -102,7 +104,7 @@ function EditMeetup() {
 
                 // Obtener las imágenes asociadas al meetup
                 const responsePhotos = await fetch(
-                    `http://localhost:3000/meetups/${meetupId}/photos`,
+                    `${URL_BACK}/meetups/${meetupId}/photos`,
                     {
                         method: 'GET',
                         headers: {
@@ -127,7 +129,7 @@ function EditMeetup() {
                         const key = `image${index + 1}`; // Cambié para coincidir con "image1", "image2", etc.
                         imagePreviews[
                             key
-                        ] = `http://localhost:3000/uploads/${image.name}`;
+                        ] = `${URL_BACK}/uploads/${image.name}`;
                     }
                 });
 
@@ -187,7 +189,7 @@ function EditMeetup() {
 
             // Aquí ya no necesitas extraer `meetupId` desde la respuesta
             const response = await fetch(
-                `http://localhost:3000/meetups/edit/${meetupId}`, // Usamos el `meetupId` que viene de useParams
+                `${URL_BACK}/meetups/edit/${meetupId}`, // Usamos el `meetupId` que viene de useParams
                 {
                     method: 'PUT',
                     headers: {
@@ -212,7 +214,7 @@ function EditMeetup() {
                     formDataImage.append(key, file);
 
                     const uploadResponse = await fetch(
-                        `http://localhost:3000/meetups/${meetupId}/photo/${key}`, // Aquí usas `meetupId` directamente
+                        `${URL_BACK}/meetups/${meetupId}/photo/${key}`, // Aquí usas `meetupId` directamente
                         {
                             method: 'PUT',
                             headers: {

@@ -10,11 +10,12 @@ function Login() {
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
     const [, enhancedSetUser] = useUser();
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const resToken = await fetch('http://localhost:3000/users/login', {
+            const resToken = await fetch(`${URL_BACK}/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json',
@@ -30,7 +31,7 @@ function Login() {
             const dataToken = await resToken.json();
 
             const resUser = await fetch(
-                `http://localhost:3000/users/${dataToken.tokenInfo.id}`,
+                `${URL_BACK}/users/${dataToken.tokenInfo.id}`,
                 {
                     method: 'GET',
                     headers: {

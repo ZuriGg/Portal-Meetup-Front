@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import './OutOfService.css';
 import { useUser } from '../../UserContext.jsx';
 
+const URL_BACK = import.meta.env.VITE_URL_BACK;
+
 const OutOfService = ({ attendanceId }) => {
     const [isCancelled, setIsCancelled] = useState(false);
     const [user] = useUser();
     const handleCancelMeetup = async () => {
         const cancelAttendanceData = await fetch(
-            `http://localhost:3000/attendance/${attendanceId}/outservice`,
+            `${URL_BACK}/attendance/${attendanceId}/outservice`,
             {
                 method: 'PUT',
                 headers: {

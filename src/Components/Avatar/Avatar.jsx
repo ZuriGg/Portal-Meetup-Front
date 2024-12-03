@@ -9,6 +9,8 @@ function Avatar() {
     const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     console.log('Mi usuario', user);
     //capturamos el contenido del input al seleccionar una imagen desde nuestro pc
     const handleFile = (e) => {
@@ -34,7 +36,7 @@ function Avatar() {
             const fd = new FormData();
             fd.append('avatar', file);
 
-            const res = await fetch('http://localhost:3000/users/avatar', {
+            const res = await fetch(`${URL_BACK}/users/avatar`, {
                 method: 'PUT',
                 headers: {
                     ...(user?.token && {
@@ -49,16 +51,13 @@ function Avatar() {
             setSuccess(true);
 
             // hacemos un GET para actualizar la información del usuario, incluido el avatar
-            const resUser = await fetch(
-                `http://localhost:3000/users/${user.id}`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-type': 'application/json',
-                        Authorization: `${user.token.token}`,
-                    },
-                }
-            );
+            const resUser = await fetch(`${URL_BACK}/users/${user.id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                    Authorization: `${user.token.token}`,
+                },
+            });
 
             if (!resUser.ok) {
                 throw new Error('Error al obtener la información del usuario');

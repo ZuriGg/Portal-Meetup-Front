@@ -15,6 +15,8 @@ export const Rating = () => {
     const [loading, setLoading] = useState(false); // Estado de carga
     const emojis = ['⭐', '⭐', '⭐', '⭐', '⭐']; //emojis para cada puntuación
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const handleVoteSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -23,7 +25,7 @@ export const Rating = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:3000/meetups/${attendanceId}/votes`,
+                `${URL_BACK}/meetups/${attendanceId}/votes`,
                 {
                     method: 'POST',
                     headers: {

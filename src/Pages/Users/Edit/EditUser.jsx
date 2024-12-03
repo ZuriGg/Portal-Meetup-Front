@@ -15,6 +15,8 @@ export const EditUser = () => {
         username: '',
     });
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const navigate = useNavigate(); // Crear instancia de navigate
 
     // capturar el cambio de los campos del formulario
@@ -36,16 +38,13 @@ export const EditUser = () => {
                     );
                 }
 
-                const response = await fetch(
-                    `http://localhost:3000/users/${user.id}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            Authorization: `${user.token.token}`,
-                        },
-                    }
-                );
+                const response = await fetch(`${URL_BACK}/users/${user.id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `${user.token.token}`,
+                    },
+                });
 
                 if (!response.ok) {
                     throw new Error('Error al obtener los datos del usuario');
@@ -88,19 +87,16 @@ export const EditUser = () => {
         }
 
         try {
-            const response = await fetch(
-                `http://localhost:3000/users/edit/${user.id}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        ...(user?.token && {
-                            Authorization: `${user.token.token}`,
-                        }),
-                    },
-                    body: JSON.stringify(inputDate),
-                }
-            );
+            const response = await fetch(`${URL_BACK}/users/edit/${user.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(user?.token && {
+                        Authorization: `${user.token.token}`,
+                    }),
+                },
+                body: JSON.stringify(inputDate),
+            });
 
             //1ro comprobamos si la respuesta es correcta
             if (!response.ok) {

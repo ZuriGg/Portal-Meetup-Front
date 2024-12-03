@@ -9,6 +9,8 @@ function LogoUser() {
     const [isModalOpen, setModalOpen] = useState(false);
     const modalRef = useRef(null);
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const toggleModal = (event) => {
         event.stopPropagation();
         setModalOpen((prevState) => !prevState);
@@ -45,7 +47,7 @@ function LogoUser() {
                         src={
                             user.avatar === null
                                 ? '/avatarDefault.webp'
-                                : `http://localhost:3000/uploads/${user.avatar}`
+                                : `${URL_BACK}/uploads/${user.avatar}`
                         }
                         alt="Avatar de usuario"
                     />

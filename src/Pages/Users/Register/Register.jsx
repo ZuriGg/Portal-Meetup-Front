@@ -12,6 +12,8 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -20,7 +22,7 @@ const Register = () => {
                 setError('las contraseñas no son exactamente iguales');
                 return;
             }
-            const res = await fetch('http://localhost:3000/users/register', {
+            const res = await fetch(`${URL_BACK}/users/register`, {
                 method: 'POST', //se envían los datos al servidor mediante POST
                 headers: {
                     'Content-Type': 'application/json',

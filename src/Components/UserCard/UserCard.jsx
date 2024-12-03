@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+const URL_BACK = import.meta.env.VITE_URL_BACK;
+
 import './UserCard.css';
 
 function UserCard({ avatar, username, activatedButton }) {
@@ -10,7 +12,7 @@ function UserCard({ avatar, username, activatedButton }) {
                 src={
                     !avatar
                         ? '/avatarDefault.webp'
-                        : `http://localhost:3000/uploads/${avatar}`
+                        : `${URL_BACK}/uploads/${avatar}`
                 }
                 alt="avatar de usuario"
             />

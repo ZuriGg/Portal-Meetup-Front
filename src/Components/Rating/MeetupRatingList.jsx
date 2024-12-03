@@ -12,11 +12,13 @@ export const MeetupRatingList = ({ meetupId, setVotos }) => {
     const [allUsers, setAllUsers] = useState([]); //para gestionar todos los usuarios
     const [avgRating, setAvgRating] = useState(0); //para la media de votos
 
+    const URL_BACK = import.meta.env.VITE_URL_BACK;
+
     console.log('MeetupRatingList - Props recibidas:', { meetupId });
 
     useEffect(() => {
         //obtenemos TODOS los usuarios
-        fetch(`http://localhost:3000/users`)
+        fetch(`${URL_BACK}/users`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching users data');
@@ -29,7 +31,7 @@ export const MeetupRatingList = ({ meetupId, setVotos }) => {
             });
 
         //obtenemos TODAS las asistencias
-        fetch(`http://localhost:3000/attendance`)
+        fetch(`${URL_BACK}/attendance`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching attendance data');
@@ -42,7 +44,7 @@ export const MeetupRatingList = ({ meetupId, setVotos }) => {
             });
 
         //obtenemos TODOS los votos de un meetup
-        fetch(`http://localhost:3000/votesMeetup`)
+        fetch(`${URL_BACK}/votesMeetup`)
             .then((res) => {
                 if (!res.ok) {
                     throw new Error('Error fetching votes meetup data');
