@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './EditMeetup.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function EditMeetup() {
     const [user] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -234,6 +235,7 @@ function EditMeetup() {
 
             setSuccess(true);
             setError(null);
+            navigate('/user/profile');
         } catch (error) {
             setSuccess(false);
             setError(`${error}`);
