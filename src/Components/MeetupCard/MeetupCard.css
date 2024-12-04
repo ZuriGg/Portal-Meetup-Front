@@ -39,6 +39,14 @@
     object-fit: cover;
 }
 
+/* -------------------------------------------- Media query mobile horizontal ---------------------------------------------- */
+
+@media (min-width: 730px) {
+    .meetupsCard {
+        width: 50vh;
+    }
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {

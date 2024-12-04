@@ -98,6 +98,45 @@ header img:active {
     cursor: pointer;
 }
 
+/* -------------------------------------------- Media query mobile horizontal ---------------------------------------------- */
+
+@media (min-width: 730px) {
+    header {
+        padding-bottom: 4vh;
+        padding-inline: 3vh;
+    }
+
+    #botonesHeaderTest button {
+        display: block;
+        background-color: rgba(245, 222, 179, 0);
+    }
+
+    header h1 {
+        font-size: 12vh;
+        padding-top: 15vh;
+    }
+
+    header h2 {
+        font-size: 3.5vh;
+    }
+
+    header #headerBottom > p {
+        width: 50%;
+        padding: 2vh;
+        border-radius: 2vh;
+        font-size: 2.5vh;
+        margin-block: 6vh;
+    }
+
+    header img {
+        width: 30vh;
+    }
+
+    .flechaAbajo {
+        width: 3.5vh;
+    }
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {

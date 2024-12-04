@@ -41,6 +41,27 @@
     margin-top: 2vh;
 }
 
+/* -------------------------------------------- Media query mobile horizontal ---------------------------------------------- */
+
+@media (min-width: 730px) {
+    .home {
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .home > h3 {
+        font-size: 6vh;
+        margin-bottom: 5vh;
+    }
+
+    .home #filtrosHome {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 2vh;
+    }
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {

@@ -72,6 +72,32 @@
     align-self: center;
 }
 
+/* -------------------------------------------- Media query mobile horizontal ---------------------------------------------- */
+
+@media (min-width: 730px) {
+    .adminValidateCard {
+        padding: 3vh;
+        width: 50vw;
+        margin-left: 5vh;
+    }
+
+    .adminValidateCard > h3 {
+        font-size: 5vh;
+    }
+
+    .adminValidateCard > ul {
+        gap: 5vh;
+        padding: 1vh;
+    }
+
+    .adminValidateCard > ul .meetupValidateCard {
+        justify-content: space-around;
+        gap: 0vh;
+        width: 25vh;
+        padding: 0.5vh;
+    }
+}
+
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {
