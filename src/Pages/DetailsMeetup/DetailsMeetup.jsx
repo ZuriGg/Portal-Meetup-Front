@@ -106,10 +106,33 @@ function DetailsMeetup() {
     const attendanceMeetup = attendance
         .filter((att) => att.meetupId === Number(meetupId))
         .map((att) => {
-            return meetupUsers.find((user) => user.id === att.userId);
-        });
+            const user = meetupUsers.find((user) => user.id === att.userId);
+            if (user) {
+                // Convertir la fecha de asistencia a solo la parte de la fecha (sin hora)
+                const attendanceDate = new Date(att.date);
+                const normalizedAttendanceDate = new Date(
+                    attendanceDate.setHours(0, 0, 0, 0)
+                ); // Normalizamos a medianoche
 
-    console.log('Los usuarios son:', attendanceMeetup);
+                // Obtener la próxima fecha disponible (sin hora)
+                const firstAvailableDate = availableDates[0];
+                const normalizedAvailableDate = new Date(
+                    firstAvailableDate.setHours(0, 0, 0, 0)
+                ); // Normalizamos a medianoche
+
+                // Comparar fechas sin hora
+                if (
+                    normalizedAttendanceDate.getTime() ===
+                    normalizedAvailableDate.getTime()
+                ) {
+                    return user; // Si coinciden, incluir al usuario
+                }
+            }
+            return null; // No incluir si no coincide
+        })
+        .filter((user) => user !== null);
+
+    console.log('Usuarios inscritos en la próxima fecha:', attendanceMeetup);
 
     // Renderiza los días disponibles
     useEffect(() => {
@@ -158,11 +181,9 @@ function DetailsMeetup() {
     const handleDateSelect = async (date) => {
         setSelectedDay(date);
 
-        // Obtener el userId desde el UserContext
         const userId = user.id;
         const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); // '2024-12-04 04:04:05'
 
-        // Enviar la solicitud de inscripción al backend
         try {
             const response = await fetch(
                 `${URL_BACK}/meetups/${meetupId}/inscription`,
@@ -180,22 +201,16 @@ function DetailsMeetup() {
             );
 
             if (response.ok) {
-                // Si la inscripción fue exitosa, obtener los datos actualizados de asistencia
+                // Actualiza la asistencia
                 const updatedAttendance = await fetch(
                     'http://localhost:3000/attendance'
                 );
-                if (!updatedAttendance.ok) {
-                    throw new Error('Error al actualizar la asistencia');
-                }
-
                 const dataAttendance = await updatedAttendance.json();
-                setAttendance(dataAttendance.data); // Actualizar el estado con los nuevos datos
+                setAttendance(dataAttendance.data); // Actualizar los datos de asistencia
                 setSuccess(true);
                 setError('');
             } else {
-                setError(
-                    'No puedes inscribirte dos veces en la misma fecha o ha ocurrido otro error'
-                );
+                setError('Error al procesar la inscripción');
             }
         } catch (error) {
             console.error('Error al inscribirse:', error);
@@ -383,7 +398,7 @@ function DetailsMeetup() {
                         attendanceMeetup.length > 0 ? (
                             attendanceMeetup.map(
                                 (user) =>
-                                    user && ( // Asegura que user no es null o undefined
+                                    user && (
                                         <li key={user.id}>
                                             <UserCard
                                                 avatar={user.avatar}
@@ -394,7 +409,7 @@ function DetailsMeetup() {
                                     )
                             )
                         ) : (
-                            <p>Nadie asistirá por el momento.</p> // Puedes mostrar un mensaje si el array está vacío o es null/undefined
+                            <p>Nadie asistirá por el momento.</p>
                         )}
                     </ul>
                 </div>
