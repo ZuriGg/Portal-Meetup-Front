@@ -35,13 +35,13 @@ export default function RecoveryPass() {
     };
 
     return (
-        <>
+        <div className="areaFormulario">
             <h1>Recover Pass</h1>
-            <p>
-                Inserte su correo electrónico, para iniciar el proceso de
-                recuperación de contraseña:
-            </p>
             <div id="recover" className="areaFormulario">
+                <p>
+                    Inserte su correo electrónico, para iniciar el proceso de
+                    recuperación de contraseña:
+                </p>
                 <form onSubmit={handleSubmit}>
                     <label>
                         Email:
@@ -57,6 +57,6 @@ export default function RecoveryPass() {
                     {error && <p>{error}</p>}
                 </form>
             </div>
-        </>
+        </div>
     );
 }

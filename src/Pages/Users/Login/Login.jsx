@@ -65,8 +65,8 @@ function Login() {
     };
 
     return (
-        <>
-            <h1>Login</h1>
+        <div className="areaFormulario">
+            <h3>Iniciar sesión</h3>
             <div className="areaFormulario" id="login">
                 <form onSubmit={handleLogin}>
                     <label>
@@ -95,7 +95,7 @@ function Login() {
                     {error && <p>{error}</p>}
                 </form>
             </div>
-        </>
+        </div>
     );
 }
 

@@ -52,7 +52,7 @@ const Register = () => {
 
     return (
         <div className="areaFormulario">
-            <h2>Registro de Usuario</h2>
+            <h3>Registro de Usuario</h3>
             <form onSubmit={handleRegister}>
                 <label>
                     Nombre de usuario:
@@ -65,7 +65,7 @@ const Register = () => {
                     />
                 </label>
                 <label>
-                    Firstname:
+                    Nombre:
                     <input
                         type="text"
                         value={firstName}
@@ -75,7 +75,7 @@ const Register = () => {
                     />
                 </label>
                 <label>
-                    Lastaname:
+                    Apellido:
                     <input
                         type="text"
                         value={lastname}

@@ -53,13 +53,13 @@ export default function ChangePass() {
     };
 
     return (
-        <>
-            <h1>Página de cambio de contraseña</h1>
-            <p>
-                Inserte el código de recuperación que le ha llegado a su email,
-                junto a su nueva contraseña
-            </p>
+        <div className="areaFormulario">
+            <h1>Cambio de contraseña</h1>
             <div id="recover" className="areaFormulario">
+                <p>
+                    Inserte el código de recuperación que le ha llegado a su
+                    email, junto a su nueva contraseña
+                </p>
                 <form onSubmit={handleSubmit}>
                     <label>
                         <span>Código de recuperación:</span>
@@ -100,6 +100,6 @@ export default function ChangePass() {
                     {error && <p>{error}</p>}
                 </form>
             </div>
-        </>
+        </div>
     );
 }
