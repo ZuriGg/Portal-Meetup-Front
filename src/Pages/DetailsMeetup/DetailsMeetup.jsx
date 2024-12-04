@@ -240,6 +240,8 @@ function DetailsMeetup() {
         setImgIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
     };
 
+    console.log('Valor de oneSession:', meetupDetail.oneSession);
+
     // Renderizar los datos del meetup
     return (
         <div id="detallesMeetupContainer">
@@ -289,42 +291,66 @@ function DetailsMeetup() {
                             </button>
                         ) : null}
 
-                        <h4>Fechas disponibles para inscribirse:</h4>
+                        {meetupDetail?.oneSession === 0 ? (
+                            <>
+                                <h4>Fechas disponibles para inscribirse:</h4>
 
-                        <h5>
-                            Hora del meetup:{' '}
-                            {meetupDetail.hourMeetup
-                                .split(':')
-                                .slice(0, 2)
-                                .join(':')}
-                        </h5>
+                                <h5>
+                                    Hora del meetup:{' '}
+                                    {meetupDetail.hourMeetup
+                                        .split(':')
+                                        .slice(0, 2)
+                                        .join(':')}
+                                </h5>
 
-                        {availableDates.map((date, index) => (
-                            <button
-                                key={index}
-                                onClick={() => handleDateSelect(date)}
-                            >
-                                {date.toLocaleDateString()}
-                            </button>
-                        ))}
+                                {availableDates.map((date, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => handleDateSelect(date)}
+                                    >
+                                        {date.toLocaleDateString()}
+                                    </button>
+                                ))}
 
-                        {selectedDay && success && (
-                            <div>
-                                <p>
-                                    Has seleccionado el día:
-                                    {selectedDay.toLocaleDateString()}
+                                {selectedDay && success && (
+                                    <div>
+                                        <p>
+                                            Has seleccionado el día:
+                                            {selectedDay.toLocaleDateString()}
+                                        </p>
+                                        {error && <p>{error}</p>}
+                                    </div>
+                                )}
+
+                                <p className="detailsStartDate">
+                                    <b>Primera sesión:</b>
+                                    {` ${new Date(
+                                        meetupDetail.startDate
+                                    ).toLocaleDateString()}`}
                                 </p>
-                                {error && <p>{error}</p>}
-                            </div>
+                            </>
+                        ) : (
+                            <>
+                                <h4>Fecha del evento:</h4>
+
+                                <button
+                                    onClick={() =>
+                                        handleDateSelect(meetupDetail.startDate)
+                                    }
+                                >
+                                    Inscribirse:
+                                    {` ${new Date(
+                                        meetupDetail.startDate
+                                    ).toLocaleDateString()}`}{' '}
+                                    -{' '}
+                                    {meetupDetail.hourMeetup
+                                        .split(':')
+                                        .slice(0, 2)
+                                        .join(':')}
+                                </button>
+                            </>
                         )}
                     </div>
-
-                    <p className="detailsStartDate">
-                        <b>Primera sesión:</b>
-                        {` ${new Date(
-                            meetupDetail.startDate
-                        ).toLocaleDateString()}`}
-                    </p>
 
                     <p>
                         <b>Valoración media:</b> {votos} / 5 ⭐
@@ -343,10 +369,6 @@ function DetailsMeetup() {
                         setVotos={setVotos}
                     />
                 </div>
-
-                {/*  <div>
-                    <OutOfService />
-                </div> */}
             </div>
 
             <div id="locationContainer">
