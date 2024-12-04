@@ -73,43 +73,42 @@ function MeetupsOwnerCard({ titulo, url }) {
         return <p>Cargando contenido...</p>;
     }
 
+    const filteredMeetups = results.filter(
+        (meetup) => meetup.userId === user.id
+    );
+
     return (
         <div id="meetupListCard">
             <h3>{titulo}</h3>
             <div id="listaMeetups"></div>
             <ul>
-                {results.length > 0 ? (
-                    results?.map((meetup) => {
-                        if (meetup.userId !== user.id) {
-                            return null;
-                        }
-                        return (
-                            <li key={meetup.id}>
-                                <Link to={`/meetup/${meetup.id}`}>
-                                    <MeetupCard
-                                        title={meetup.title}
-                                        startDate={meetup.startDate}
-                                        hourMeetup={
-                                            meetup.hourMeetup
-                                                ? meetup.hourMeetup
-                                                      .split(':')
-                                                      .slice(0, 2)
-                                                      .join(':')
-                                                : 'N/A'
-                                        }
-                                        aforoMax={meetup.aforoMax}
-                                        image={images[meetup.id]}
-                                        dayOfTheWeek={
-                                            meetup.dayOfTheWeek
-                                                .charAt(0)
-                                                .toUpperCase() +
-                                            meetup.dayOfTheWeek.slice(1)
-                                        }
-                                    />
-                                </Link>
-                            </li>
-                        );
-                    })
+                {filteredMeetups.length > 0 ? (
+                    filteredMeetups.map((meetup) => (
+                        <li key={meetup.id}>
+                            <Link to={`/meetup/${meetup.id}`}>
+                                <MeetupCard
+                                    title={meetup.title}
+                                    startDate={meetup.startDate}
+                                    hourMeetup={
+                                        meetup.hourMeetup
+                                            ? meetup.hourMeetup
+                                                  .split(':')
+                                                  .slice(0, 2)
+                                                  .join(':')
+                                            : 'N/A'
+                                    }
+                                    aforoMax={meetup.aforoMax}
+                                    image={images[meetup.id]}
+                                    dayOfTheWeek={
+                                        meetup.dayOfTheWeek
+                                            .charAt(0)
+                                            .toUpperCase() +
+                                        meetup.dayOfTheWeek.slice(1)
+                                    }
+                                />
+                            </Link>
+                        </li>
+                    ))
                 ) : (
                     <p>No se encontraron meetups.</p>
                 )}
