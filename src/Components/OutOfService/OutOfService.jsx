@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import './OutOfService.css';
+import { useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
+import PropTypes from 'prop-types';
+import './OutOfService.css';
 
 const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -37,3 +38,7 @@ const OutOfService = ({ attendanceId }) => {
 };
 
 export default OutOfService;
+
+OutOfService.propTypes = {
+    attendanceId: PropTypes.node,
+};

@@ -43,7 +43,7 @@ const Filters = () => {
                 <input
                     type="text"
                     name="location"
-                    placeholder="Introduce una ubicación"
+                    placeholder="Introduzca una ubicación"
                     value={localFilters.location}
                     onChange={handleInputChange}
                 />

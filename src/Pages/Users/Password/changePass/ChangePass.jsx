@@ -54,7 +54,7 @@ export default function ChangePass() {
 
     return (
         <div className="areaFormulario">
-            <h1>Cambio de contraseña</h1>
+            <h3>Cambio de contraseña</h3>
             <div id="recover" className="areaFormulario">
                 <p>
                     Inserte el código de recuperación que le ha llegado a su

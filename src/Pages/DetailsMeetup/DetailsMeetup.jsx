@@ -154,7 +154,6 @@ function DetailsMeetup() {
                     dayOfWeekMap[meetupDetail.dayOfTheWeek.toLowerCase()];
                 const dates = [];
 
-                // Si el día objetivo ya pasó esta semana, lo ajustamos para la próxima semana
                 const diffToNextWeek =
                     targetDay >= currentDay
                         ? targetDay - currentDay

@@ -16,9 +16,6 @@ function Home() {
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
-    /*     const [votes, setVotes] = useState([]); //para gestionar los votos
-    const [attendance, setAttendance] = useState([]); //para gestionar las asistencias */
-
     const { qry } = useMeetup();
     const [images, setImages] = useState({}); // Este estado almacenará las imágenes por id de meetup
 
@@ -38,7 +35,7 @@ function Home() {
             }
         };
 
-        fetchMeetups(); // Obtener los meetups
+        fetchMeetups();
     }, [qry]);
 
     useEffect(() => {
@@ -49,7 +46,7 @@ function Home() {
                         `${URL_BACK}/meetups/${meetup.id}/photos`
                     );
                     const imagesData = await response.json();
-                    console.log(imagesData.data); // Asegúrate de que las imágenes están siendo devueltas
+                    console.log(imagesData.data);
 
                     // Si hay imágenes, seleccionamos la primera (o la lógica que prefieras)
                     const imageUrl =

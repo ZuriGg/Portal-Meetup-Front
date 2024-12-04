@@ -60,7 +60,7 @@ const Register = () => {
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        placeholder="username"
+                        placeholder="Nickname"
                         required
                     />
                 </label>
@@ -70,7 +70,7 @@ const Register = () => {
                         type="text"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
-                        placeholder="firstname"
+                        placeholder="Nombre"
                         required
                     />
                 </label>
@@ -80,7 +80,7 @@ const Register = () => {
                         type="text"
                         value={lastname}
                         onChange={(e) => setLastname(e.target.value)}
-                        placeholder="lastaname"
+                        placeholder="Apellido"
                         required
                     />
                 </label>
@@ -90,7 +90,7 @@ const Register = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email"
+                        placeholder="Email"
                         required
                     />
                 </label>
@@ -100,7 +100,7 @@ const Register = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="password"
+                        placeholder="Contraseña"
                         required
                     />
                 </label>
@@ -110,7 +110,7 @@ const Register = () => {
                         type="password"
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
-                        placeholder="confirm password"
+                        placeholder="Confirme contraseña"
                         required
                     />
                 </label>

@@ -132,7 +132,7 @@ export const EditUser = () => {
 
     return (
         <div className="areaFormulario">
-            <h1>Edite su usuario</h1>
+            <h3>Edite su usuario</h3>
 
             <form onSubmit={handleSubmit}>
                 <label>
