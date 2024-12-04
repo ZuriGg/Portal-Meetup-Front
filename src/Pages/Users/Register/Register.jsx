@@ -90,7 +90,7 @@ const Register = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email"
+                        placeholder="Email"
                         required
                     />
                 </label>
