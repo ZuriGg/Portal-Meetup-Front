@@ -2,11 +2,13 @@
 import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
 import './CreateMeetup.css';
+import { useNavigate } from 'react-router-dom';
 
 function CreateMeetup() {
     const [user] = useUser();
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -126,6 +128,7 @@ function CreateMeetup() {
 
             setSuccess(true);
             setError(null);
+            navigate('/');
         } catch (err) {
             setSuccess(false);
             setError(err.message);
