@@ -24,9 +24,7 @@ function Home() {
         const fetchMeetups = async () => {
             try {
                 const response = await fetch(
-                    qry
-                        ? `http://localhost:3000/meetups?${qry}`
-                        : 'http://localhost:3000/meetups'
+                    qry ? `${URL_BACK}/meetups?${qry}` : `${URL_BACK}/meetups`
                 );
                 if (!response.ok) throw new Error('Error fetching data');
                 const data = await response.json();
