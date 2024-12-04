@@ -5,7 +5,6 @@ import MeetupCard from '../../Components/MeetupCard/MeetupCard.jsx';
 import { useMeetup } from '../../MeetupContext.jsx';
 import Category from '../../Components/Home/Category/Category.jsx';
 import Filters from '../../Components/Home/Filters/Filters.jsx';
-import SortFilter from '../../Components/Home/SortFilter/SortFilter.jsx';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -25,35 +24,13 @@ function Home() {
         const fetchMeetups = async () => {
             try {
                 const response = await fetch(
-                    qry ? `${URL_BACK}/meetups?${qry}` : `${URL_BACK}/meetups`
+                    qry
+                        ? `http://localhost:3000/meetups?${qry}`
+                        : 'http://localhost:3000/meetups'
                 );
                 if (!response.ok) throw new Error('Error fetching data');
                 const data = await response.json();
-
-                // Obtén información adicional como valoraciones y ubicaciones
-                const additionalDataPromises = data.data.map(async (meetup) => {
-                    const [votesRes, locationRes] = await Promise.all([
-                        fetch(
-                            `http://localhost:3000/meetups/${meetup.id}/votes`
-                        ),
-                        fetch(
-                            `http://localhost:3000/location/${meetup.locationId}`
-                        ),
-                    ]);
-
-                    const votesData = await votesRes.json();
-                    const locationData = await locationRes.json();
-
-                    return {
-                        ...meetup,
-                        averageRating: votesData?.average || 0, // Valoración media
-                        location: locationData.data || {}, // Asigna el objeto de ubicación
-                    };
-                });
-
-                const enrichedData = await Promise.all(additionalDataPromises);
-
-                setResults(enrichedData); // Actualizamos el estado con datos enriquecidos
+                setResults(data.data || []);
                 setLoading(false); // Termina de cargar después de obtener los meetups
             } catch (err) {
                 setError(err.message);
@@ -103,53 +80,6 @@ function Home() {
         }
     }, [results]); // Solo ejecuta esto cuando los results cambian
 
-    /* useEffect(() => {
-        //obtenemos TODAS las asistencias
-        fetch(`http://localhost:3000/attendance`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Error fetching attendance data');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setAttendance(data.data); //guardamos las asistencias
-            });
-
-        //obtenemos TODOS los votos de un meetup
-        fetch(`http://localhost:3000/votesMeetup`)
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error('Error fetching votes meetup data');
-                }
-                return res.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setVotes(data.data); //guardamos los votos en el estado
-            });
-    }, []); //se ejecuta cuando se carga el componente */
-
-    /*     useEffect(() => {
-        // Combinar las asistencias y los votos
-        const combinedRatings = attendance
-            .filter((sesion) => sesion.meetupId === meetupId) // Filtrar las asistencias para el meetup específico
-            .map((sesion) => {
-                // Buscar los votos relacionados con esta asistencia
-                const sessionVotes = votes.filter(
-                    (voto) => voto.attendanceId === sesion.id
-                );
-                return {
-                    userId: sesion.userId,
-                    date: sesion.date,
-                    sessionVotes,
-                };
-            });
-
-        setResults(combinedRatings); // Guardar las valoraciones combinadas
-    }, [attendance, votes]); */
-
     // Mostrar cargando o error
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -158,7 +88,6 @@ function Home() {
         <div className="home" id="seccionObjetivo">
             <div id="filtrosHome">
                 <Filters />
-                <SortFilter />
             </div>
             <div className="categories">
                 <Category />
