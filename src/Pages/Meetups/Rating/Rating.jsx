@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import './Rating.css';
 
@@ -14,6 +14,7 @@ export const Rating = () => {
     const [success, setSuccess] = useState(null); // Mensaje de éxito
     const [loading, setLoading] = useState(false); // Estado de carga
     const emojis = ['⭐', '⭐', '⭐', '⭐', '⭐']; //emojis para cada puntuación
+    const navigate = useNavigate();
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -49,6 +50,7 @@ export const Rating = () => {
             setSuccess(true); // operación exitosa
             setVote(0); // limpiamos el campo votos
             setComent(''); // limpiamos el campo de comentarios
+            navigate('/user/profile');
         } catch (error) {
             setSuccess(false); // operación fallida
             setError(error.message); // Mostrar el mensaje de error recibido del backend
