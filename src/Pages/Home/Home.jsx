@@ -12,6 +12,8 @@ function Home() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const firstView = localStorage.getItem('firstView');
+
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
     /*     const [votes, setVotes] = useState([]); //para gestionar los votos
@@ -84,7 +86,20 @@ function Home() {
 
     return (
         <div className="home" id="seccionObjetivo">
-            <div id="filtrosHome">
+            <div
+                id="filtrosHome"
+                style={
+                    firstView
+                        ? {
+                              position: 'absolute',
+                              top: '4vh',
+                              alignSelf: 'center',
+                              justifySelf: 'center',
+                              width: 'fit-content',
+                          }
+                        : null
+                }
+            >
                 <Filters />
             </div>
             <div className="categories">
