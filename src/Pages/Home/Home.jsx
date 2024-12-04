@@ -29,31 +29,7 @@ function Home() {
                 );
                 if (!response.ok) throw new Error('Error fetching data');
                 const data = await response.json();
-
-                // Obtén información adicional como valoraciones y ubicaciones
-                const additionalDataPromises = data.data.map(async (meetup) => {
-                    const [votesRes, locationRes] = await Promise.all([
-                        fetch(
-                            `http://localhost:3000/meetups/${meetup.id}/votes`
-                        ),
-                        fetch(
-                            `http://localhost:3000/location/${meetup.locationId}`
-                        ),
-                    ]);
-
-                    const votesData = await votesRes.json();
-                    const locationData = await locationRes.json();
-
-                    return {
-                        ...meetup,
-                        averageRating: votesData?.average || 0, // Valoración media
-                        location: locationData.data || {}, // Asigna el objeto de ubicación
-                    };
-                });
-
-                const enrichedData = await Promise.all(additionalDataPromises);
-
-                setResults(enrichedData); // Actualizamos el estado con datos enriquecidos
+                setResults(data.data || []);
                 setLoading(false); // Termina de cargar después de obtener los meetups
             } catch (err) {
                 setError(err.message);
@@ -183,8 +159,6 @@ function Home() {
                                                 .toUpperCase() +
                                             meetup.dayOfTheWeek.slice(1)
                                         }
-                                        averageRating={meetup.averageRating}
-                                        location={meetup.location} // Objeto único correctamente asignado
                                     />
                                 </Link>
                             </li>
