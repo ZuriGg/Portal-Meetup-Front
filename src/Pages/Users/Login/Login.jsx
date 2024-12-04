@@ -66,7 +66,7 @@ function Login() {
 
     return (
         <>
-            <h1>Login</h1>
+            <h1>Inicio de sesión</h1>
             <div className="areaFormulario" id="login">
                 <form onSubmit={handleLogin}>
                     <label>
@@ -89,9 +89,9 @@ function Login() {
                     </label>
                     <button type="submit">Login</button>
                     <Link to="/user/password/recover">
-                        ¿Has olvidado tu contraseña?
+                        ¿Ha olvidado su contraseña?
                     </Link>
-                    {success && <p>Login hecho correctamente</p>}
+                    {success && <p>Ha iniciado sesión correctamente</p>}
                     {error && <p>{error}</p>}
                 </form>
             </div>

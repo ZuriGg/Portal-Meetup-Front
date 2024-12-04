@@ -65,7 +65,7 @@ const Register = () => {
                     />
                 </label>
                 <label>
-                    Firstname:
+                    Nombre:
                     <input
                         type="text"
                         value={firstName}
@@ -75,7 +75,7 @@ const Register = () => {
                     />
                 </label>
                 <label>
-                    Lastaname:
+                    Apellido:
                     <input
                         type="text"
                         value={lastname}
