@@ -64,29 +64,24 @@ function AdminValidateCard({ titulo, url }) {
                 {results.length > 0 ? (
                     results.map((meetup) => (
                         <li key={meetup.id}>
-                            <Link to={`/meetup/${meetup.id}`}>
-                                <div className="meetupValidateCard">
+                            <div className="meetupValidateCard">
+                                <Link to={`/meetup/${meetup.id}`}>
                                     <h4>{meetup.title}</h4>
                                     <p>{meetup.description}</p>
-                                    <button
-                                        style={
-                                            meetup.validated
-                                                ? { backgroundColor: 'red' }
-                                                : { backgroundColor: 'green' }
-                                        }
-                                        onClick={() =>
-                                            handleClick(
-                                                meetup.id,
-                                                meetup.validated
-                                            )
-                                        }
-                                    >
-                                        {meetup.validated
-                                            ? 'Invalidar'
-                                            : 'Validar'}
-                                    </button>
-                                </div>
-                            </Link>
+                                </Link>
+                                <button
+                                    style={
+                                        meetup.validated
+                                            ? { backgroundColor: 'red' }
+                                            : { backgroundColor: 'green' }
+                                    }
+                                    onClick={() =>
+                                        handleClick(meetup.id, meetup.validated)
+                                    }
+                                >
+                                    {meetup.validated ? 'Invalidar' : 'Validar'}
+                                </button>
+                            </div>
                         </li>
                     ))
                 ) : (

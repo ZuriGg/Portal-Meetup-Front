@@ -183,8 +183,6 @@ function Home() {
                                                 .toUpperCase() +
                                             meetup.dayOfTheWeek.slice(1)
                                         }
-                                        averageRating={meetup.averageRating}
-                                        location={meetup.location} // Objeto único correctamente asignado
                                     />
                                 </Link>
                             </li>
