@@ -28,6 +28,9 @@
 .detailsPage p {
     text-shadow: 0px 0px 2px black;
     font-size: 2vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
 }
 
 .detailsPage ul {

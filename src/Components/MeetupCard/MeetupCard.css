@@ -29,6 +29,9 @@
     padding-block: 0.8vh;
     color: black;
     text-shadow: 0px 0px 2px black;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .meetupsCard > img {
