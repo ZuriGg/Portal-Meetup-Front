@@ -188,51 +188,53 @@ function EditMeetup() {
                 startDate: formData.startDate.split('T')[0], // Extraer solo la parte de la fecha (YYYY-MM-DD)
             };
 
-            // Aquí ya no necesitas extraer `meetupId` desde la respuesta
+            // Enviar datos principales
             const response = await fetch(
-                `${URL_BACK}/meetups/edit/${meetupId}`, // Usamos el `meetupId` que viene de useParams
+                `${URL_BACK}/meetups/edit/${meetupId}`,
                 {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        ...(user?.token && {
-                            Authorization: user.token.token,
-                        }),
+                        ...(user?.token && { Authorization: user.token.token }),
                     },
                     body: JSON.stringify(formattedFormData),
                 }
             );
 
             if (!response.ok) {
-                throw new Error('Error en la solicitud');
+                throw new Error('Error en la solicitud principal');
             }
 
-            // No es necesario volver a obtener el `meetupId` de la respuesta
-            // Subir imágenes
-            for (const [key, file] of Object.entries(files)) {
-                if (file) {
-                    const formDataImage = new FormData();
-                    formDataImage.append(key, file);
+            // Subir imágenes (usando Promise.all)
+            const uploadPromises = Object.entries(files).map(
+                async ([key, file]) => {
+                    if (file) {
+                        const formDataImage = new FormData();
+                        formDataImage.append(key, file);
 
-                    const uploadResponse = await fetch(
-                        `${URL_BACK}/meetups/${meetupId}/photo/${key}`, // Aquí usas `meetupId` directamente
-                        {
-                            method: 'PUT',
-                            headers: {
-                                ...(user?.token && {
-                                    Authorization: user.token.token,
-                                }),
-                            },
-                            body: formDataImage,
+                        const uploadResponse = await fetch(
+                            `${URL_BACK}/meetups/${meetupId}/photo/${key}`,
+                            {
+                                method: 'PUT',
+                                headers: {
+                                    ...(user?.token && {
+                                        Authorization: user.token.token,
+                                    }),
+                                },
+                                body: formDataImage,
+                            }
+                        );
+
+                        if (!uploadResponse.ok) {
+                            throw new Error(`Error al subir la imagen ${key}`);
                         }
-                    );
-
-                    if (!uploadResponse.ok) {
-                        throw new Error(`Error al subir la imagen ${key}`);
                     }
                 }
-            }
+            );
 
+            await Promise.all(uploadPromises);
+
+            // Si todo fue exitoso, redirigir
             setSuccess(true);
             setError(null);
             navigate('/user/profile');

@@ -126,6 +126,8 @@ function CreateMeetup() {
                 }
             }
 
+            await Promise.all(uploadPromises);
+
             setSuccess(true);
             setError(null);
             navigate('/');
