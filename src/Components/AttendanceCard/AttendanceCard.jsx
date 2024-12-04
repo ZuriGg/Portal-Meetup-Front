@@ -13,8 +13,6 @@ function AttendanceCard({ date }) {
 export default AttendanceCard;
 
 AttendanceCard.propTypes = {
-    date: PropTypes.oneOfType([
-        PropTypes.string, // Si la fecha se pasa como texto (por ejemplo, "2024-11-27").
-        PropTypes.instanceOf(Date), // Si la fecha se pasa como un objeto de tipo Date.
-    ]).isRequired, // Es requerido porque el componente siempre espera una fecha.
+    date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)])
+        .isRequired,
 };

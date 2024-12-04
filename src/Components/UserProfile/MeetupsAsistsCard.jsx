@@ -1,4 +1,3 @@
-import './MeetupsAsistsCard.css';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useUser } from '../../UserContext.jsx';
@@ -6,12 +5,14 @@ import AttendanceCard from '../AttendanceCard/AttendanceCard.jsx';
 import MeetupCard from '../MeetupCard/MeetupCard.jsx';
 import { NavLink } from 'react-router-dom';
 
+import './MeetupsAsistsCard.css';
+
 function MeetupsListCard({ titulo, url }) {
     const [attendances, setAttendances] = useState([]);
     const [meetups, setMeetups] = useState([]);
     const [images, setImages] = useState({});
     const [user] = useUser();
-    const [selectedAttendance, setSelectedAttendance] = useState(null); // Nuevo estado para el `li` seleccionado
+    const [selectedAttendance, setSelectedAttendance] = useState(null);
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -178,6 +179,6 @@ function MeetupsListCard({ titulo, url }) {
 export default MeetupsListCard;
 
 MeetupsListCard.propTypes = {
-    titulo: PropTypes.string.isRequired, // Representa el título, debe ser un string y requerido.
-    url: PropTypes.string.isRequired, // Es la URL o endpoint para el fetch, debe ser un string y requerido.
+    titulo: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
 };
