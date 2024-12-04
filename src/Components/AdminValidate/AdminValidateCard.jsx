@@ -96,5 +96,5 @@ export default AdminValidateCard;
 
 AdminValidateCard.propTypes = {
     titulo: PropTypes.node,
-    url: PropTypes.node,
+    url: PropTypes.string.isRequired,
 };

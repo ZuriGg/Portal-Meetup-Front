@@ -100,15 +100,13 @@ function ProfileCard({ avatar, firstName, lastname, username, email }) {
 
 export default ProfileCard;
 
-//ESPECIFICAR MEJOR ESTOS PROPTYPES
 ProfileCard.propTypes = {
-    avatar: PropTypes.string, // Es una cadena que representa el nombre del archivo o URL del avatar.
-    firstName: PropTypes.string.isRequired, // Se utiliza como texto, por lo que debe ser un string. Marcado como requerido.
-    lastname: PropTypes.string.isRequired, // Igual que `firstName`, debe ser string y requerido.
-    username: PropTypes.string.isRequired, // Se muestra como texto, debe ser string y requerido.
-    email: PropTypes.string.isRequired, // Es un correo electrónico, que también es un string y requerido.
+    avatar: PropTypes.string,
+    firstName: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     location: PropTypes.shape({
-        // Es un objeto con las propiedades city, region y country.
         city: PropTypes.string.isRequired,
         region: PropTypes.string.isRequired,
         country: PropTypes.string.isRequired,

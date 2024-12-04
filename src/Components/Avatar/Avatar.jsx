@@ -27,7 +27,6 @@ function Avatar() {
         e.preventDefault();
         setError(null); // Limpiar error previo
         setSuccess(false); // Limpiar éxito previo
-        console.log('Subiendo imagen:', file);
 
         if (!file) {
             setError('Por favor, seleccione un archivo antes de continuar.');
@@ -66,9 +65,7 @@ function Avatar() {
             }
 
             const dataUser = await resUser.json();
-            console.log('RESULTADOOOOO:', dataUser.data.avatar);
 
-            // Actualizamos el estado global del usuario con la nueva información, incluyendo el avatar
             enhancedSetUser({
                 ...dataUser.data.user,
                 token: user.token, // No sobrescribir el token

@@ -107,7 +107,7 @@ const Mapa = ({ city, street, zip }) => {
 export default Mapa;
 
 Mapa.propTypes = {
-    city: PropTypes.string, //es opcional y debe ser una cadena
-    street: PropTypes.string, //es opcional y debe ser una cadena
-    zip: PropTypes.string, //es opcional y debe ser una cadena para evitar problemas de 0 a la izquierda
+    city: PropTypes.string,
+    street: PropTypes.string,
+    zip: PropTypes.string,
 };
