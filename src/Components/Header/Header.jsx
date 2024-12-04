@@ -4,10 +4,20 @@ import LogoUser from './LogoUser.jsx';
 import { useLocation } from 'react-router-dom';
 
 import './Header.css';
+import { useEffect, useState } from 'react';
 
 function Header() {
     const location = useLocation();
     const locationHome = location.pathname === '/';
+
+    const [showFirstView, setShowFirstView] = useState(false);
+
+    useEffect(() => {
+        if (locationHome && !localStorage.getItem('firstView')) {
+            setShowFirstView(true);
+            localStorage.setItem('firstView', 'true'); // Guarda la clave después de mostrar
+        }
+    }, [locationHome]);
 
     const scrollToSection = (id) => {
         const section = document.getElementById(id);
@@ -49,9 +59,12 @@ function Header() {
         <>
             <header
                 style={
-                    locationHome
+                    locationHome && showFirstView
                         ? { minHeight: '100vh' }
-                        : { minHeight: '20vh', background: 'none' }
+                        : {
+                              minHeight: '20vh',
+                              background: 'none',
+                          }
                 }
             >
                 <div id="headerTop">
@@ -61,7 +74,7 @@ function Header() {
 
                     <LogoUser />
                 </div>
-                {locationHome ? (
+                {locationHome && showFirstView && (
                     <div id="headerBottom">
                         <h1>OurMeet</h1>
                         <h2>Nuestro lugar de encuentro</h2>
@@ -122,7 +135,7 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                ) : null}
+                )}
             </header>
         </>
     );
