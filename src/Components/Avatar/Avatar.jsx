@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
 import './Avatar.css';
+import { useNavigate } from 'react-router-dom';
 
 function Avatar() {
     const [user, enhancedSetUser] = useUser();
@@ -8,6 +9,7 @@ function Avatar() {
     const [preview, setPreview] = useState(null);
     const [success, setSuccess] = useState(null);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const URL_BACK = import.meta.env.VITE_URL_BACK;
 
@@ -72,6 +74,8 @@ function Avatar() {
                 token: user.token, // No sobrescribir el token
                 location: user.location,
             });
+
+            navigate('/user/profile');
         } catch (error) {
             setError(`Ocurrió un error: ${error.message}`);
         }
