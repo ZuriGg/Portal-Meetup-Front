@@ -89,61 +89,6 @@ footer .flechaAbajo:active {
     display: none;
 }
 
-/* -------------------------------------------- Media query mobile horizontal ---------------------------------------------- */
-
-@media (min-width: 730px) {
-    footer img {
-        width: 30vh;
-    }
-
-    footer a {
-        font-size: 1.5vh;
-    }
-
-    footer h5 {
-        font-size: 2.5vh;
-    }
-
-    footer .flechaAbajo {
-        width: 4vh;
-    }
-
-    #flechaFooter1 {
-        top: 7vh;
-        left: 6vh;
-    }
-
-    #flechaFooter2 {
-        display: block;
-        top: 10vh;
-        left: 6vh;
-    }
-
-    #flechaFooter3 {
-        display: block;
-        top: 13vh;
-        left: 6vh;
-    }
-
-    #flechaFooter4 {
-        display: block;
-        top: 7vh;
-        right: 6vh;
-    }
-
-    #flechaFooter5 {
-        display: block;
-        top: 10vh;
-        right: 6vh;
-    }
-
-    #flechaFooter6 {
-        display: block;
-        top: 13vh;
-        right: 6vh;
-    }
-}
-
 /* -------------------------------------------- Media query tablet ---------------------------------------------- */
 
 @media (min-width: 600px) and (max-width: 1100px) {
