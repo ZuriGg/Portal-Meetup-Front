@@ -28,7 +28,7 @@ export default function SortFilter() {
                 <input
                     type="number"
                     name="minVotes"
-                    placeholder="minimo de votos"
+                    placeholder="Minimo de votos"
                     value={localFilters.minVotes || ''}
                     onChange={handleInputChange}
                 />

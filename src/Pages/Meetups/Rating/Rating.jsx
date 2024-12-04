@@ -61,7 +61,7 @@ export const Rating = () => {
 
     return (
         <div className="areaFormulario">
-            <h2>Vote la sesión del Meetup:</h2>
+            <h3>Vote la sesión del Meetup:</h3>
             <form onSubmit={handleVoteSubmit}>
                 <label>Puntuación (de 1 a 5):</label>
                 <div className="stars">

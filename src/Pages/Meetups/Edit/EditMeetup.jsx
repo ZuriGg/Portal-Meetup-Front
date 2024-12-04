@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '../../../UserContext.jsx';
-import './EditMeetup.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import './EditMeetup.css';
 
 function EditMeetup() {
     const [user] = useUser();
@@ -244,7 +244,7 @@ function EditMeetup() {
 
     return (
         <div className="areaFormulario editMeetup">
-            <h1>Edición de un meetup</h1>
+            <h3>Edición de un meetup</h3>
 
             <form onSubmit={enviarDatos}>
                 {['image1', 'image2', 'image3'].map((inputName) => (

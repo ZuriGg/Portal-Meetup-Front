@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useUser } from '../../UserContext.jsx';
-import './Avatar.css';
 import { useNavigate } from 'react-router-dom';
+import './Avatar.css';
 
 function Avatar() {
     const [user, enhancedSetUser] = useUser();

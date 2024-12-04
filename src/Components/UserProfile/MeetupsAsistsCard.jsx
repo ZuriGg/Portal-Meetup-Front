@@ -177,7 +177,6 @@ function MeetupsListCard({ titulo, url }) {
 
 export default MeetupsListCard;
 
-// ESPECIFICAR MEJOR ESTOS PROPTYPES
 MeetupsListCard.propTypes = {
     titulo: PropTypes.string.isRequired, // Representa el título, debe ser un string y requerido.
     url: PropTypes.string.isRequired, // Es la URL o endpoint para el fetch, debe ser un string y requerido.

@@ -131,7 +131,6 @@ function DetailsMeetup() {
                     dayOfWeekMap[meetupDetail.dayOfTheWeek.toLowerCase()];
                 const dates = [];
 
-                // Si el día objetivo ya pasó esta semana, lo ajustamos para la próxima semana
                 const diffToNextWeek =
                     targetDay >= currentDay
                         ? targetDay - currentDay
@@ -158,7 +157,6 @@ function DetailsMeetup() {
     const handleDateSelect = async (date) => {
         setSelectedDay(date);
 
-        // Obtener el userId desde el UserContext
         const userId = user.id;
         const formattedDate = date.toISOString().slice(0, 19).replace('T', ' '); // '2024-12-04 04:04:05'
 
