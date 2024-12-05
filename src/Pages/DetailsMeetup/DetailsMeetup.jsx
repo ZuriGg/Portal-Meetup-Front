@@ -9,7 +9,7 @@ import Mapa from '../../Components/Mapa/Mapa.jsx';
 import './DetailsMeetup.css';
 
 function DetailsMeetup() {
-    const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
+    const { meetupId } = useParams();
     const [meetupDetail, setMeetupDetail] = useState(''); // Estado para almacenar los datos
     const [attendance, setAttendance] = useState([]);
     const [meetupUsers, setMeetupUsers] = useState([]);
