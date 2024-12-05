@@ -1,4 +1,3 @@
-import './DetailsMeetup.css';
 import { useEffect, useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import UserCard from '../../Components/UserCard/UserCard';
@@ -6,6 +5,8 @@ import { useUser } from '../../UserContext.jsx';
 import { MeetupRatingList } from '../../Components/Rating/MeetupRatingList.jsx';
 import Mapa from '../../Components/Mapa/Mapa.jsx';
 //import OutOfService from '../../Components/OutOfService/OutOfService.jsx';
+
+import './DetailsMeetup.css';
 
 function DetailsMeetup() {
     const { meetupId } = useParams(); // Obtiene el ID del meetup desde la URL
@@ -387,9 +388,6 @@ function DetailsMeetup() {
 
             <div id="locationContainer">
                 <div id="datosUbicacionDetallesMeetup">
-                    <h4>Ubicación</h4>
-                    <p className="mapLocation">{`${location.city}, ${location.address}, ${location.zip}`}</p>
-
                     <h4 id="h4Asistentes">Asistentes</h4>
                     <ul>
                         {attendanceMeetup &&
@@ -411,6 +409,9 @@ function DetailsMeetup() {
                             <p>Nadie asistirá por el momento.</p>
                         )}
                     </ul>
+
+                    <h4>Ubicación</h4>
+                    <p className="mapLocation">{`${location.city}, ${location.address}, ${location.zip}`}</p>
                 </div>
                 <Mapa
                     city={location.city}
